@@ -61,7 +61,7 @@ services:
       environment:
           - TZ=Europe/Lisbon
       env_file:
-          - /home/epousa/Desktop/testing_zone/grafana/grafana.env
+          - /home/epousa/Desktop/github/dissertacao/cenarios_teste/Monitoring_Stack/grafana/grafana.env
       volumes:
           - data-grafana:/var/lib/grafana
       healthcheck:
