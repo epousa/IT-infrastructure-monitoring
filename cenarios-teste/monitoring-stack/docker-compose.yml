@@ -1,0 +1,70 @@
+version: '3'
+
+networks:
+  monitoring:
+    driver: bridge
+
+volumes:
+  data-postgres: {}
+  data-opennms.etc: {}
+  data-opennms: {}
+  data-grafana: {}
+
+services:
+  database:
+    image: postgres:latest
+    container_name: database
+    env_file:
+      - ./config/env/postgres.env
+    volumes:
+      - data-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 30s
+      retries: 3
+    ports:
+      - "5432:5432"
+
+  horizon:
+    image: opennms/horizon:latest
+    container_name: horizon
+    env_file:
+      - ./config/env/opennms.env
+      - ./config/env/postgres.env     
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - data-opennms:/opt/opennms/share/rrd #Mount directories to store RRD files, PDF reports.
+      - ./overlay:/opt/opennms-overlay #add my own configuration files by providing a etc-overlay directory. On startup the files overwrite the default configuration
+      #- data-opennms.etc:/opt/opennms/etc #If i want to have OpenNMS Horizon configuration on your Docker host in a specific directory
+    command: ["-s"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "-I", "http://localhost:8980/opennms/login.jsp" ]
+      interval: 1m
+      timeout: 5s
+      retries: 3
+    ports:
+      - "8980:8980/tcp" #Publish port to access the web UI 
+      - "8101:8101/tcp" #Publish port to access Karaf shell.
+      - "61616:61616/tcp" #Publish port for ActiveMQ
+      - "162:162/udp" #Publish port for SNMP Traps/Informs
+    
+  grafana:
+    image: opennms/helm:latest
+    container_name: grafana
+    environment:
+      - TZ=Europe/Lisbon
+    env_file:
+      - ./config/env/grafana.env
+    volumes:
+      - data-grafana:/var/lib/grafana
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-I", "http://localhost:3000/login"]
+      interval: 1m
+      timeout: 5s
+      retries: 3
+    ports:
+      - "3000:3000"
+      
