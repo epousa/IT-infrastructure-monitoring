@@ -1,5 +1,4 @@
 #!/bin/bash
 #give permissions to mount folders
 cd ../mount-volumes
-sudo chmod -R 777 data-grafana
-sudo chmod -R 777 data-opennms.etc data-opennms.rdd data-opennms.reports
+sudo chmod -R 777 data-grafana data-opennms.etc data-opennms.rdd data-opennms.reports
