@@ -7,7 +7,8 @@ networks:
 volumes:
   data-postgres: {}
   data-opennms.etc: {}
-  data-opennms: {}
+  data-opennms.rrd: {}
+  data-opennms.reports: {}
   data-grafana: {}
 
 services:
@@ -17,7 +18,7 @@ services:
     env_file:
       - ./config/env/postgres.env
     volumes:
-      - data-postgres:/var/lib/postgresql/data
+      - ./mount-volumes/data-postgres:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 10s
@@ -36,9 +37,13 @@ services:
       database:
         condition: service_healthy
     volumes:
-      - data-opennms:/opt/opennms/share/rrd #Mount directories to store RRD files, PDF reports.
-      - ./overlay:/opt/opennms-overlay #add my own configuration files by providing a etc-overlay directory. On startup the files overwrite the default configuration
-      #- data-opennms.etc:/opt/opennms/etc #If i want to have OpenNMS Horizon configuration on your Docker host in a specific directory
+      #Named volumes get saved in the following directory -> /var/lib/docker/volumes
+      - ./mount-volumes/data-opennms.rdd:/opt/opennms/share/rrd #Mount directories to store RRD files
+      - ./mount-volumes/data-opennms.reports:/opt/opennms/share/reports #PDF reports.
+      #Not named volumes need to be given permissions. Run "mount-permissions" script to do so.
+      - ./mount-volumes/data-opennms.etc:/opt/opennms/etc #OpenNMS Horizon configuration on your Docker host in a specific directory
+      - ./mount-volumes/data-opennms.overlay:/opt/opennms-overlay #add my own configuration files by providing a etc-overlay directory. On startup the files overwrite the default configuration
+      
     command: ["-s"]
     healthcheck:
       test: [ "CMD", "curl", "-f", "-I", "http://localhost:8980/opennms/login.jsp" ]
@@ -59,7 +64,8 @@ services:
     env_file:
       - ./config/env/grafana.env
     volumes:
-      - data-grafana:/var/lib/grafana
+      #Not named volumes need to be given permissions. Run "mount-permissions" script to do so.
+      - ./mount-volumes/data-grafana:/var/lib/grafana
     healthcheck:
       test: ["CMD", "curl", "-f", "-I", "http://localhost:3000/login"]
       interval: 1m
