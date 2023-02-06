@@ -43,7 +43,6 @@ services:
       #Not named volumes need to be given permissions. Run "mount-permissions" script to do so.
       - ./mount-volumes/data-opennms.etc:/opt/opennms/etc #OpenNMS Horizon configuration on your Docker host in a specific directory
       - ./mount-volumes/data-opennms.overlay:/opt/opennms-overlay #add my own configuration files by providing a etc-overlay directory. On startup the files overwrite the default configuration
-      
     command: ["-s"]
     healthcheck:
       test: [ "CMD", "curl", "-f", "-I", "http://localhost:8980/opennms/login.jsp" ]
@@ -54,13 +53,10 @@ services:
       - "8980:8980/tcp" #Publish port to access the web UI 
       - "8101:8101/tcp" #Publish port to access Karaf shell.
       - "61616:61616/tcp" #Publish port for ActiveMQ
-      - "162:162/udp" #Publish port for SNMP Traps/Informs
-    
+      - "162:1162/udp" #Publish port for SNMP Traps. Informsunprivileged user and can’t bind on port numbers below 1024 without escalated privileges
   grafana:
-    image: opennms/helm:latest
+    image: grafana/grafana:latest
     container_name: grafana
-    environment:
-      - TZ=Europe/Lisbon
     env_file:
       - ./config/env/grafana.env
     volumes:
@@ -72,5 +68,4 @@ services:
       timeout: 5s
       retries: 3
     ports:
-      - "3000:3000"
-      
+      - "3000:3000" 
