@@ -40,7 +40,7 @@ services:
       #Named volumes get saved in the following directory -> /var/lib/docker/volumes
       - ./mount-volumes/data-opennms.rdd:/opt/opennms/share/rrd #Mount directories to store RRD files
       - ./mount-volumes/data-opennms.reports:/opt/opennms/share/reports #PDF reports.
-      #Not named volumes need to be given permissions. Run "mount-permissions" script to do so.
+      #Not named volumes need to be given permissions. Run "precious" script to do so.
       - ./mount-volumes/data-opennms.etc:/opt/opennms/etc #OpenNMS Horizon configuration on your Docker host in a specific directory
       - ./mount-volumes/data-opennms.overlay:/opt/opennms-overlay #add my own configuration files by providing a etc-overlay directory. On startup the files overwrite the default configuration
     command: ["-s"]
@@ -53,7 +53,7 @@ services:
       - "8980:8980/tcp" #Publish port to access the web UI 
       - "8101:8101/tcp" #Publish port to access Karaf shell.
       - "61616:61616/tcp" #Publish port for ActiveMQ
-      - "162:1162/udp" #Publish port for SNMP Traps. Informsunprivileged user and can’t bind on port numbers below 1024 without escalated privileges
+      - "162:1162/udp" #Publish port for SNMP Traps/Informs.Unprivileged user and can’t bind on port numbers below 1024 without escalated privileges
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
