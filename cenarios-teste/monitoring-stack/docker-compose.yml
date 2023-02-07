@@ -7,9 +7,11 @@ networks:
 volumes:
   data-postgres: {}
   data-opennms.etc: {}
+  data-opennms.mibs: {}
   data-opennms.rrd: {}
   data-opennms.reports: {}
   data-grafana: {}
+  
 
 services:
   database:
@@ -42,7 +44,9 @@ services:
       - ./mount-volumes/data-opennms.reports:/opt/opennms/share/reports #PDF reports.
       #Not named volumes need to be given permissions. Run "precious" script to do so.
       - ./mount-volumes/data-opennms.etc:/opt/opennms/etc #OpenNMS Horizon configuration on your Docker host in a specific directory
-      - ./mount-volumes/data-opennms.overlay:/opt/opennms-overlay #add my own configuration files by providing a etc-overlay directory. On startup the files overwrite the default configuration
+      #- ./mount-volumes/data-opennms.overlay:/opt/opennms-overlay #add my own configuration files by providing a etc-overlay directory. On startup the files overwrite the default configuration
+      - ./mount-volumes/data-opennms.mibs:/opt/opennms/share/mibs
+
     command: ["-s"]
     healthcheck:
       test: [ "CMD", "curl", "-f", "-I", "http://localhost:8980/opennms/login.jsp" ]

@@ -5,7 +5,7 @@ if [ $1 = "setup" ]; then
 
   #give permissions to mount folders
   cd ../mount-volumes
-  sudo chmod -R 777 data-grafana data-opennms.etc data-opennms.rdd data-opennms.reports
+  sudo chmod -R 777 data-grafana data-opennms.etc data-opennms.rdd data-opennms.reports data-opennms.mibs
 
   #start horizon and grafana after giving permissions
   docker start horizon grafana
