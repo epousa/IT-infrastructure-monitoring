@@ -22,7 +22,6 @@ elif [ $1 = "up" ]; then
   echo "command: docker-compose up -d"
   docker-compose up -d
   echo "done"
-
 elif [ $1 = "stop" ]; then
   #stops individual services
   if [ "$#" -gt 1 ]; then

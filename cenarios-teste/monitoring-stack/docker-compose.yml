@@ -26,6 +26,8 @@ services:
       interval: 10s
       timeout: 30s
       retries: 3
+    networks:
+      - monitoring
     ports:
       - "5432:5432"
 
@@ -53,13 +55,15 @@ services:
       interval: 1m
       timeout: 5s
       retries: 3
+    networks:
+      - monitoring
     ports:
       - "8980:8980/tcp" #Publish port to access the web UI 
       - "8101:8101/tcp" #Publish port to access Karaf shell.
-      - "61616:61616/tcp" #Publish port for ActiveMQ
+      #- "61616:61616/tcp" #Publish port for ActiveMQ
       - "162:1162/udp" #Publish port for SNMP Traps/Informs.Unprivileged user and can’t bind on port numbers below 1024 without escalated privileges
   grafana:
-    image: grafana/grafana:latest
+    image: opennms/helm:latest
     container_name: grafana
     env_file:
       - ./config/env/grafana.env
@@ -71,5 +75,8 @@ services:
       interval: 1m
       timeout: 5s
       retries: 3
+    networks:
+      - monitoring
     ports:
       - "3000:3000" 
+
