@@ -6,6 +6,7 @@ if [ $1 = "setup" ]; then
   #give permissions to mount folders
   cd ../mount-volumes
   sudo chmod -R 777 data-grafana data-opennms.etc data-opennms.rdd data-opennms.reports data-opennms.mibs
+  #data-opennms.rdd data-opennms.bin
 
   #start horizon and grafana after giving permissions
   docker start horizon grafana
@@ -52,6 +53,12 @@ elif [ $1 = "ls" ]; then
   docker-compose ps -a
   echo "done"
 
+elif [ $1 = "h-terminal" ]; then
+  #shows containers activities
+  echo "command: docker exec -it horizon /bin/bash"
+  docker exec -it horizon /bin/bash
+  echo "done"
+
 elif [ $1 = "test-trap" ]; then
   #shows containers activities
   echo "snmptrap -v 2c -c public localhost '' 1.3.6.1.4.1.2021.991.17 .1.3.6.1.2.1.1.6.0 s Milky Way"
@@ -61,7 +68,7 @@ elif [ $1 = "test-trap" ]; then
 elif [ $1 = "--help" ]; then
   #shows script capabilities
   echo -e "\ncommand: ./<scrip_name> <operation> <service>"
-  echo -e "\noperations:\n  - setup\n  - up\n  - down\n  - start <services>\n  - stop <services>\n  - ls\n  - test-trap\n"
+  echo -e "\noperations:\n  - setup\n  - up\n  - down\n  - start <services>\n  - stop <services>\n  - ls\n  - test-trap  - h-terminal\n"
   echo -e "services:\n  - grafana\n  - horizon\n  - database\n"
 else
   echo "try again"
