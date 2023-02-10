@@ -11,8 +11,6 @@ volumes:
   data-opennms.rrd: {}
   data-opennms.reports: {}
   data-grafana: {}
-  data-opennms.bin: {}
-  
 
 services:
   database:
@@ -69,7 +67,7 @@ services:
     env_file:
       - ./config/env/grafana.env
     volumes:
-      #Not named volumes need to be given permissions. Run "mount-permissions" script to do so.
+      #Not named volumes need to be given permissions. Run "precious" script to do so.
       - ./mount-volumes/data-grafana:/var/lib/grafana
     healthcheck:
       test: ["CMD", "curl", "-f", "-I", "http://localhost:3000/login"]
