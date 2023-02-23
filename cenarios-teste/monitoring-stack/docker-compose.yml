@@ -29,7 +29,16 @@ services:
       - monitoring
     ports:
       - "5432:5432"
-
+  kafka:
+    image: spotify/kafka
+    container_name: kafka
+    env_file:
+      - ./config/env/kafka.env 
+    ports:
+      - "2181:2181"
+      - "9092:9092"
+    networks:
+      - monitoring
   horizon:
     image: opennms/horizon:latest
     container_name: horizon
