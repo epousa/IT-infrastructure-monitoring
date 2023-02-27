@@ -30,7 +30,7 @@ services:
     ports:
       - "5432:5432"
   kafka:
-    image: spotify/kafka
+    image: spotify/kafka:latest
     container_name: kafka
     env_file:
       - ./config/env/kafka.env 

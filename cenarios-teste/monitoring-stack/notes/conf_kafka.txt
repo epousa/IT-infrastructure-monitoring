@@ -1,0 +1,42 @@
+-------------------------------- Configuração kafka no openNMS --------------------------------
+
+#1º -> Para aceder à karaf shell para configurar o openNMS
+ssh -p 8101 admin@localhost
+
+#2º -> Para configurar o event consumer
+config:edit org.opennms.features.kafka.consumer.client
+config:property-set bootstrap.servers <my-kafka-ip-1:9092,my-kafka-ip-2:9092>
+config:property-set eventsTopic <opennms-kafka-events>
+config:update
+
+#2.5º -> Para configurar o event producer
+
+config:edit org.opennms.features.kafka.producer.client
+config:property-set bootstrap.servers kafka-broker-ip:9092
+config:update
+
+#3º -> Instalar as features
+feature:install opennms-kafka-consumer
+feature:install opennms-kafka-producer
+
+#4º -> Fazer sync dos alarmes do openNMS para eventos de kafka
+opennms:kafka-sync-alarms
+
+#5º -> Ver os logs
+log:tail
+
+
+------------------------------- Aceder à shell do kafka ----------------------------------------
+
+#1º -> Aceder à shell da imagem de kafka
+docker exec -it <nome do container de kafka> /bin/bash
+
+#Notas
+A imagem spotify/kafka tem o broker numa abaixo de 0.11 e por isso o producer produz warnings que falhou a realizar tarefas do genero "16:18:56.659 WARN [KafkaSendQueueProcessor] Failed to send record to producer: ProducerRecord(topic=alarms, partition=null, headers=RecordHeaders(headers = [], isReadOnly = true), key=[B@5ec38003, value=[B@2b86eebb, timestamp=null).
+org.apache.kafka.common.errors.UnsupportedVersionException: Attempting to use idempotence with a broker which does not support the required message format (v2). The broker must be version 0.11 or later"
+
+Antes tanto o consumer como o producer não se conseguiam conectar ao kafka. Era por estar a por localhost inves do ip da maquina onde o container esta a correr no advertised host.
+
+
+#NOTAS:
+Formato dos eventos de kafka nos topicos lidos pelo OpenNMS têm de ter o formato de eventos do OpenNMS
