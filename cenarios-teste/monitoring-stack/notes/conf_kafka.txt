@@ -6,7 +6,7 @@ ssh -p 8101 admin@localhost
 #2º -> Para configurar o event consumer
 config:edit org.opennms.features.kafka.consumer.client
 config:property-set bootstrap.servers <my-kafka-ip-1:9092,my-kafka-ip-2:9092>
-config:property-set eventsTopic <opennms-kafka-events>
+config:property-set eventsTopic quickstart <opennms-kafka-events>
 config:update
 
 #2.5º -> Para configurar o event producer
@@ -40,3 +40,20 @@ Antes tanto o consumer como o producer não se conseguiam conectar ao kafka. Era
 
 #NOTAS:
 Formato dos eventos de kafka nos topicos lidos pelo OpenNMS têm de ter o formato de eventos do OpenNMS
+
+
+config:edit org.opennms.features.kafka.consumer.client
+config:property-set bootstrap.servers broker:29092
+config:update
+
+
+config:edit org.opennms.features.kafka.producer.client
+config:property-set bootstrap.servers broker:29092
+config:update
+
+
+kafka-topics --bootstrap-server 192.168.1.30:9092 --create --topic quickstart
+
+kafka-console-producer --bootstrap-server 192.168.1.30:9092 --topic quickstart
+
+kafka-console-consumer --bootstrap-server 192.168.1.30:9092 --topic quickstart --from-beginning

@@ -29,16 +29,29 @@ services:
       - monitoring
     ports:
       - "5432:5432"
-  kafka:
-    image: spotify/kafka:latest
-    container_name: kafka
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
     env_file:
-      - ./config/env/kafka.env 
-    ports:
-      - "2181:2181" 
-      - "9092:9092"
+      - ./config/env/zookeeper.env
     networks:
       - monitoring
+
+  broker:
+    image: confluentinc/cp-kafka:latest
+    container_name: broker
+    ports:
+    # To learn about configuring Kafka for access across networks see
+    # https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    env_file:
+      - ./config/env/broker.env
+    networks:
+      - monitoring
+
   horizon:
     image: opennms/horizon:latest
     container_name: horizon
@@ -70,6 +83,7 @@ services:
       - "8101:8101/tcp" #Publish port to access Karaf shell.
       #- "61616:61616/tcp" #Publish port for ActiveMQ
       - "162:1162/udp" #Publish port for SNMP Traps/Informs.Unprivileged user and can’t bind on port numbers below 1024 without escalated privileges
+  
   grafana:
     image: opennms/helm:latest
     container_name: grafana
