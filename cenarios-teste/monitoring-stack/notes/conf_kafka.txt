@@ -1,4 +1,4 @@
--------------------------------- Configuração kafka no openNMS --------------------------------
+...-------------------------------- Configuração kafka no openNMS --------------------------------
 
 #1º -> Para aceder à karaf shell para configurar o openNMS
 ssh -p 8101 admin@localhost
