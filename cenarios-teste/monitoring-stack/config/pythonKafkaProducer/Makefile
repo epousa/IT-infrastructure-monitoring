@@ -1,9 +1,12 @@
 .PHONY: install clean reset
 
-all: reset run
+all: reset run_protobuf
 
-run:
+run_protobuf:
 	@. venv/bin/activate && protoc --python_out=. src/my-event.proto && python3 src/myProducer.py protobuf
+
+run_xml:
+	@. venv/bin/activate && protoc --python_out=. src/my-event.proto && python3 src/myProducer.py xml ../kafka_events_format/event_example.xml
 
 install:
 	@python3 -m venv --system-site-packages venv && . venv/bin/activate && pip3 install -r requirements.txt
