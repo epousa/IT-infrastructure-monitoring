@@ -49,6 +49,8 @@ if __name__ == "__main__":
                  log_dest="LogDest",
                  log_content="LogContent"
             )
+
+            print(event_data)
             # Produce the message to the Kafka topic
             producer.send(topic, value=event_data)
 
@@ -63,7 +65,7 @@ if __name__ == "__main__":
 
                 # convert ElementTree object to string
                 event_data = ET.tostring(root)
-
+                #print(event_data)
                 # # encode string as bytes
                 # event_data = xml_string.encode('utf-8')
                 

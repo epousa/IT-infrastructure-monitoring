@@ -117,3 +117,9 @@ protoc --python_out=. src/my-event.proto
 
 3º -> importar o ficheiro gerado anteirormnete e construir o evento pretendido, serializar e enviar para o topico
 
+
+#####################################################################
+
+bundle:classes org.apache.servicemix.bundles.kafka-clients -> org/apache/kafka/common/serialization/ByteArrayDeserializer.class
+
+sudo docker cp horizon:opt/opennms/lib/org.apache.servicemix.bundles.kafka-clients-3.2.0_1.jar ~/Desktop
