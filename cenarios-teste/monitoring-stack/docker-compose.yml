@@ -69,6 +69,7 @@ services:
       - ./mount-volumes/data-opennms.etc:/opt/opennms/etc #OpenNMS Horizon configuration on your Docker host in a specific directory
       #- ./mount-volumes/data-opennms.overlay:/opt/opennms-overlay #add my own configuration files by providing a etc-overlay directory. On startup the files overwrite the default configuration
       - ./mount-volumes/data-opennms.mibs:/opt/opennms/share/mibs
+      - ./mount-volumes/data-opennms.xsds:/opt/opennms/share/xsds
     command: ["-s"]
     healthcheck:
       test: [ "CMD", "curl", "-f", "-I", "http://localhost:8980/opennms/login.jsp" ]
@@ -82,6 +83,7 @@ services:
       - "8101:8101/tcp" #Publish port to access Karaf shell.
       #- "61616:61616/tcp" #Publish port for ActiveMQ
       - "162:1162/udp" #Publish port for SNMP Traps/Informs.Unprivileged user and can’t bind on port numbers below 1024 without escalated privileges
+      - "5817:5817" #Publish port to access evend
   
   grafana:
     image: opennms/helm:latest

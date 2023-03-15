@@ -1,0 +1,16 @@
+<event>
+    <uei>uei.opennms.org/nodes/nodeLostService</uei>
+    <event-label>OpenNMS-defined node event: nodeLostService</event-label>
+    <descr>&lt;p>A %service% outage was identified on interface
+        %interface% because of the following condition: %parm[eventReason]%.&lt;/p> &lt;p>
+        A new outage record has been created and service-level
+        availability calculations will be impacted until this outage is
+        resolved.&lt;/p></descr>
+    <logmsg dest="logndisplay">
+        %service% outage identified on interface %interface%.
+    </logmsg>
+    <severity>Minor</severity>
+    <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false"/>
+</event>
+
+

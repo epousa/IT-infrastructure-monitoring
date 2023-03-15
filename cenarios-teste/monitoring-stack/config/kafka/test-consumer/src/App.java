@@ -12,6 +12,10 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.Socket;
+
 public class App {
     private static final Logger log = LoggerFactory.getLogger(App.class);
 
@@ -21,6 +25,9 @@ public class App {
         String bootstrapServers = "192.168.1.30:9092";
         String groupId = "my-fifth-application";
         String topic = "opennms-kafka-events";
+
+        String host = "192.168.1.30";
+        int port = 5817;
 
         // create consumer configs
         Properties properties = new Properties();
@@ -56,7 +63,7 @@ public class App {
 
         try {
 
-            // subscribe consumer to our topic(s)
+            // subscribe consumer to the topic(s)
             consumer.subscribe(Arrays.asList(topic));
 
             // poll for new data
@@ -66,7 +73,23 @@ public class App {
                 for (ConsumerRecord<String, String> record : records) {
                     log.info("Key: " + record.key() + ", Value: " + record.value());
                     log.info("Partition: " + record.partition() + ", Offset:" + record.offset());
+
+                    try (Socket socket = new Socket(host, port)) {
+                        OutputStream outputStream = socket.getOutputStream();
+                        outputStream.write(record.value().getBytes());
+                        outputStream.flush();
+                        System.out.println("Event sent successfully.");
+                    } catch (IOException ex) {
+                        System.err.println("Error sending event: " + ex.getMessage());
+                        ex.printStackTrace();
+                    }
                 }
+                
+                //build event
+                //Event event = new Event(topic, topic, topic, topic, 0, 0, topic, 0, topic, bootstrapServers, false, groupId, topic, null);
+                
+                //Send event
+
             }
 
        
