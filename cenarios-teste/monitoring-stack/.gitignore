@@ -5,3 +5,4 @@ config/pythonKafkaProducer/venv/
 config/test-consumer/bin/
 config/pythonKafkaProducer/src/my_event_pb2.py
 config/pythonKafkaProducer/src/_pycache_/
+opennms/

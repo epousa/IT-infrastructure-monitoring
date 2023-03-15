@@ -126,5 +126,3 @@ sudo docker cp horizon:opt/opennms/lib/org.apache.servicemix.bundles.kafka-clien
 sudo docker cp horizon:opt/opennms/bin/send-event.pl ~/Desktop
 sudo docker cp horizon:opt/opennms/share/xsds/event.xsd ~/Desktop
 
-
-ver o formato dos eventos
