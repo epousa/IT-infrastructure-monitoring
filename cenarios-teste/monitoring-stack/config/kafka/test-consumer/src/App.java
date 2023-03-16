@@ -1,5 +1,6 @@
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+// import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.errors.WakeupException;
@@ -8,13 +9,13 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Duration;
+// import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.Socket;
+// import java.io.IOException;
+// import java.io.OutputStream;
+// import java.net.Socket;
 
 public class App {
     private static final Logger log = LoggerFactory.getLogger(App.class);
@@ -22,12 +23,12 @@ public class App {
     public static void main(String[] args) {
         log.info("I am a Kafka Consumer");
 
-        String bootstrapServers = "192.168.1.30:9092";
+        String bootstrapServers = "10.254.254.106:9092";
         String groupId = "my-fifth-application";
         String topic = "opennms-kafka-events";
 
-        String host = "192.168.1.30";
-        int port = 5817;
+        // String host = "192.168.1.30";
+        // int port = 5817;
 
         // create consumer configs
         Properties properties = new Properties();
@@ -40,8 +41,7 @@ public class App {
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         // create consumer
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
-        //KafkaConsumer<byte[], byte[]> consumer = new KafkaConsumer<>(properties);
+        KafkaConsumer<String, byte[]> consumer = new KafkaConsumer<>(properties);
 
         // get a reference to the current thread
         final Thread mainThread = Thread.currentThread();
@@ -65,42 +65,27 @@ public class App {
 
             // subscribe consumer to the topic(s)
             consumer.subscribe(Arrays.asList(topic));
+            log.info("subscribed to {}", topic);
 
             // poll for new data
             while (true) {
-                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+                ConsumerRecords<String, byte[]> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
+                log.info("Received {} records", records.count());
 
-                for (ConsumerRecord<String, String> record : records) {
-                    log.info("Key: " + record.key() + ", Value: " + record.value());
-                    log.info("Partition: " + record.partition() + ", Offset:" + record.offset());
+                // //manipulate event
+                // List<EventsProto.Event> pbEvents = new ArrayList<>();
+                // for (ConsumerRecord<String, byte[]> record : records){
+                //     try {
+                //         EventsProto.Event pbEvent = EventsProto.Event.parseFrom(record.value());
+                //         pbEvents.add(pbEvent);
+                //     } catch (InvalidProtocolBufferException e) {
+                //         LOG.warn("Error while parsing event with key {}", record.key());
+                //     }
+                // }
 
-                    try (Socket socket = new Socket(host, port)) {
-                        OutputStream outputStream = socket.getOutputStream();
-                        outputStream.write(record.value().getBytes());
-                        outputStream.flush();
-                        System.out.println("Event sent successfully.");
-                    } catch (IOException ex) {
-                        System.err.println("Error sending event: " + ex.getMessage());
-                        ex.printStackTrace();
-                    }
-                }
-                
-                //build event
-                //Event event = new Event(topic, topic, topic, topic, 0, 0, topic, 0, topic, bootstrapServers, false, groupId, topic, null);
-                
-                //Send event
-
+                // //send event
+                // forwardEventsToOpenNMS(pbEvents);
             }
-
-       
-            // consumer.subscribe(Arrays.asList(topic));
-
-            // while (true) {
-            //     ConsumerRecords<byte[], byte[]> records = consumer.poll(Duration.ofMillis(100));
-            //     records.forEach(record -> {
-            //         System.out.println("Received message: key = " + record.key() + ", value = " + record.value());
-            //     });
-            // }
 
         } catch (WakeupException e) {
             log.info("Wake up exception!");
