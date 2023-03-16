@@ -1,5 +1,6 @@
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+//import org.apache.kafka.clients.consumer.ConsumerRecord;
 // import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -42,7 +43,6 @@ public class App {
 
         // create consumer
         KafkaConsumer<String, byte[]> consumer = new KafkaConsumer<>(properties);
-
         // get a reference to the current thread
         final Thread mainThread = Thread.currentThread();
 
@@ -63,6 +63,10 @@ public class App {
 
         try {
 
+            //Para o caso de ter topicos que tem eventos com configurações 
+            //diferentes tentar criar uma thread por cada topico. 
+            //Cada thread usa um eventmapper different
+
             // subscribe consumer to the topic(s)
             consumer.subscribe(Arrays.asList(topic));
             log.info("subscribed to {}", topic);
@@ -71,7 +75,10 @@ public class App {
             while (true) {
                 ConsumerRecords<String, byte[]> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
                 log.info("Received {} records", records.count());
-
+                for(ConsumerRecord<String, byte[]> record:records){
+                    System.out.println(record.value());
+                }
+                
                 // //manipulate event
                 // List<EventsProto.Event> pbEvents = new ArrayList<>();
                 // for (ConsumerRecord<String, byte[]> record : records){
