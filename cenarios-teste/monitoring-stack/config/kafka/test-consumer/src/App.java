@@ -72,6 +72,7 @@ public class App {
             //Para o caso de ter topicos que tem eventos com configurações 
             //diferentes tentar criar uma thread por cada topico. 
             //Cada thread usa um eventmapper different
+            //Ou switch case que dependendo do nome do topico usa um eventMapper diferente
 
             // subscribe consumer to the topic(s)
             consumer.subscribe(Arrays.asList(topic));
@@ -85,14 +86,26 @@ public class App {
                     System.out.println(record.value());
                     
                     //manipulate event
-                    Document doc = convertStringToDocument(record.value());
-                    String uei = doc.getElementsByTagName("uei").item(0).getTextContent();
-                    // String severity = doc.getElementsByTagName("alarmSeverity").item(0).getTextContent();
-                    System.out.println(uei);
-                    // System.out.println(severity);
+                    switch(topic){
+                        case "opennms-kafka-events":
+                            //xml topic type-1 
+                            System.out.println("EventsMapper for xml");
+                            Document doc = convertStringToDocument(record.value());
+                            String uei = doc.getElementsByTagName("uei").item(0).getTextContent();
+                            System.out.println(uei);
+
+                            break;
+                        default:
+                            //protobuf topic
+                            System.out.println("EventsMapper for protobuf");
+                            byte[] byteArrray = record.value().getBytes();
+                            System.out.println(byteArrray);
+
+                            break;
+                    }
                 }
                 //send event
-                // forwardEventsToOpenNMS(pbEvents);
+                // orwardEventsToOpenNMS(pbEvents);
             }
 
         } catch (WakeupException e) {
