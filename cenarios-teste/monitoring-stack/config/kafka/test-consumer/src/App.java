@@ -14,6 +14,12 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.Properties;
 
+import java.io.StringReader;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+
 // import java.io.IOException;
 // import java.io.OutputStream;
 // import java.net.Socket;
@@ -24,10 +30,10 @@ public class App {
     public static void main(String[] args) {
         log.info("I am a Kafka Consumer");
 
-        String bootstrapServers = "10.254.254.106:9092";
+        String bootstrapServers = "192.168.1.30:9092";
         String groupId = "my-fifth-application";
         String topic = "opennms-kafka-events";
-
+        
         // String host = "192.168.1.30";
         // int port = 5817;
 
@@ -42,7 +48,7 @@ public class App {
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         // create consumer
-        KafkaConsumer<String, byte[]> consumer = new KafkaConsumer<>(properties);
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
         // get a reference to the current thread
         final Thread mainThread = Thread.currentThread();
 
@@ -73,24 +79,19 @@ public class App {
 
             // poll for new data
             while (true) {
-                ConsumerRecords<String, byte[]> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
+                ConsumerRecords<String, String> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
                 log.info("Received {} records", records.count());
-                for(ConsumerRecord<String, byte[]> record:records){
+                for(ConsumerRecord<String, String> record:records){
                     System.out.println(record.value());
+                    
+                    //manipulate event
+                    Document doc = convertStringToDocument(record.value());
+                    String uei = doc.getElementsByTagName("uei").item(0).getTextContent();
+                    // String severity = doc.getElementsByTagName("alarmSeverity").item(0).getTextContent();
+                    System.out.println(uei);
+                    // System.out.println(severity);
                 }
-                
-                // //manipulate event
-                // List<EventsProto.Event> pbEvents = new ArrayList<>();
-                // for (ConsumerRecord<String, byte[]> record : records){
-                //     try {
-                //         EventsProto.Event pbEvent = EventsProto.Event.parseFrom(record.value());
-                //         pbEvents.add(pbEvent);
-                //     } catch (InvalidProtocolBufferException e) {
-                //         LOG.warn("Error while parsing event with key {}", record.key());
-                //     }
-                // }
-
-                // //send event
+                //send event
                 // forwardEventsToOpenNMS(pbEvents);
             }
 
@@ -105,6 +106,21 @@ public class App {
         }
 
     }
+
+    private static Document convertStringToDocument(String xmlStr) {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();  
+        DocumentBuilder builder;  
+        try  
+        {  
+            builder = factory.newDocumentBuilder();  
+            Document doc = builder.parse( new InputSource( new StringReader( xmlStr ) ) ); 
+            return doc;
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        } 
+        return null;
+    }
+
 }
 
 
