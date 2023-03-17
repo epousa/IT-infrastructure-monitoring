@@ -2,7 +2,6 @@ mount-volumes/
 config/mibs/
 config/kafka/kafka_events_format/
 config/kafka/pythonKafkaProducer/venv/
-config/kafka/test-consumer/bin/
 config/kafka/pythonKafkaProducer/src/my_event_pb2.py
 config/kafka/pythonKafkaProducer/src/_pycache_/
 config/aux-files/
