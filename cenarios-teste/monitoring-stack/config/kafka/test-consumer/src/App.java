@@ -86,7 +86,7 @@ public class App {
                     System.out.println(record.value());
                     
                     //manipulate event
-                    switch(topic){
+                    switch(record.topic()){
                         case "opennms-kafka-events":
                             //xml topic type-1 
                             System.out.println("EventsMapper for xml");
