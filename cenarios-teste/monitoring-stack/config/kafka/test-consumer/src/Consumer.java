@@ -12,25 +12,19 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 // import java.time.Duration;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
-import org.w3c.dom.Document;
-
-
+//import org.w3c.dom.Document;
 import Mapper.EventsMapper;
 
 // import java.io.IOException;
 // import java.io.OutputStream;
 // import java.net.Socket;
 
-public class Consumer{
-    private static final Logger log = LoggerFactory.getLogger(Consumer.class);
+public class Consumer_v2{
+    private static final Logger log = LoggerFactory.getLogger(Consumer_v2.class);
 
     public static void main(String[] args) {
         log.info("I am a Kafka Consumer");
@@ -52,8 +46,15 @@ public class Consumer{
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
-        // create consumer
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
+        // Create a Kafka consumer instance for protobuf messages
+        KafkaConsumer<String, byte[]> protobufConsumer = new KafkaConsumer<>(properties);
+        
+
+        // Create a Kafka consumer instance for XML messages
+        KafkaConsumer<String, String> xmlConsumer = new KafkaConsumer<>(properties);
+        
+
+
         // get a reference to the current thread
         final Thread mainThread = Thread.currentThread();
 
@@ -61,7 +62,8 @@ public class Consumer{
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
                 log.info("Detected a shutdown, let's exit by calling consumer.wakeup()...");
-                consumer.wakeup();
+                protobufConsumer.wakeup();
+                xmlConsumer.wakeup();
 
                 // join the main thread to allow the execution of the code in the main thread
                 try {
@@ -73,64 +75,43 @@ public class Consumer{
         });
 
         try {
-            //Para o caso de ter topicos que tem eventos com configurações 
-            //diferentes tentar criar uma thread por cada topico. 
-            //Cada thread usa um eventmapper different
-            //Ou switch case que dependendo do nome do topico usa um eventMapper diferente
+            // subscribe consumers to the topic(s)
+            protobufConsumer.subscribe(Arrays.asList("protobuf-topic"));
+            xmlConsumer.subscribe(Arrays.asList("opennms-kafka-events", "outro xml topic"));
 
-            // subscribe consumer to the topic(s)
-            consumer.subscribe(Arrays.asList(topic));
             log.info("subscribed to {}", topic);
+
+            //*****Thread Safety***** https://www.oreilly.com/library/view/kafka-the-definitive/9781491936153/ch04.html
+            // You can’t have multiple consumers that belong to the same group in one thread and you can’t have multiple threads safely use the same consumer. 
+            // One consumer per thread is the rule. To run multiple consumers in the same group in one application, you will need to run each in its own thread.
+            // It is useful to wrap the consumer logic in its own object and then use Java’s ExecutorService to start multiple threads each with its own consumer.
+            // The Confluent blog has a tutorial that shows how to do just that.
 
             // poll for new data
             while (true) {
-                ConsumerRecords<String, String> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
-                log.info("Received {} records", records.count());
-
-                //List<Document> xmlEvents = new ArrayList<>();
-                //List<EventsProto.Event> pbEvents = new ArrayList<>();
-
-                Map<String, List<Document>> xmlEventsByTopic = new HashMap<>();
-
-                for(ConsumerRecord<String, String> record:records){
-                    System.out.println(record.value());
-                    
-                    //manipulate event
-                    switch(record.topic()){
-                        case "opennms-kafka-events":
-                        case "outro xml topic":
-                            //xml topic type-1 
-                            System.out.println("EventsMapper for xml");
-
-                            xmlEventsByTopic.computeIfAbsent(record.topic(), k -> new ArrayList<>()).add(EventsMapper.parseFrom(record.value()));
-
-                            // Document doc = EventsMapper.parseFrom(record.value());
-                            // xmlEvents.add(doc);
-                            
-                            break;
-
-                        default:
-                            // protobuf topic
-
-                            // try {
-                            //     EventsProto.Event pbEvent = EventsProto.Event.parseFrom(record.value());
-                            //     pbEvents.add(pbEvent);
-                            // } catch (InvalidProtocolBufferException e) {
-                            //     LOG.warn("Error while parsing event with key {}", record.key());
-                            // }
-
-                            System.out.println("EventsMapper for protobuf");
-                            byte[] byteArrray = record.value().getBytes();
-                            System.out.println(byteArrray);
-
-                           
-
-                            break;
-                    }
+                // Poll for protobuf messages
+                ConsumerRecords<String, byte[]> protobufRecords = protobufConsumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
+                for (ConsumerRecord<String, byte[]> record : protobufRecords) {
+                    // Handle protobuf messages
+                    // ...
+                    // try {
+                        // EventsProto.Event pbEvent = EventsProto.Event.parseFrom(record.value());
+                        // pbEvents.add(pbEvent);
+                    // } catch (InvalidProtocolBufferException e) {
+                        // LOG.warn("Error while parsing event with key {}", record.key());
+                    // }
                 }
+
+                // Poll for XML messages
+                ConsumerRecords<String, String> xmlRecords = xmlConsumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
+                for (ConsumerRecord<String, String> record : xmlRecords) {
+                    // Handle XML messages
+                    // ...
+                }
+                
                 //send event
                 //forwardEventsToOpenNMS(pbEvents);
-            }
+            }    
 
         } catch (WakeupException e) {
             log.info("Wake up exception!");
@@ -138,7 +119,8 @@ public class Consumer{
         } catch (Exception e) {
             log.error("Unexpected exception", e);
         } finally {
-            consumer.close(); // this will also commit the offsets if need be.
+            protobufConsumer.close(); // this will also commit the offsets if need be.
+            xmlConsumer.close();
             log.info("The consumer is now gracefully closed.");
         }
 
