@@ -24,8 +24,8 @@ import org.xml.sax.InputSource;
 // import java.io.OutputStream;
 // import java.net.Socket;
 
-public class App {
-    private static final Logger log = LoggerFactory.getLogger(App.class);
+public class Consumer {
+    private static final Logger log = LoggerFactory.getLogger(Consumer.class);
 
     public static void main(String[] args) {
         log.info("I am a Kafka Consumer");
