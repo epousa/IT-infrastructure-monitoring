@@ -16,7 +16,6 @@ import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.w3c.dom.Document;
 
@@ -29,8 +28,6 @@ public class Consumer {
     private static final String groupId = "my-fifth-application";
 
     private static final String eventsTopics = "opennms-kafka-events";
-
-    private final static AtomicBoolean closed = new AtomicBoolean(false);
 
     private final static ExecutorService executorService = Executors.newFixedThreadPool(2);
 
@@ -130,13 +127,7 @@ public class Consumer {
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, offset);
 
         return properties;
-    }
-
-    public static void shutdown() {
-        closed.set(true);
-        executorService.shutdown();
-    }
-    
+    }    
 }
 
 
