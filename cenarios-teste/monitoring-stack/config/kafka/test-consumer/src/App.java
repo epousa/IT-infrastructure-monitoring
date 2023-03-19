@@ -5,8 +5,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.errors.WakeupException;
-import org.apache.kafka.common.serialization.StringDeserializer;
-//import org.apache.kafka.common.serialization.ByteArrayDeserializer;
+import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,14 +14,12 @@ import java.util.Arrays;
 import java.util.Properties;
 
 import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
-
-// import java.io.IOException;
-// import java.io.OutputStream;
-// import java.net.Socket;
 
 public class App {
     private static final Logger log = LoggerFactory.getLogger(App.class);
@@ -40,15 +37,15 @@ public class App {
         // create consumer configs
         Properties properties = new Properties();
         properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        //properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getName());
-        properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        //properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getName());
+        //properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getName());
+        //properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         // create consumer
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
+        KafkaConsumer<String, byte[]> consumer = new KafkaConsumer<>(properties);
         // get a reference to the current thread
         final Thread mainThread = Thread.currentThread();
 
@@ -80,26 +77,27 @@ public class App {
 
             // poll for new data
             while (true) {
-                ConsumerRecords<String, String> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
+                ConsumerRecords<String, byte[]> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
                 log.info("Received {} records", records.count());
-                for(ConsumerRecord<String, String> record:records){
-                    System.out.println(record.value());
+                for(ConsumerRecord<String, byte[]> record:records){
+                    // System.out.println(record.value());
                     
                     //manipulate event
                     switch(record.topic()){
                         case "opennms-kafka-events":
                             //xml topic type-1 
                             System.out.println("EventsMapper for xml");
-                            Document doc = convertStringToDocument(record.value());
+                            
+                            Document doc = convertStringToDocument(new String(record.value(), StandardCharsets.UTF_8));
                             String uei = doc.getElementsByTagName("uei").item(0).getTextContent();
                             System.out.println(uei);
 
                             break;
                         default:
                             //protobuf topic
-                            System.out.println("EventsMapper for protobuf");
-                            byte[] byteArrray = record.value().getBytes();
-                            System.out.println(byteArrray);
+                            // System.out.println("EventsMapper for protobuf");
+                            // byte[] byteArrray = record.value().getBytes();
+                            // System.out.println(byteArrray);
 
                             break;
                     }
