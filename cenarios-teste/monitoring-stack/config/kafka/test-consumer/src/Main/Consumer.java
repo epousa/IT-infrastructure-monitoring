@@ -6,16 +6,19 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 //import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.errors.WakeupException;
+// import org.apache.kafka.common.errors.WakeupException;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 // import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
-
-import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.w3c.dom.Document;
 
@@ -24,98 +27,112 @@ import Mapper.EventsMapper;
 public class Consumer {
     private static final Logger log = LoggerFactory.getLogger(Consumer.class);
 
+    private static final String bootstrapServers = "192.168.1.30:9092";
+    private static final String groupId = "my-fifth-application";
+
+    private static final String eventsTopics = "opennms-kafka-events";
+
+    private final static AtomicBoolean closed = new AtomicBoolean(false);
+
+    private final static ExecutorService executorService = Executors.newFixedThreadPool(2);
+
     public static void main(String[] args) {
         log.info("I am a Kafka Consumer");
-
-        String bootstrapServers = "192.168.1.30:9092";
-        String groupId = "my-fifth-application";
-        String topic = "opennms-kafka-events";
+        ProtobufConsumer ProtoConsumerRunner = new ProtobufConsumer();
+        XmlConsumer XmlConsumerRunner = new XmlConsumer();
         
-        // String host = "192.168.1.30";
-        // int port = 5817;
+        executorService.execute(ProtoConsumerRunner);
+        executorService.execute(XmlConsumerRunner);
 
-        // create consumer configs
-        Properties properties = new Properties();
-        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        //properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getName());
-        //properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getName());
-        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        // Add a shutdown hook to handle program termination
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            log.info("Shutdown hook activated. Shutting down gracefully...");
 
-        // create consumer
-        KafkaConsumer<String, byte[]> consumer = new KafkaConsumer<>(properties);
-        // get a reference to the current thread
-        final Thread mainThread = Thread.currentThread();
-
-        // adding the shutdown hook
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
-                log.info("Detected a shutdown, let's exit by calling consumer.wakeup()...");
-                consumer.wakeup();
-
-                // join the main thread to allow the execution of the code in the main thread
-                try {
-                    mainThread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            // Shutdown the executor service and wait for the threads to finish
+            executorService.shutdown();
+            try {
+                if (!executorService.awaitTermination(5000, TimeUnit.MILLISECONDS)) {
+                    executorService.shutdownNow();
                 }
-            }
-        });
-
-        try {
-
-            //Para o caso de ter topicos que tem eventos com configurações 
-            //diferentes tentar criar uma thread por cada topico. 
-            //Cada thread usa um eventmapper different
-            //Ou switch case que dependendo do nome do topico usa um eventMapper diferente
-
-            // subscribe consumer to the topic(s)
-            consumer.subscribe(Arrays.asList(topic));
-            log.info("subscribed to {}", topic);
-
-            // poll for new data
-            while (true) {
-                ConsumerRecords<String, byte[]> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
-                log.info("Received {} records", records.count());
-                for(ConsumerRecord<String, byte[]> record:records){
-                    // System.out.println(record.value());
-                    
-                    //manipulate event
-                    switch(record.topic()){
-                        case "opennms-kafka-events":
-                            //xml topic type-1 
-                            System.out.println("EventsMapper for xml");
-                            
-                            Document doc = EventsMapper.parseFrom(new String(record.value(), StandardCharsets.UTF_8));
-                            EventsMapper.xmlToEvent(doc);
-
-                            break;
-                        default:
-                            //protobuf topic
-                            // System.out.println("EventsMapper for protobuf");
-                            // byte[] byteArrray = record.value().getBytes();
-                            // System.out.println(byteArrray);
-
-                            break;
-                    }
-                }
-                //send event
-                // orwardEventsToOpenNMS(pbEvents);
+            } catch (InterruptedException e) {
+                log.error("Error waiting for executor service to shutdown", e);
+                executorService.shutdownNow();
             }
 
-        } catch (WakeupException e) {
-            log.info("Wake up exception!");
-            // we ignore this as this is an expected exception when closing a consumer
-        } catch (Exception e) {
-            log.error("Unexpected exception", e);
-        } finally {
-            consumer.close(); // this will also commit the offsets if need be.
-            log.info("The consumer is now gracefully closed.");
-        }
+            log.info("Shutdown complete.");
+        }));
 
     }
+
+    public static class ProtobufConsumer implements Runnable {
+        @Override
+        public void run() {
+            // create consumer configs
+            Properties properties = defineProperties(StringDeserializer.class.getName(),ByteArrayDeserializer.class.getName(),"earliest");
+            // Create a Kafka consumer instance for protobuf messages
+            KafkaConsumer<String, byte[]> consumer = new KafkaConsumer<>(properties);
+
+            consumer.subscribe(Arrays.asList(eventsTopics));
+            log.info("subscribed to {}", eventsTopics);
+            while (true) {
+                // ConsumerRecords<String, byte[]> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
+                // log.info("Received {} records", records.count());
+                // List<EventsProto.Event> pbEvents = new ArrayList<>();
+                // for (ConsumerRecord<String, byte[]> record : records) {
+                //     try {
+                //         EventsProto.Event pbEvent = EventsProto.Event.parseFrom(record.value());
+                //         pbEvents.add(pbEvent);
+                //     } catch (InvalidProtocolBufferException e) {
+                //         LOG.warn("Error while parsing event with key {}", record.key());
+                //     }
+                // }
+                // forwardEventsToOpenNMS(pbEvents);
+            }           
+        }
+    }
+    
+    public static class XmlConsumer implements Runnable {
+        @Override
+        public void run() {
+            System.out.print("ola");
+            // create consumer configs
+            // Create a Kafka consumer instance for XML messages
+            KafkaConsumer<String, String> consumer = new KafkaConsumer<>(defineProperties(StringDeserializer.class.getName(),StringDeserializer.class.getName(),"earliest"));
+    
+            consumer.subscribe(Arrays.asList(eventsTopics));
+            log.info("subscribed to {}", eventsTopics);
+            while (true) {
+                ConsumerRecords<String, String> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
+                log.info("EventsMapper for xml");
+                log.info("Received {} records", records.count());
+                for (ConsumerRecord<String, String> record : records) {
+                    log.info(record.value());
+
+                    Document doc = EventsMapper.parseFrom(new String(record.value()));
+                    EventsMapper.xmlToEvent(doc);
+
+                }
+            }
+        }
+    }
+
+    public static Properties defineProperties(String key_deserializer, String value_deserializer, String offset){
+
+        Properties properties = new Properties();
+        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, key_deserializer);
+        properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, value_deserializer);
+        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, offset);
+
+        return properties;
+    }
+
+    public static void shutdown() {
+        closed.set(true);
+        executorService.shutdown();
+    }
+    
 }
 
 
