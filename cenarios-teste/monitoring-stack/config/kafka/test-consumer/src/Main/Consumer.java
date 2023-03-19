@@ -8,6 +8,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.kafka.common.utils.Exit.ShutdownHookAdder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +17,7 @@ import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.w3c.dom.Document;
 
@@ -28,6 +30,9 @@ public class Consumer {
     private static final String groupId = "my-fifth-application";
 
     private static final String eventsTopics = "opennms-kafka-events";
+
+    private final static AtomicBoolean closed_thread1 = new AtomicBoolean(false);
+    private final static AtomicBoolean closed_thread2 = new AtomicBoolean(false);
 
     private final static ExecutorService executorService = Executors.newFixedThreadPool(2);
 
@@ -68,23 +73,35 @@ public class Consumer {
             KafkaConsumer<String, byte[]> consumer = new KafkaConsumer<>(properties);
 
             //implementar metodo para subscrever so aos topicos protobuf
-            consumer.subscribe(Arrays.asList(eventsTopics));
-
-            log.info("subscribed to {}", eventsTopics);
-            while (true) {
-                // ConsumerRecords<String, byte[]> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
-                // log.info("Received {} records", records.count());
-                // List<EventsProto.Event> pbEvents = new ArrayList<>();
-                // for (ConsumerRecord<String, byte[]> record : records) {
-                //     try {
-                //         EventsProto.Event pbEvent = EventsProto.Event.parseFrom(record.value());
-                //         pbEvents.add(pbEvent);
-                //     } catch (InvalidProtocolBufferException e) {
-                //         LOG.warn("Error while parsing event with key {}", record.key());
-                //     }
-                // }
-                // forwardEventsToOpenNMS(pbEvents);
-            }           
+            switch(eventsTopics){
+                case "protobuf-events":
+                case "another one":
+                    consumer.subscribe(Arrays.asList(eventsTopics));
+                    break;
+                default:
+                    closed_thread1.set(true);
+                    log.info("No topics for me :( ... Bye bye");
+                    break;
+            }
+            if(!closed_thread1.get()){
+                log.info("subscribed to {}", eventsTopics);
+                while (true) {
+                    // ConsumerRecords<String, byte[]> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
+                    // log.info("Received {} records", records.count());
+                    // List<EventsProto.Event> pbEvents = new ArrayList<>();
+                    // for (ConsumerRecord<String, byte[]> record : records) {
+                    //     try {
+                    //         EventsProto.Event pbEvent = EventsProto.Event.parseFrom(record.value());
+                    //         pbEvents.add(pbEvent);
+                    //     } catch (InvalidProtocolBufferException e) {
+                    //         LOG.warn("Error while parsing event with key {}", record.key());
+                    //     }
+                    // }
+                    // forwardEventsToOpenNMS(pbEvents);
+                }  
+            }else{
+                closed_thread1.set(false);
+            }
         }
     }
     
@@ -95,25 +112,36 @@ public class Consumer {
             // Create a Kafka consumer instance for XML messages
             KafkaConsumer<String, String> consumer = new KafkaConsumer<>(defineProperties(StringDeserializer.class.getName(),StringDeserializer.class.getName(),"earliest"));
             
-            //implementar metodo para subscrever so aos topicos xml
-            consumer.subscribe(Arrays.asList(eventsTopics));
-
-            log.info("subscribed to {}", eventsTopics);
-            while (true) {
-                ConsumerRecords<String, String> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
-                log.info("EventsMapper for xml");
-                log.info("Received {} records", records.count());
-                for (ConsumerRecord<String, String> record : records) {
-                    log.info(record.value());
-
-                    //dependendo do topico xml usa metodos para formar o evento diferentes do ficheiro EventsMapper
-                    //Dictionary para associar o topico do record ao valor do record
-
-                    Document doc = EventsMapper.parseFrom(new String(record.value()));
-                    EventsMapper.xmlToEvent(doc);
-
-                }
+            switch(eventsTopics){
+                case "opennms-kafka-events":
+                    consumer.subscribe(Arrays.asList(eventsTopics));
+                    break;
+                default:
+                    log.info("No topics for me :( ... Bye bye");
+                    closed_thread2.set(true);
+                    break;
             }
+
+            if(!closed_thread2.get()){
+                log.info("subscribed to {}", eventsTopics);
+                while (true) {
+                    ConsumerRecords<String, String> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
+                    log.info("EventsMapper for xml");
+                    log.info("Received {} records", records.count());
+                    for (ConsumerRecord<String, String> record : records) {
+                        log.info(record.value());
+
+                        //dependendo do topico xml usa metodos para formar o evento diferentes do ficheiro EventsMapper
+                        //Dictionary para associar o topico do record ao valor do record
+
+                        Document doc = EventsMapper.parseFrom(new String(record.value()));
+                        EventsMapper.xmlToEvent(doc);
+
+                    }
+                }
+            }else{
+               closed_thread2.set(false);
+            } 
         }
     }
 
@@ -127,7 +155,7 @@ public class Consumer {
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, offset);
 
         return properties;
-    }    
+    }   
 }
 
 
