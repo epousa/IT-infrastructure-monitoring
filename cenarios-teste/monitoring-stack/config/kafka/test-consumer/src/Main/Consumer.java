@@ -1,7 +1,9 @@
+package Main;
+
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 //import org.apache.kafka.clients.consumer.ConsumerRecord;
-// import org.apache.kafka.clients.consumer.ConsumerRecord;
+//import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.errors.WakeupException;
@@ -13,13 +15,11 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.Properties;
 
-import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
+
+import Mapper.EventsMapper;
 
 public class Consumer {
     private static final Logger log = LoggerFactory.getLogger(Consumer.class);
@@ -88,9 +88,8 @@ public class Consumer {
                             //xml topic type-1 
                             System.out.println("EventsMapper for xml");
                             
-                            Document doc = convertStringToDocument(new String(record.value(), StandardCharsets.UTF_8));
-                            String uei = doc.getElementsByTagName("uei").item(0).getTextContent();
-                            System.out.println(uei);
+                            Document doc = EventsMapper.parseFrom(new String(record.value(), StandardCharsets.UTF_8));
+                            EventsMapper.xmlToEvent(doc);
 
                             break;
                         default:
@@ -117,21 +116,6 @@ public class Consumer {
         }
 
     }
-
-    private static Document convertStringToDocument(String xmlStr) {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();  
-        DocumentBuilder builder;  
-        try  
-        {  
-            builder = factory.newDocumentBuilder();  
-            Document doc = builder.parse( new InputSource( new StringReader( xmlStr ) ) ); 
-            return doc;
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        } 
-        return null;
-    }
-
 }
 
 
