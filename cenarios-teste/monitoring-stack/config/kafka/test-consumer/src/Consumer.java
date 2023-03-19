@@ -21,8 +21,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
-public class App {
-    private static final Logger log = LoggerFactory.getLogger(App.class);
+public class Consumer {
+    private static final Logger log = LoggerFactory.getLogger(Consumer.class);
 
     public static void main(String[] args) {
         log.info("I am a Kafka Consumer");
