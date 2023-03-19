@@ -6,13 +6,11 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 //import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-// import org.apache.kafka.common.errors.WakeupException;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
@@ -72,7 +70,9 @@ public class Consumer {
             // Create a Kafka consumer instance for protobuf messages
             KafkaConsumer<String, byte[]> consumer = new KafkaConsumer<>(properties);
 
+            //implementar metodo para subscrever so aos topicos protobuf
             consumer.subscribe(Arrays.asList(eventsTopics));
+
             log.info("subscribed to {}", eventsTopics);
             while (true) {
                 // ConsumerRecords<String, byte[]> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
@@ -94,12 +94,13 @@ public class Consumer {
     public static class XmlConsumer implements Runnable {
         @Override
         public void run() {
-            System.out.print("ola");
             // create consumer configs
             // Create a Kafka consumer instance for XML messages
             KafkaConsumer<String, String> consumer = new KafkaConsumer<>(defineProperties(StringDeserializer.class.getName(),StringDeserializer.class.getName(),"earliest"));
-    
+            
+            //implementar metodo para subscrever so aos topicos xml
             consumer.subscribe(Arrays.asList(eventsTopics));
+
             log.info("subscribed to {}", eventsTopics);
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
@@ -107,6 +108,9 @@ public class Consumer {
                 log.info("Received {} records", records.count());
                 for (ConsumerRecord<String, String> record : records) {
                     log.info(record.value());
+
+                    //dependendo do topico xml usa metodos para formar o evento diferentes do ficheiro EventsMapper
+                    //Dictionary para associar o topico do record ao valor do record
 
                     Document doc = EventsMapper.parseFrom(new String(record.value()));
                     EventsMapper.xmlToEvent(doc);
