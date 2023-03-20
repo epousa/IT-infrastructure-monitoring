@@ -1,44 +1,71 @@
 package Mapper;
 
 import java.io.StringReader;
-import java.util.List;
+import javax.xml.stream.XMLEventReader;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.events.StartElement;
+import javax.xml.stream.events.XMLEvent;
+import javax.xml.namespace.QName;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.stream.events.EndElement;
+
 public class EventsMapper {
-    private static final Logger LOG = LoggerFactory.getLogger(EventsMapper.class);
+    private static final Logger log = LoggerFactory.getLogger(EventsMapper.class);
 
-    public static Document parseFrom(String xmlStr) {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();  
-        DocumentBuilder builder;  
-        try  
-        {  
-            builder = factory.newDocumentBuilder();  
-            Document doc = builder.parse( new InputSource( new StringReader( xmlStr ) ) ); 
-            return doc;
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        } 
-        return null;
-    }
+    public static void xmlToEvent(ConsumerRecord<String, String> record) throws XMLStreamException{
+    
+        XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+        XMLEventReader xmlEventReader = xmlInputFactory.createXMLEventReader(new StringReader(record.value()));
 
-    public static void xmlToEvent(List<Document> docs){
-        String uei = "";
-        String severity = "";
-        for (Document doc : docs){
-            // Get the text content of the alarmSeverity element
-            //String alarmSeverity = alarmSeverityElement.getTextContent();
-            uei = doc.getElementsByTagName("uei").item(0).getTextContent();
-            severity = doc.getElementsByTagName("severity").item(0).getTextContent();
-            LOG.info(uei);
-            LOG.info(severity);
+        while(xmlEventReader.hasNext()) {
+
+            XMLEvent event = xmlEventReader.nextEvent();
+
+            switch(event.getEventType()) {
+                case XMLStreamConstants.START_ELEMENT:
+
+                    StartElement startElement = event.asStartElement();
+                    // log.info(startElement.getName().getLocalPart());
+
+                    switch(startElement.getName().getLocalPart()){
+                        case "alarm-id":
+                            event = xmlEventReader.nextEvent();
+                            log.info(event.asCharacters().getData());
+                            break;
+                        case "alarmNotificationOrigin":
+                            event = xmlEventReader.nextEvent();
+                            log.info(event.asCharacters().getData());
+                            break;
+                        case "alarmResource":
+                            event = xmlEventReader.nextEvent();
+                            log.info(event.asCharacters().getData());
+                            break;
+                        case "alarmResourceUiName":
+                            event = xmlEventReader.nextEvent();
+                            log.info(event.asCharacters().getData());
+                            break;
+                        case "alarmSeverity":
+                            event = xmlEventReader.nextEvent();
+                            log.info(event.asCharacters().getData());
+                            break;
+                    }
+                    break;
+                case XMLStreamConstants.END_ELEMENT:
+                    EndElement endElement = event.asEndElement();
+                    // if </staff>
+                    if (endElement.getName().getLocalPart().equals("alarm")) {
+                        log.info("---- finished parsing ------");
+                    }
+                    break;
+            }
         }
-        
+
     }
 
     // public static Event ToEvent{
