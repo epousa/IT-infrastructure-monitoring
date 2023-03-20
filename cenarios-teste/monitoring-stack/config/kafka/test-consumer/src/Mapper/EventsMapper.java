@@ -1,6 +1,7 @@
 package Mapper;
 
 import java.io.StringReader;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,9 +27,18 @@ public class EventsMapper {
         return null;
     }
 
-    public static void xmlToEvent(Document doc){
-        String uei = doc.getElementsByTagName("uei").item(0).getTextContent();
-        LOG.info(uei);
+    public static void xmlToEvent(List<Document> docs){
+        String uei = "";
+        String severity = "";
+        for (Document doc : docs){
+            // Get the text content of the alarmSeverity element
+            //String alarmSeverity = alarmSeverityElement.getTextContent();
+            uei = doc.getElementsByTagName("uei").item(0).getTextContent();
+            severity = doc.getElementsByTagName("severity").item(0).getTextContent();
+            LOG.info(uei);
+            LOG.info(severity);
+        }
+        
     }
 
     // public static Event ToEvent{

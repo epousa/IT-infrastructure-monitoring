@@ -2,17 +2,16 @@ package Main;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-//import org.apache.kafka.clients.consumer.ConsumerRecord;
-//import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.utils.Exit.ShutdownHookAdder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -115,16 +114,25 @@ public class Consumer {
                 ConsumerRecords<String, String> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
                 log.info("EventsMapper for xml");
                 log.info("Received {} records", records.count());
+
+                //fazer lista de strings invés de document
+                List<Document> xmlEvents = new ArrayList<>();
+            
                 for (ConsumerRecord<String, String> record : records) {
+
                     log.info(record.value());
 
                     //dependendo do topico xml usa metodos para formar o evento diferentes do ficheiro EventsMapper
                     //Dictionary para associar o topico do record ao valor do record
+                    xmlEvents.add(EventsMapper.parseFrom(new String(record.value())));
 
-                    Document doc = EventsMapper.parseFrom(new String(record.value()));
-                    EventsMapper.xmlToEvent(doc);
+                    //adicionar as strings ao array de strings 
 
                 }
+                EventsMapper.xmlToEvent(xmlEvents);
+                // forwardEventsToOpenNMS(xmlEvents);
+
+                //usar uma função para percorrer a lista de strings ir buscar o que preciso com o stax e associar ao element do event builder
             }
         }
     }
