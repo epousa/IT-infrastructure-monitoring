@@ -1,68 +1,77 @@
 package Mapper;
 
 import java.io.StringReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
+
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
+// import javax.xml.stream.events.Characters;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
-import javax.xml.namespace.QName;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.stream.events.EndElement;
-
 public class EventsMapper {
     private static final Logger log = LoggerFactory.getLogger(EventsMapper.class);
 
-    public static void xmlToEvent(ConsumerRecord<String, String> record) throws XMLStreamException{
+    private static final Map<String, Consumer<XMLEvent>> handlers = new HashMap<>();
+
+    static{
+        handlers.put("alarm-id", event -> log.info(event.asCharacters().getData()));
+        //handlers.put("idalarm", handlers.get("alarm-id"));
+        handlers.put("alarmNotificationOrigin", event -> log.info(event.asCharacters().getData()));
+        handlers.put("alarmResource", event -> log.info(event.asCharacters().getData()));
+        handlers.put("alarmResourceUiName", event -> log.info(event.asCharacters().getData()));
+        handlers.put("alarmSeverity", event -> log.info(event.asCharacters().getData()));
+        handlers.put("alarmStatus", event -> log.info(event.asCharacters().getData()));
+        // handlers.put("alarmText", event -> {
+        //     if (event.isCharacters()) {
+        //         String data = event.asCharacters().getData();
+        //         if (!data.trim().isEmpty()) {
+        //             log.info(" {}", data);
+        //         }
+        //     }
+        // });
+        // handlers.put("alarmText", event -> log.info(event.asCharacters().getData()));
+        handlers.put("alarmType", event -> log.info(event.asCharacters().getData()));
+        handlers.put("alarmTypeId", event -> log.info(event.asCharacters().getData()));
+        // handlers.put("customField1", event -> log.info(event.asCharacters().getData()));
+        // handlers.put("customField2", event -> log.info(event.asCharacters().getData()));
+        // handlers.put("customField3", event -> log.info(event.asCharacters().getData()));
+        handlers.put("deviceRefId", event -> log.info(event.asCharacters().getData()));
+        handlers.put("eventType", event -> log.info(event.asCharacters().getData()));
+        handlers.put("lastStatusChangeTime", event -> log.info(event.asCharacters().getData()));
+        handlers.put("neIpAddress", event -> log.info(event.asCharacters().getData()));
+        handlers.put("objectId", event -> log.info(event.asCharacters().getData()));
+        handlers.put("proposedRepairAction", event -> log.info(event.asCharacters().getData()));
+        handlers.put("raisedTime", event -> log.info(event.asCharacters().getData()));
+        handlers.put("serviceAffecting", event -> log.info(event.asCharacters().getData()));
+        handlers.put("tl1Cause", event -> log.info(event.asCharacters().getData()));
+    }
     
+    public static void xmlToEvent(ConsumerRecord<String, String> record) throws XMLStreamException{
+        
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
         XMLEventReader xmlEventReader = xmlInputFactory.createXMLEventReader(new StringReader(record.value()));
 
         while(xmlEventReader.hasNext()) {
 
             XMLEvent event = xmlEventReader.nextEvent();
-
-            switch(event.getEventType()) {
-                case XMLStreamConstants.START_ELEMENT:
-
-                    StartElement startElement = event.asStartElement();
-                    // log.info(startElement.getName().getLocalPart());
-
-                    switch(startElement.getName().getLocalPart()){
-                        case "alarm-id":
-                            event = xmlEventReader.nextEvent();
-                            log.info(event.asCharacters().getData());
-                            break;
-                        case "alarmNotificationOrigin":
-                            event = xmlEventReader.nextEvent();
-                            log.info(event.asCharacters().getData());
-                            break;
-                        case "alarmResource":
-                            event = xmlEventReader.nextEvent();
-                            log.info(event.asCharacters().getData());
-                            break;
-                        case "alarmResourceUiName":
-                            event = xmlEventReader.nextEvent();
-                            log.info(event.asCharacters().getData());
-                            break;
-                        case "alarmSeverity":
-                            event = xmlEventReader.nextEvent();
-                            log.info(event.asCharacters().getData());
-                            break;
-                    }
-                    break;
-                case XMLStreamConstants.END_ELEMENT:
-                    EndElement endElement = event.asEndElement();
-                    // if </staff>
-                    if (endElement.getName().getLocalPart().equals("alarm")) {
-                        log.info("---- finished parsing ------");
-                    }
-                    break;
+            
+            if (event.isStartElement()) {
+                StartElement startElement = event.asStartElement();
+                String elementName = startElement.getName().getLocalPart();
+                Consumer<XMLEvent> handler = handlers.get(elementName);
+                if (handler != null) {
+                    handler.accept(xmlEventReader.nextEvent());
+                }
+            }else if (event.isEndElement() && event.asEndElement().getName().getLocalPart().equals("alarms")) {
+                log.info("---- finished parsing ------");
             }
         }
 

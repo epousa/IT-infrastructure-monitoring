@@ -21,7 +21,7 @@ import Mapper.EventsMapper;
 public class Consumer {
     private static final Logger log = LoggerFactory.getLogger(Consumer.class);
 
-    private static final String bootstrapServers = "192.168.1.30:9092";
+    private static final String bootstrapServers = "10.254.254.106:9092";
     private static final String groupId = "my-fifth-application";
 
     private static final String xmlTopics = "opennms-kafka-events";
