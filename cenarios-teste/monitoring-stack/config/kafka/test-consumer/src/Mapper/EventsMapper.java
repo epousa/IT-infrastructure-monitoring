@@ -8,7 +8,6 @@ import java.util.function.Consumer;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.events.EndElement;
 // import javax.xml.stream.events.Characters;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
@@ -19,17 +18,62 @@ import org.slf4j.LoggerFactory;
 
 public class EventsMapper {
     private static final Logger log = LoggerFactory.getLogger(EventsMapper.class);
-
     private static final Map<String, Consumer<XMLEvent>> handlers = new HashMap<>();
 
+    //opennms_event is a object of type event
+    // private static final EventBuilder opennms_event = new EventBuilder();
+
+    
+    // opennms_event.setSource();
+    // opennms_event.setSeverity();
+    // opennms_event.setNodeid();
+    // opennms_event.setIfIndex();
+    // opennms_event.setInterface();
+    // opennms_event.setDistPoller();
+    // opennms_event.setDescription();
+    // opennms_event.setLogDest();
+    // opennms_event.setLogMessage();
+    // opennms_event.setParam();
+    // opennms_event.setHost();
+    // opennms_event.setTime();
+    
+    // opennms_event.setService();
+    // opennms_event.setAlarmData();
+    // openms_event.setNode();
+
     static{
-        handlers.put("alarm-id", event -> log.info(event.asCharacters().getData()));
+        // handlers.put("eventTime", event -> log.info(event.asCharacters().getData()));
+        handlers.put("alarm-id", event -> {
+            // opennms_event.setUei("uei.opennms.org/"+event.asCharacters().getData());
+            log.info(event.asCharacters().getData());
+        });
+
         //handlers.put("idalarm", handlers.get("alarm-id"));
-        handlers.put("alarmNotificationOrigin", event -> log.info(event.asCharacters().getData()));
-        handlers.put("alarmResource", event -> log.info(event.asCharacters().getData()));
-        handlers.put("alarmResourceUiName", event -> log.info(event.asCharacters().getData()));
-        handlers.put("alarmSeverity", event -> log.info(event.asCharacters().getData()));
-        handlers.put("alarmStatus", event -> log.info(event.asCharacters().getData()));
+        handlers.put("alarmNotificationOrigin", event -> {
+            
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("alarmResource", event -> {
+            
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("alarmResourceUiName", event -> {
+            
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("alarmSeverity", event -> {
+            //opennms_event.setSeverity(event.asCharacters().getData());
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("alarmStatus", event -> {
+            
+            log.info(event.asCharacters().getData());
+        });
+
         // handlers.put("alarmText", event -> {
         //     if (event.isCharacters()) {
         //         String data = event.asCharacters().getData();
@@ -39,31 +83,73 @@ public class EventsMapper {
         //     }
         // });
         // handlers.put("alarmText", event -> log.info(event.asCharacters().getData()));
-        handlers.put("alarmType", event -> log.info(event.asCharacters().getData()));
-        handlers.put("alarmTypeId", event -> log.info(event.asCharacters().getData()));
+
+        handlers.put("alarmType", event -> {
+            
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("alarmTypeId", event -> {
+            //opennms_event.setLogMessage(event.asCharacters().getData());
+            log.info(event.asCharacters().getData());
+        });
+
         // handlers.put("customField1", event -> log.info(event.asCharacters().getData()));
         // handlers.put("customField2", event -> log.info(event.asCharacters().getData()));
         // handlers.put("customField3", event -> log.info(event.asCharacters().getData()));
-        handlers.put("deviceRefId", event -> log.info(event.asCharacters().getData()));
-        handlers.put("eventType", event -> log.info(event.asCharacters().getData()));
-        handlers.put("lastStatusChangeTime", event -> log.info(event.asCharacters().getData()));
-        handlers.put("neIpAddress", event -> log.info(event.asCharacters().getData()));
-        handlers.put("objectId", event -> log.info(event.asCharacters().getData()));
-        handlers.put("proposedRepairAction", event -> log.info(event.asCharacters().getData()));
-        handlers.put("raisedTime", event -> log.info(event.asCharacters().getData()));
-        handlers.put("serviceAffecting", event -> log.info(event.asCharacters().getData()));
-        handlers.put("tl1Cause", event -> log.info(event.asCharacters().getData()));
+        handlers.put("deviceRefId", event -> {
+            
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("eventType", event -> {
+            
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("lastStatusChangeTime", event -> {
+            
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("neIpAddress", event -> {
+            //opennms_event.setInterface(event.asCharacters().getData());
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("objectId", event -> {
+            
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("proposedRepairAction", event -> {
+            //opennms_event.setDescription(event.asCharacters().getData())
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("raisedTime", event -> {
+            // opennms_event.setTime(event.asCharacters().getData());
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("serviceAffecting", event -> {
+            
+            log.info(event.asCharacters().getData());
+        });
+
+        handlers.put("tl1Cause", event -> {
+            
+            log.info(event.asCharacters().getData());
+        });
     }
     
     public static void xmlToEvent(ConsumerRecord<String, String> record) throws XMLStreamException{
         
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
         XMLEventReader xmlEventReader = xmlInputFactory.createXMLEventReader(new StringReader(record.value()));
-
         while(xmlEventReader.hasNext()) {
 
             XMLEvent event = xmlEventReader.nextEvent();
-            
             if (event.isStartElement()) {
                 StartElement startElement = event.asStartElement();
                 String elementName = startElement.getName().getLocalPart();
@@ -75,7 +161,7 @@ public class EventsMapper {
                 log.info("---- finished parsing ------");
             }
         }
-
+        //send opennms_event
     }
 
     // public static Event ToEvent{

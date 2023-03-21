@@ -21,7 +21,7 @@ import Mapper.EventsMapper;
 public class Consumer {
     private static final Logger log = LoggerFactory.getLogger(Consumer.class);
 
-    private static final String bootstrapServers = "10.254.254.106:9092";
+    private static final String bootstrapServers = "192.168.1.30:9092";
     private static final String groupId = "my-fifth-application";
 
     private static final String xmlTopics = "opennms-kafka-events";
@@ -36,7 +36,7 @@ public class Consumer {
             XmlConsumer XmlConsumerRunner = new XmlConsumer();
             executorService.execute(XmlConsumerRunner);
         }else{
-            log.info("Thread Kafka consumer (xml instance) not created ! No topics for it !");
+            log.info("Thread Kafka consumer (XML instance) not created ! No topics for it !");
         }
 
         if(!protobufTopics.isEmpty()){
@@ -92,7 +92,6 @@ public class Consumer {
                 // }
                 // forwardEventsToOpenNMS(pbEvents);
             }  
-          
         }
     }
     
@@ -115,15 +114,11 @@ public class Consumer {
                     log.info(record.value());
                     try {
                         EventsMapper.xmlToEvent(record);
+                        //ou enviar aqui
                     } catch (XMLStreamException e) {
-                        
                         e.printStackTrace();
                     }
-                }
-                
-                // forwardEventsToOpenNMS(xmlEvents);
-
-                //usar uma função para percorrer a lista de strings ir buscar o que preciso com o stax e associar ao element do event builder
+                }   
             }
         }
     }
