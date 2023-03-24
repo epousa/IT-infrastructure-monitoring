@@ -19,6 +19,8 @@ import org.slf4j.LoggerFactory;
 public class EventsMapper {
     private static final Logger log = LoggerFactory.getLogger(EventsMapper.class);
     private static final Map<String, Consumer<XMLEvent>> handlers = new HashMap<>();
+    private static final XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+    
 
     //opennms_event is a object of type event
     // private static final EventBuilder opennms_event = new EventBuilder();
@@ -144,8 +146,6 @@ public class EventsMapper {
     }
     
     public static void xmlToEvent(ConsumerRecord<String, String> record) throws XMLStreamException{
-        
-        XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
         XMLEventReader xmlEventReader = xmlInputFactory.createXMLEventReader(new StringReader(record.value()));
         while(xmlEventReader.hasNext()) {
 
@@ -161,7 +161,7 @@ public class EventsMapper {
                 log.info("---- finished parsing ------");
             }
         }
-        //send opennms_event
+    
     }
 
     // public static Event ToEvent{
