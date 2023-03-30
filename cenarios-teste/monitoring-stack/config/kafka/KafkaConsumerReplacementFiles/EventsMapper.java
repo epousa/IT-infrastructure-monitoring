@@ -54,6 +54,10 @@ import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class EventsMapper {
 
     private static final Logger LOG = LoggerFactory.getLogger(EventsMapper.class);
@@ -61,12 +65,16 @@ public class EventsMapper {
 
     private static final XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
     private static EventBuilder opennms_event;
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+    private static Date date;
 
     static{
         // handlers.put("eventTime", event -> LOG.info(event.asCharacters().getData()));
         handlers.put("alarm-id", event -> {
             opennms_event.setUei("uei.opennms.org/"+event.asCharacters().getData());
             opennms_event.setSource("Default");
+            opennms_event.setSeverity(OnmsSeverity.get("Major").getLabel());
+            
             // LOG.info(event.asCharacters().getData());
         });
 
@@ -80,13 +88,12 @@ public class EventsMapper {
         });
 
         handlers.put("alarmResourceUiName", event -> {
-            
             LOG.info(event.asCharacters().getData());
         });
 
         handlers.put("alarmSeverity", event -> {
             //severity
-            opennms_event.setSeverity(OnmsSeverity.get(event.asCharacters().getData()).getLabel());
+            // opennms_event.setSeverity(OnmsSeverity.get(event.asCharacters().getData()).getLabel());
         });
 
         handlers.put("alarmStatus", event -> {
@@ -110,7 +117,7 @@ public class EventsMapper {
 
         handlers.put("alarmTypeId", event -> {
             //logMessage
-            getString(event.asCharacters().getData()).ifPresent(opennms_event::setLogMessage);
+            // getString(event.asCharacters().getData()).ifPresent(opennms_event::setLogMessage);
         });
 
         // handlers.put("customField1", event -> LOG.info(event.asCharacters().getData()));
@@ -133,7 +140,7 @@ public class EventsMapper {
 
         handlers.put("neIpAddress", event -> {
             //ip address
-            getString(event.asCharacters().getData()).ifPresent(ip -> opennms_event.setInterface(InetAddressUtils.getInetAddress(ip)));
+            // getString(event.asCharacters().getData()).ifPresent(ip -> opennms_event.setInterface(InetAddressUtils.getInetAddress(ip)));
         });
 
         handlers.put("objectId", event -> {
@@ -143,12 +150,18 @@ public class EventsMapper {
 
         handlers.put("proposedRepairAction", event -> {
             //description
-            getString(event.asCharacters().getData()).ifPresent(opennms_event::setDescription);
+            // getString(event.asCharacters().getData()).ifPresent(opennms_event::setDescription);
         });
 
         handlers.put("raisedTime", event -> {
             // opennms_event.setTime(event.asCharacters().getData());
-            LOG.info(event.asCharacters().getData());
+            try {
+                opennms_event.setTime(dateFormat.parse(event.asCharacters().getData()));
+                LOG.info(event.asCharacters().getData());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+           
         });
 
         handlers.put("serviceAffecting", event -> {
