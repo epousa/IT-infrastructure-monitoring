@@ -105,8 +105,9 @@ public class OpenNMSKafkaConsumer {
         // Overwrite deserializer
         consumerConfig.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getCanonicalName());
         consumerConfig.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getCanonicalName());
-        KafkaConsumerRunnerXml kafkaConsumerRunnerXml = new KafkaConsumerRunnerXml(consumerConfig);
-        executorService.execute(kafkaConsumerRunnerXml);
+        // consumerConfig.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getCanonicalName());
+        KafkaConsumerRunnerXml kafkaConsumerRunner = new KafkaConsumerRunnerXml(consumerConfig);
+        executorService.execute(kafkaConsumerRunner);
     }
 
     public void shutdown() {
@@ -211,7 +212,7 @@ public class OpenNMSKafkaConsumer {
             // SendNowSync sends events in synchronous mode which puts more backpressure on Kafka.
             eventForwarder.sendNowSync(log);
             log.getEvents().getEventCollection().forEach(event -> {
-                LOG.debug(" Event with uei {}, source {} forwarded to OpenNMS", event.getUei(), event.getSource());
+                LOG.debug(" Event with uei {}, source {}, severity {}, ip_address {}, descr {}forwarded to OpenNMS", event.getUei(), event.getSource(),event.getSeverity());
             });
         }
     }
