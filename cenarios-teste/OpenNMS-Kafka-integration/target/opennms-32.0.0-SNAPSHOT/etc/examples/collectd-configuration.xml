@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<collectd-configuration 
+	threads="50">
+
+	<package name="example1">
+		<filter>IPADDR != '0.0.0.0'</filter>	 
+		<specific>0.0.0.0</specific>
+		<include-range begin="1.1.1.1" end="254.254.254.254"/>
+		<include-url>file:/home/epousa/dev/opennms/target/opennms-32.0.0-SNAPSHOT/etc/include</include-url>
+		
+		<service name="SNMP" interval="300000" user-defined="false" status="on">
+			<parameter key="collection" value="default"/>
+			<parameter key="port" value="161"/>
+			<parameter key="retry" value="3"/>
+			<parameter key="timeout" value="3000"/>
+			<parameter key="thresholding-enabled" value="true"/>
+		</service>
+
+<!-- 
+        <service name="HttpDocCount" interval="300000" user-defined="false" status="on" >
+          <parameter key="http-collection" value="doc-count" />
+          <parameter key="retry" value="1" />
+          <parameter key="timeout" value="2000" />
+          <parameter key="thresholding-enabled" value="true"/>
+        </service>
+-->
+		<service name="JVM" interval="300000" user-defined="false" status="on">
+			<parameter key="port" value="9003"/>
+			<parameter key="retry" value="2"/>
+			<parameter key="timeout" value="3000"/>
+			<parameter key="protocol" value="rmi"/>
+			<parameter key="urlPath" value="/jmxrmi"/>
+			<parameter key="ds-name" value="jmx"/>
+			<parameter key="friendly-name" value="jvm"/>
+			<parameter key="thresholding-enabled" value="true"/>
+		</service>
+
+		<service name="WMI" interval="300000" user-defined="false" status="off">
+			<parameter key="collection" value="default"/>
+			<parameter key="thresholding-enabled" value="true"/>
+		</service>
+
+		<service name="OpenNMS-JVM" interval="300000" user-defined="false" status="on">
+			<parameter key="port" value="18980"/>
+			<parameter key="retry" value="2"/>
+			<parameter key="timeout" value="3000"/>
+			<parameter key="protocol" value="rmi"/>
+			<parameter key="urlPath" value="/jmxrmi"/>
+			<parameter key="rrd-base-name" value="java" />
+			<parameter key="ds-name" value="opennms-jvm"/>
+			<parameter key="friendly-name" value="opennms-jvm"/>
+			<parameter key="collection" value="jsr160"/>
+			<parameter key="thresholding-enabled" value="true"/>
+		</service>
+		
+		<outage-calendar>zzz from poll-outages.xml zzz</outage-calendar>
+	</package>
+	
+	<!-- 
+	Uncomment and use example2 when configuring data collection/storage by domain and ifAlias.
+	See online documentation at http://www.opennms.org for further information on using these
+	package options.
+
+	<package name="example2">
+		<filter>IPADDR != '0.0.0.0'</filter>	 
+		<specific>0.0.0.0</specific>
+		<include-range begin="1.1.1.1" end="254.254.254.254"/>
+		<include-url>file:/home/epousa/dev/opennms/target/opennms-32.0.0-SNAPSHOT/etc/include</include-url>
+		<storeByIfAlias>true</storeByIfAlias>
+		<storeByNodeID>false</storeByNodeID>
+		<ifAliasDomain>myDomain</ifAliasDomain>
+		<ifAliasOverride>true</ifAliasOverride>
+		<ifAliasTerminator>#</ifAliasTerminator>
+
+		<service name="SNMP" interval="300000" user-defined="false" status="on">
+			<parameter key="collection" value="default"/>
+			<parameter key="port" value="161"/>
+			<parameter key="retry" value="3"/>
+			<parameter key="timeout" value="3000"/>
+			<parameter key="thresholding-enabled" value="true"/>
+		</service>
+
+		<outage-calendar>zzz from poll-outages.xml zzz</outage-calendar>
+	</package>
+	-->
+
+    <package name="ejn">
+        <filter>IPADDR != '0.0.0.0'</filter>
+        <!-- Here is another option for filtering:
+        <filter>nodeSysOID == '.1.3.6.1.4.1.2636.1.1.1.2.18'</filter>
+        -->
+        <include-range begin="1.1.1.1" end="254.254.254.254"/>
+
+        <service name="SNMP" interval="180000" user-defined="false" status="on">
+            <parameter key="collection" value="ejn"/>
+            <parameter key="thresholding-enabled" value="true"/>
+        </service>
+    </package>
+
+	<collector service="JVM"          class-name="org.opennms.netmgt.collectd.Jsr160Collector"/>
+	<collector service="SNMP"         class-name="org.opennms.netmgt.collectd.SnmpCollector"/>
+	<collector service="HttpDocCount" class-name="org.opennms.netmgt.collectd.HttpCollector" />
+	<collector service="WMI"          class-name="org.opennms.netmgt.collectd.WmiCollector"/>
+	<collector service="OpenNMS-JVM"  class-name="org.opennms.netmgt.collectd.Jsr160Collector"/>
+</collectd-configuration>
+

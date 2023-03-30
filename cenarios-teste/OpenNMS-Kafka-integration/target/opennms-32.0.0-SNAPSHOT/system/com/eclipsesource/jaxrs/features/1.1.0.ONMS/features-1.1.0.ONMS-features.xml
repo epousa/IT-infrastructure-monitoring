@@ -1,0 +1,68 @@
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0" name="osgi-jax-rs-connector">
+
+    <feature name="jax-rs-connector" version="1.1.0.ONMS" resolver="(obr)" description="Jersey JAX RS OSGi Connector">
+        <feature>scr</feature>
+        <bundle dependency="true">mvn:javax.annotation/javax.annotation-api/1.2</bundle>
+        <bundle dependency="true">mvn:javax.servlet/javax.servlet-api/3.0.1</bundle>
+        <bundle dependency="true">mvn:com.eclipsesource.jaxrs/jersey-min/1.1.0.ONMS</bundle>
+        <bundle>mvn:com.eclipsesource.jaxrs/consumer/1.1.0.ONMS</bundle>
+        <bundle>mvn:com.eclipsesource.jaxrs/publisher/1.1.0.ONMS</bundle>
+        <bundle>mvn:com.eclipsesource.jaxrs/publisher-api/1.1.0.ONMS</bundle>
+    </feature>
+
+    <feature name="jax-rs-provider-moxy" version="1.1.0.ONMS" description="Moxy Json Provider for Jersey">
+        <feature version="2.5.2">eclipselink-moxy</feature>
+        <bundle>mvn:com.eclipsesource.jaxrs/provider-moxy/1.1.0.ONMS</bundle>
+    </feature>
+    
+    <feature  name='jax-rs-provider-jackson' version='1.1.0.ONMS' description="Jackson Json Provider for Jersey" >
+        <feature version="2.9.8">jackson</feature>
+        <bundle>mvn:com.eclipsesource.jaxrs/provider-jackson/1.1.0.ONMS</bundle>
+    </feature>
+
+    <feature name="jax-rs-provider-gson" version="2.3">
+        <bundle dependency="true">mvn:com.google.code.gson/gson/2.3</bundle>
+        <bundle>mvn:com.eclipsesource.jaxrs/provider-gson/1.1.0.ONMS</bundle>
+    </feature>
+
+    <feature name="jax-rs-provider-multipart" version="1.1.0.ONMS">
+        <bundle>mvn:com.eclipsesource.jaxrs/provider-multipart/1.1.0.ONMS</bundle>
+    </feature>
+
+    <feature name="jax-rs-provider-security" version="1.1.0.ONMS">
+        <bundle>mvn:com.eclipsesource.jaxrs/provider-security/1.1.0.ONMS</bundle>
+    </feature>
+
+    <feature name="jax-rs-provider-sse" version="1.1.0.ONMS">
+        <bundle>mvn:com.eclipsesource.jaxrs/provider-sse/1.1.0.ONMS</bundle>
+    </feature>
+    
+    <!-- TODO define feature for swagger -->
+    <!--<feature name="jax-rs-provider-swagger" version="${jax-rs-providers.swagger.version}">-->
+        <!--<bundle dependency="true">mvn:com.eclipsesource.jaxrs/swagger-all/${jax-rs-swagger-all.version}</bundle>-->
+        <!--<bundle>mvn:com.eclipsesource.jaxrs/provider-swagger/${jax-rs-providers.swagger.version}</bundle>        -->
+    <!--</feature>-->
+
+    <feature name="eclipselink-moxy" version="2.5.2" description="Eclipselink :: Moxy">
+        <bundle dependency="true">mvn:org.eclipse.persistence/org.eclipse.persistence.core/2.5.2</bundle>
+        <bundle dependency="true">mvn:org.eclipse.persistence/org.eclipse.persistence.asm/2.5.2</bundle>
+        <bundle dependency="true">mvn:org.eclipse.persistence/org.eclipse.persistence.antlr/2.5.2</bundle>
+        <bundle dependency="true">mvn:org.eclipse.persistence/org.eclipse.persistence.moxy/2.5.2</bundle>
+    </feature>
+
+    <feature name="jax-rs-shell-commands" version="1.1.0.ONMS" description="JAX RS OSGi Shell Commands">
+        <bundle>mvn:com.eclipsesource.jaxrs/publisher-api/1.1.0.ONMS</bundle>
+        <bundle>mvn:com.eclipsesource.jaxrs/shell-commands/1.1.0.ONMS</bundle>
+    </feature>
+
+    <!-- Dependency Features -->
+    <feature name="jackson" version="2.9.8" description="Jackson :: Jaxrs">
+        <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-annotations/2.9.0</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-core/2.9.8</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-databind/2.9.8</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.9.8</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/2.9.8</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/2.9.8</bundle>
+    </feature>
+
+</features>

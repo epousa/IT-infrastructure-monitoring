@@ -1,0 +1,60 @@
+2023-03-30 12:12:14,563 INFO  [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: telemetryd initializing.
+2023-03-30 12:12:14,564 DEBUG [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: SPRING: thread.classLoader=java.net.FactoryURLClassLoader@6615435c
+2023-03-30 12:12:14,565 INFO  [Main] o.s.c.s.ClassPathXmlApplicationContext: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@74678aa9: startup date [Thu Mar 30 12:12:14 WEST 2023]; parent: ApplicationContext 'eventDaemonContext'
+2023-03-30 12:12:14,566 INFO  [Main] o.s.b.f.x.XmlBeanDefinitionReader: Loading XML bean definitions from class path resource [META-INF/opennms/applicationContext-telemetryDaemon.xml]
+2023-03-30 12:12:14,590 INFO  [Main] o.s.b.f.a.AutowiredAnnotationBeanPostProcessor: JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2023-03-30 12:12:14,599 DEBUG [Main] o.o.c.x.AbstractJaxbConfigDao: Loading Telemetryd configuration configuration from URL [file:/home/epousa/dev/opennms/target/opennms-32.0.0-SNAPSHOT/etc/telemetryd-configuration.xml]
+2023-03-30 12:12:14,628 DEBUG [Main] o.o.c.x.JaxbUtils: @ValidateUsing is missing from class class org.opennms.netmgt.telemetry.config.model.TelemetrydConfig
+2023-03-30 12:12:14,628 DEBUG [Main] o.o.c.x.JaxbUtils: No schema files found for validating class org.opennms.netmgt.telemetry.config.model.TelemetrydConfig
+2023-03-30 12:12:14,635 INFO  [Main] o.o.c.x.AbstractJaxbConfigDao: Loaded Telemetryd configuration in 36 ms
+2023-03-30 12:12:14,653 DEBUG [Main] o.o.n.e.EventIpcManagerDefaultImpl: Adding event listener Telemetryd for UEIs: uei.opennms.org/internal/reloadDaemonConfig
+2023-03-30 12:12:14,654 DEBUG [Main] o.o.c.s.s.DefaultServiceRegistry: Registered org.opennms.netmgt.telemetry.daemon.Telemetryd@6bf6232f as instance of [interface org.opennms.netmgt.telemetry.api.TelemetryManager]
+2023-03-30 12:12:14,662 DEBUG [Main] o.a.c.s.SpringCamelContext: onApplicationEvent: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@74678aa9: startup date [Thu Mar 30 12:12:14 WEST 2023]; parent: ApplicationContext 'eventDaemonContext']
+2023-03-30 12:12:14,662 DEBUG [Main] o.a.c.s.SpringCamelContext: onApplicationEvent: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@74678aa9: startup date [Thu Mar 30 12:12:14 WEST 2023]; parent: ApplicationContext 'eventDaemonContext']
+2023-03-30 12:12:14,662 DEBUG [Main] o.a.c.s.SpringCamelContext: onApplicationEvent: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@74678aa9: startup date [Thu Mar 30 12:12:14 WEST 2023]; parent: ApplicationContext 'eventDaemonContext']
+2023-03-30 12:12:14,662 DEBUG [Main] o.a.c.s.SpringCamelContext: onApplicationEvent: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@74678aa9: startup date [Thu Mar 30 12:12:14 WEST 2023]; parent: ApplicationContext 'eventDaemonContext']
+2023-03-30 12:12:14,662 DEBUG [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: SPRING: context.classLoader= java.net.FactoryURLClassLoader@6615435c
+2023-03-30 12:12:14,662 INFO  [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: telemetryd initialization complete.
+2023-03-30 12:13:18,175 INFO  [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: telemetryd starting.
+2023-03-30 12:13:18,175 DEBUG [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: SPRING: thread.classLoader=java.net.FactoryURLClassLoader@6615435c
+2023-03-30 12:13:18,175 INFO  [Main] o.o.n.t.d.Telemetryd: Telemetryd is starting.
+2023-03-30 12:13:18,186 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping consumer for queue: JTI (no adapters enabled/defined)
+2023-03-30 12:13:18,205 DEBUG [Main] o.o.c.i.s.c.AsyncDispatcherImpl: Using default in memory queue of size 10000
+2023-03-30 12:13:18,210 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping consumer for queue: OpenConfig (no adapters enabled/defined)
+2023-03-30 12:13:18,215 DEBUG [Main] o.o.c.i.s.c.AsyncDispatcherImpl: Using default in memory queue of size 10000
+2023-03-30 12:13:33,252 DEBUG [Main] o.o.c.i.s.c.AsyncDispatcherImpl: Using default in memory queue of size 10000
+2023-03-30 12:13:33,261 DEBUG [Main] o.o.c.i.s.c.AsyncDispatcherImpl: Using default in memory queue of size 10000
+2023-03-30 12:13:33,271 DEBUG [Main] o.o.c.i.s.c.AsyncDispatcherImpl: Using default in memory queue of size 10000
+2023-03-30 12:13:33,314 DEBUG [Main] o.o.c.i.s.c.AsyncDispatcherImpl: Using default in memory queue of size 10000
+2023-03-30 12:13:33,316 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping consumer for queue: NXOS (no adapters enabled/defined)
+2023-03-30 12:13:33,318 DEBUG [Main] o.o.c.i.s.c.AsyncDispatcherImpl: Using default in memory queue of size 10000
+2023-03-30 12:13:33,320 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping consumer for queue: BMP (no adapters enabled/defined)
+2023-03-30 12:13:33,321 DEBUG [Main] o.o.c.i.s.c.AsyncDispatcherImpl: Using default in memory queue of size 10000
+2023-03-30 12:13:33,323 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping consumer for queue: Graphite (no adapters enabled/defined)
+2023-03-30 12:13:33,325 DEBUG [Main] o.o.c.i.s.c.AsyncDispatcherImpl: Using default in memory queue of size 10000
+2023-03-30 12:13:33,330 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping disabled listener: JTI-UDP-50000
+2023-03-30 12:13:33,330 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping disabled listener: Netflow-5-UDP-8877
+2023-03-30 12:13:33,330 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping disabled listener: Netflow-9-UDP-4729
+2023-03-30 12:13:33,330 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping disabled listener: IPFIX-UDP-4730
+2023-03-30 12:13:33,330 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping disabled listener: IPFIX-TCP-4730
+2023-03-30 12:13:33,330 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping disabled listener: SFlow-UDP-6343
+2023-03-30 12:13:33,356 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping disabled listener: NXOS-UDP-50001
+2023-03-30 12:13:33,357 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping disabled listener: BMP-TCP-5000
+2023-03-30 12:13:33,357 DEBUG [Main] o.o.n.t.d.Telemetryd: Skipping disabled listener: Graphite-UDP-2003
+2023-03-30 12:13:33,357 INFO  [Main] o.o.n.t.d.Telemetryd: Starting consumer for Netflow-5 adapter.
+2023-03-30 12:13:33,357 INFO  [Main] o.o.n.t.d.Telemetryd: Starting consumer for Netflow-9 adapter.
+2023-03-30 12:13:33,357 INFO  [Main] o.o.n.t.d.Telemetryd: Starting consumer for IPFIX adapter.
+2023-03-30 12:13:33,444 INFO  [Main] o.o.n.t.d.Telemetryd: Starting consumer for SFlow adapter.
+2023-03-30 12:13:33,444 INFO  [Main] o.o.n.t.d.Telemetryd: Starting Multi-UDP-9999 listener.
+2023-03-30 12:13:33,469 INFO  [Main] o.o.n.t.d.Telemetryd: Starting connectors.
+2023-03-30 12:13:33,469 INFO  [Main] o.o.n.t.d.ConnectorManager: Watching for services named 'OpenConfig' for connector: OpenConfig-Connector
+2023-03-30 12:13:33,475 DEBUG [Main] o.o.n.f.JdbcFilterDao: Filter.isRuleMatching(IPADDR != '0.0.0.0')
+2023-03-30 12:13:33,476 DEBUG [Main] o.o.n.f.JdbcFilterDao: Filter.isRuleMatching(IPADDR != '0.0.0.0'): SQL statement: SELECT DISTINCT ipInterface.ipAddr FROM ipInterface WHERE ipInterface.IPADDR != '0.0.0.0' LIMIT 1
+2023-03-30 12:13:33,477 DEBUG [Main] o.o.n.f.JdbcFilterDao: isRuleMatching: rule "IPADDR != '0.0.0.0'" matches an entry in the database
+2023-03-30 12:13:33,477 DEBUG [Main] o.o.n.d.s.DefaultFilterWatcher: Refreshing results for filter rule: IPADDR != '0.0.0.0'
+2023-03-30 12:13:33,483 DEBUG [Main] o.o.n.f.JdbcFilterDao: Filter.getNodeIPAddressServiceMap(IPADDR != '0.0.0.0')
+2023-03-30 12:13:33,484 DEBUG [Main] o.o.n.f.JdbcFilterDao: Filter.getNodeIPAddressServiceMap(IPADDR != '0.0.0.0'): SQL statement: SELECT node.nodeID, ipInterface.ipAddr, service.serviceName FROM ipInterface JOIN node ON (ipInterface.nodeID = node.nodeID) JOIN ifServices ON (ipInterface.id = ifServices.ipInterfaceId) JOIN service ON (ifServices.serviceID = service.serviceID) WHERE ipInterface.IPADDR != '0.0.0.0'
+2023-03-30 12:13:33,488 DEBUG [Main] o.o.n.d.s.DefaultFilterWatcher: Done refreshing results for rule.
+2023-03-30 12:13:33,494 INFO  [Main] o.o.n.t.d.Telemetryd: Telemetryd is started.
+2023-03-30 12:13:33,494 DEBUG [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: SPRING: context.classLoader= java.net.FactoryURLClassLoader@6615435c
+2023-03-30 12:13:33,494 INFO  [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: telemetryd starting complete.

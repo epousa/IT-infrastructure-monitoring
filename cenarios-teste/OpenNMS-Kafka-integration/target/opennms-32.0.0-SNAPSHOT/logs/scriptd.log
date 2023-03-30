@@ -1,0 +1,8 @@
+2023-03-30 12:12:11,566 INFO  [Main] o.o.n.d.AbstractServiceDaemon: scriptd initializing.
+2023-03-30 12:12:11,595 INFO  [Main] o.o.n.d.AbstractServiceDaemon: scriptd initialization complete.
+2023-03-30 12:12:18,063 INFO  [Main] o.o.n.d.AbstractServiceDaemon: scriptd starting.
+2023-03-30 12:12:18,063 DEBUG [Main] o.o.n.s.Executor: Registering engine: beanshell
+2023-03-30 12:12:18,065 DEBUG [Main] o.o.n.s.BroadcastEventProcessor: No scriptd scripts are configured; not subscribing to events
+2023-03-30 12:12:18,065 DEBUG [Main] o.o.n.s.Executor: Scriptd executor started
+2023-03-30 12:12:18,065 INFO  [Main] o.o.n.s.Scriptd: Scriptd started
+2023-03-30 12:12:18,065 INFO  [Main] o.o.n.d.AbstractServiceDaemon: scriptd started.

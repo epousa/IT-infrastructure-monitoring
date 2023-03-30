@@ -90,6 +90,7 @@ public class OpenNMSKafkaConsumer {
 
     public void init() throws IOException {
         Properties consumerConfig = new Properties();
+
         // Add default group as OpenNMS Instance ID, allow it be override from client properties.
         consumerConfig.put(ConsumerConfig.GROUP_ID_CONFIG, SystemInfoUtils.getInstanceId());
         final Dictionary<String, Object> properties = configAdmin.getConfiguration(KAFKA_CLIENT_PID).getProperties();
@@ -100,16 +101,13 @@ public class OpenNMSKafkaConsumer {
                 consumerConfig.put(key, properties.get(key));
             }
         }
+
         // Overwrite deserializer
         consumerConfig.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getCanonicalName());
         consumerConfig.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getCanonicalName());
-
         // consumerConfig.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getCanonicalName());
-        // KafkaConsumerRunner kafkaConsumerRunner = new KafkaConsumerRunner(consumerConfig);
-        // executorService.execute(kafkaConsumerRunner);
-
-        XmlConsumer xmlConsumer = new XmlConsumer(consumerConfig);
-        executorService.execute(xmlConsumer);
+        KafkaConsumerRunnerXml kafkaConsumerRunner = new KafkaConsumerRunnerXml(consumerConfig);
+        executorService.execute(kafkaConsumerRunner);
     }
 
     public void shutdown() {
@@ -168,10 +166,11 @@ public class OpenNMSKafkaConsumer {
 
     }
 
-    private class XmlConsumer implements Runnable {
+    private class KafkaConsumerRunnerXml implements Runnable {
+
         private final Properties consumerConfig;
 
-        public XmlConsumer(Properties properties) {
+        public KafkaConsumerRunnerXml(Properties properties) {
             consumerConfig = properties;
         }
 
@@ -186,7 +185,7 @@ public class OpenNMSKafkaConsumer {
             }
 
             consumer.subscribe(Arrays.asList(eventsTopic));
-            LOG.info("subscribed to {}", xmlTopics);
+            LOG.info("subscribed to {}", eventsTopic);
 
             while (!closed.get()) {
                 ConsumerRecords<String, String> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
@@ -194,9 +193,9 @@ public class OpenNMSKafkaConsumer {
 
                 List<Event> opennms_events = new ArrayList<>();
                 for (ConsumerRecord<String, String> record : records) {
-                    log.info(record.value());
+                    LOG.info(record.value());
                     try {
-                        opennms_events.add(EventsMapper.xmlToEvent(record));
+                        opennms_events.add(EventsMapper.toEventXml(record));
         
                     } catch (XMLStreamException e) {
                         LOG.warn("Error while parsing xml event with key {}", record.key());
@@ -213,7 +212,7 @@ public class OpenNMSKafkaConsumer {
             // SendNowSync sends events in synchronous mode which puts more backpressure on Kafka.
             eventForwarder.sendNowSync(log);
             log.getEvents().getEventCollection().forEach(event -> {
-                LOG.debug(" Event with uei {}, source {} forwarded to OpenNMS", event.getUei(), event.getSource());
+                LOG.debug(" Event with uei {}, source {}, severity {}, ip_address {}, descr {}forwarded to OpenNMS", event.getUei(), event.getSource(),event.getSeverity());
             });
         }
     }

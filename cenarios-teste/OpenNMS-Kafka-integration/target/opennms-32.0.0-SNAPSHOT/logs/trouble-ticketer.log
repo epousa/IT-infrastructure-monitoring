@@ -1,0 +1,18 @@
+2023-03-30 12:12:10,970 INFO  [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: trouble-ticketer initializing.
+2023-03-30 12:12:10,972 DEBUG [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: SPRING: thread.classLoader=java.net.FactoryURLClassLoader@6615435c
+2023-03-30 12:12:10,973 INFO  [Main] o.s.c.s.ClassPathXmlApplicationContext: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1cb9148c: startup date [Thu Mar 30 12:12:10 WEST 2023]; parent: ApplicationContext 'daoContext'
+2023-03-30 12:12:10,973 INFO  [Main] o.s.b.f.x.XmlBeanDefinitionReader: Loading XML bean definitions from class path resource [META-INF/opennms/applicationContext-troubleTicketer.xml]
+2023-03-30 12:12:11,012 INFO  [Main] o.s.b.f.a.AutowiredAnnotationBeanPostProcessor: JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2023-03-30 12:12:11,028 DEBUG [Main] o.o.c.s.s.DefaultServiceRegistry: Registered org.opennms.netmgt.ticketd.DefaultTicketerServiceLayer@38d387b as instance of [interface org.opennms.netmgt.ticketd.TicketerServiceLayer]
+2023-03-30 12:12:11,037 DEBUG [Main] o.o.c.s.s.ServiceRegistryTargetSource: Initializing lazy target object
+2023-03-30 12:12:11,037 DEBUG [Main] o.o.n.e.EventIpcManagerDefaultImpl: Adding event listener OpenNMS.TroubleTicketer for UEIs: uei.opennms.org/troubleTicket/cancel,uei.opennms.org/troubleTicket/close,uei.opennms.org/troubleTicket/create,uei.opennms.org/troubleTicket/update,uei.opennms.org/internal/reloadDaemonConfig
+2023-03-30 12:12:11,051 DEBUG [Main] o.a.c.s.SpringCamelContext: onApplicationEvent: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@1cb9148c: startup date [Thu Mar 30 12:12:10 WEST 2023]; parent: ApplicationContext 'daoContext']
+2023-03-30 12:12:11,051 DEBUG [Main] o.a.c.s.SpringCamelContext: onApplicationEvent: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@1cb9148c: startup date [Thu Mar 30 12:12:10 WEST 2023]; parent: ApplicationContext 'daoContext']
+2023-03-30 12:12:11,051 DEBUG [Main] o.a.c.s.SpringCamelContext: onApplicationEvent: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@1cb9148c: startup date [Thu Mar 30 12:12:10 WEST 2023]; parent: ApplicationContext 'daoContext']
+2023-03-30 12:12:11,051 DEBUG [Main] o.a.c.s.SpringCamelContext: onApplicationEvent: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@1cb9148c: startup date [Thu Mar 30 12:12:10 WEST 2023]; parent: ApplicationContext 'daoContext']
+2023-03-30 12:12:11,051 DEBUG [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: SPRING: context.classLoader= java.net.FactoryURLClassLoader@6615435c
+2023-03-30 12:12:11,051 INFO  [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: trouble-ticketer initialization complete.
+2023-03-30 12:12:18,059 INFO  [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: trouble-ticketer starting.
+2023-03-30 12:12:18,059 DEBUG [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: SPRING: thread.classLoader=java.net.FactoryURLClassLoader@6615435c
+2023-03-30 12:12:18,059 DEBUG [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: SPRING: context.classLoader= java.net.FactoryURLClassLoader@6615435c
+2023-03-30 12:12:18,059 INFO  [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: trouble-ticketer starting complete.

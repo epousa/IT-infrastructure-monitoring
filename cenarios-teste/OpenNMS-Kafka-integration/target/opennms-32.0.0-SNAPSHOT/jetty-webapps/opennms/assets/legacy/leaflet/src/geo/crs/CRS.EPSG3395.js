@@ -1,0 +1,1 @@
+L.CRS.EPSG3395=L.extend({},L.CRS.Earth,{code:"EPSG:3395",projection:L.Projection.Mercator,transformation:function(){var r=.5/(Math.PI*L.Projection.Mercator.R);return new L.Transformation(r,.5,-r,.5)}()});

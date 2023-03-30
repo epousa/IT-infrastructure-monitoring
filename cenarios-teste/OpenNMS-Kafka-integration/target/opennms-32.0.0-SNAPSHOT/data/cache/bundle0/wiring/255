@@ -1,0 +1,6 @@
+osgi.wiring.package; (osgi.wiring.package=javax.security.auth.x500)
+0; version=0.0.0
+osgi.wiring.package; (osgi.wiring.package=javax.security.cert)
+0; version=0.0.0
+osgi.wiring.package; (osgi.wiring.package=javax.net.ssl)
+0; version=0.0.0

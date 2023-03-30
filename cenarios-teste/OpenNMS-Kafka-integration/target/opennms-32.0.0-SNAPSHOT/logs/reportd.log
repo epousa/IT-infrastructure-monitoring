@@ -1,0 +1,54 @@
+2023-03-30 12:12:14,022 INFO  [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: reportd initializing.
+2023-03-30 12:12:14,023 DEBUG [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: SPRING: thread.classLoader=java.net.FactoryURLClassLoader@6615435c
+2023-03-30 12:12:14,025 INFO  [Main] o.s.c.s.ClassPathXmlApplicationContext: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2a1a0556: startup date [Thu Mar 30 12:12:14 WEST 2023]; parent: ApplicationContext 'daoContext'
+2023-03-30 12:12:14,025 INFO  [Main] o.s.b.f.x.XmlBeanDefinitionReader: Loading XML bean definitions from class path resource [META-INF/opennms/applicationContext-reportd.xml]
+2023-03-30 12:12:14,055 INFO  [Main] o.s.b.f.a.AutowiredAnnotationBeanPostProcessor: JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2023-03-30 12:12:14,068 INFO  [Main] o.q.i.StdSchedulerFactory: Using default implementation for ThreadExecutor
+2023-03-30 12:12:14,070 INFO  [Main] o.q.c.SchedulerSignalerImpl: Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2023-03-30 12:12:14,070 INFO  [Main] o.q.c.QuartzScheduler: Quartz Scheduler v.2.3.2 created.
+2023-03-30 12:12:14,070 INFO  [Main] o.q.s.RAMJobStore: RAMJobStore initialized.
+2023-03-30 12:12:14,070 INFO  [Main] o.q.c.QuartzScheduler: Scheduler meta-data: Quartz Scheduler (v2.3.2) 'reportd' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2023-03-30 12:12:14,070 INFO  [Main] o.q.i.StdSchedulerFactory: Quartz scheduler 'reportd' initialized from an externally provided properties instance.
+2023-03-30 12:12:14,070 INFO  [Main] o.q.i.StdSchedulerFactory: Quartz scheduler version: 2.3.2
+2023-03-30 12:12:14,070 INFO  [Main] o.q.c.QuartzScheduler: JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@41926cb1
+2023-03-30 12:12:14,079 DEBUG [Main] o.o.c.x.AbstractJaxbConfigDao: Loading Reportd Configuration configuration from URL [file:/home/epousa/dev/opennms/target/opennms-32.0.0-SNAPSHOT/etc/reportd-configuration.xml]
+2023-03-30 12:12:14,090 INFO  [Main] o.o.c.x.AbstractJaxbConfigDao: Loaded Reportd Configuration in 11 ms
+2023-03-30 12:12:14,094 DEBUG [Main] o.o.c.s.BeanUtils: m_configDao is not null
+2023-03-30 12:12:14,094 DEBUG [Main] o.o.c.s.BeanUtils: m_scheduler is not null
+2023-03-30 12:12:14,094 INFO  [Main] o.q.c.QuartzScheduler: JobFactory set to: org.opennms.netmgt.reporting.service.ReportJobFactory@30625244
+2023-03-30 12:12:14,104 DEBUG [Main] o.o.c.x.AbstractJaxbConfigDao: Loading Javamail configuration configuration from URL [file:/home/epousa/dev/opennms/target/opennms-32.0.0-SNAPSHOT/etc/javamail-configuration.xml]
+2023-03-30 12:12:14,107 INFO  [Main] o.o.c.x.AbstractJaxbConfigDao: Loaded Javamail configuration in 3 ms
+2023-03-30 12:12:14,107 DEBUG [Main] o.o.n.e.EventIpcManagerDefaultImpl: Adding event listener Reportd:EventListener for UEIs: uei.opennms.org/internal/reloadDaemonConfig,uei.opennms.org/reportd/runReport
+2023-03-30 12:12:14,128 INFO  [Main] o.s.c.s.DefaultLifecycleProcessor: Starting beans in phase 2147483647
+2023-03-30 12:12:14,128 INFO  [Main] o.s.s.q.SchedulerFactoryBean: Starting Quartz Scheduler now
+2023-03-30 12:12:14,128 INFO  [Main] o.q.c.QuartzScheduler: Scheduler reportd_$_NON_CLUSTERED started.
+2023-03-30 12:12:14,128 DEBUG [Main] o.a.c.s.SpringCamelContext: onApplicationEvent: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@2a1a0556: startup date [Thu Mar 30 12:12:14 WEST 2023]; parent: ApplicationContext 'daoContext']
+2023-03-30 12:12:14,129 DEBUG [Main] o.a.c.s.SpringCamelContext: onApplicationEvent: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@2a1a0556: startup date [Thu Mar 30 12:12:14 WEST 2023]; parent: ApplicationContext 'daoContext']
+2023-03-30 12:12:14,129 DEBUG [Main] o.a.c.s.SpringCamelContext: onApplicationEvent: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@2a1a0556: startup date [Thu Mar 30 12:12:14 WEST 2023]; parent: ApplicationContext 'daoContext']
+2023-03-30 12:12:14,129 DEBUG [Main] o.a.c.s.SpringCamelContext: onApplicationEvent: org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.context.support.ClassPathXmlApplicationContext@2a1a0556: startup date [Thu Mar 30 12:12:14 WEST 2023]; parent: ApplicationContext 'daoContext']
+2023-03-30 12:12:14,129 DEBUG [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: SPRING: context.classLoader= java.net.FactoryURLClassLoader@6615435c
+2023-03-30 12:12:14,129 INFO  [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: reportd initialization complete.
+2023-03-30 12:12:18,125 INFO  [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: reportd starting.
+2023-03-30 12:12:18,125 DEBUG [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: SPRING: thread.classLoader=java.net.FactoryURLClassLoader@6615435c
+2023-03-30 12:12:18,125 INFO  [Main] o.q.c.QuartzScheduler: Scheduler reportd_$_NON_CLUSTERED started.
+2023-03-30 12:12:18,126 INFO  [Main] o.o.n.r.s.ReportScheduler: calendarNames: 
+2023-03-30 12:12:18,126 INFO  [Main] o.o.n.r.s.ReportScheduler: current executing jobs: 
+2023-03-30 12:12:18,129 INFO  [Main] o.o.n.r.s.ReportScheduler: current job names: 
+2023-03-30 12:12:18,130 INFO  [Main] o.o.n.r.s.ReportScheduler: scheduler metadata: Quartz Scheduler (v2.3.2) 'reportd' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.impl.StdScheduler' - running locally.
+  Running since: Thu Mar 30 12:12:14 WEST 2023
+  Not currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2023-03-30 12:12:18,130 INFO  [Main] o.o.n.r.s.ReportScheduler: trigger names: 
+2023-03-30 12:12:18,131 DEBUG [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: SPRING: context.classLoader= java.net.FactoryURLClassLoader@6615435c
+2023-03-30 12:12:18,131 INFO  [Main] o.o.n.d.AbstractSpringContextJmxServiceDaemon: reportd starting complete.

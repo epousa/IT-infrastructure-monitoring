@@ -1,0 +1,16 @@
+osgi.wiring.package; (&(osgi.wiring.package=org.osgi.util.tracker)(version>=1.5.0)(!(version>=2.0.0)))
+0; version=1.5.2
+osgi.extender; (&(osgi.extender=osgi.component)(version>=1.3.0)(!(version>=2.0.0)))
+192; version=1.4.0
+osgi.ee; (&(osgi.ee=JavaSE)(version=1.8))
+0; version=[1.0.0, 1.1.0, 1.2.0, 1.3.0, 1.4.0, 1.5.0, 1.6.0, 1.7.0, 1.8.0, 9.0.0, 10.0.0, 11.0.0]
+osgi.ee; (&(osgi.ee=JavaSE)(version=1.8.0))
+0; version=[1.0.0, 1.1.0, 1.2.0, 1.3.0, 1.4.0, 1.5.0, 1.6.0, 1.7.0, 1.8.0, 9.0.0, 10.0.0, 11.0.0]
+osgi.wiring.package; (&(osgi.wiring.package=org.osgi.service.http)(version>=1.2.0)(!(version>=2.0.0)))
+191; version=1.2.1
+osgi.wiring.package; (&(osgi.wiring.package=org.osgi.service.http.context)(version>=1.0.0)(!(version>=2.0.0)))
+191; version=1.1.0
+osgi.wiring.package; (&(osgi.wiring.package=elemental.json)(version>=2.8.0)(!(version>=3.0.0)))
+112; version=2.8.2
+osgi.wiring.package; (&(osgi.wiring.package=org.osgi.framework)(version>=1.8.0)(!(version>=2.0.0)))
+0; version=1.9.0

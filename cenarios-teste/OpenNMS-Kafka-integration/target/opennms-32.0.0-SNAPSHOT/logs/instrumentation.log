@@ -1,0 +1,94 @@
+2023-03-30 12:12:18,077 INFO  [Collectd-Thread-1-of-50] scheduleInterfacesWithService: begin: Windows-Exporter
+2023-03-30 12:12:18,080 INFO  [Collectd-Thread-1-of-50] scheduleFindInterfacesWithService: begin: Windows-Exporter
+2023-03-30 12:12:18,080 INFO  [Collectd-Thread-2-of-50] scheduleInterfacesWithService: begin: Node-Exporter
+2023-03-30 12:12:18,081 INFO  [Collectd-Thread-3-of-50] scheduleInterfacesWithService: begin: Elasticsearch
+2023-03-30 12:12:18,084 INFO  [Collectd-Thread-3-of-50] scheduleFindInterfacesWithService: begin: Elasticsearch
+2023-03-30 12:12:18,082 INFO  [Collectd-Thread-2-of-50] scheduleFindInterfacesWithService: begin: Node-Exporter
+2023-03-30 12:12:18,087 INFO  [Collectd-Thread-10-of-50] scheduleInterfacesWithService: begin: VMwareCim-HostSystem
+2023-03-30 12:12:18,087 INFO  [Collectd-Thread-10-of-50] scheduleFindInterfacesWithService: begin: VMwareCim-HostSystem
+2023-03-30 12:12:18,089 INFO  [Collectd-Thread-4-of-50] scheduleInterfacesWithService: begin: PostgreSQL
+2023-03-30 12:12:18,089 INFO  [Collectd-Thread-4-of-50] scheduleFindInterfacesWithService: begin: PostgreSQL
+2023-03-30 12:12:18,098 INFO  [Collectd-Thread-5-of-50] scheduleInterfacesWithService: begin: SNMP
+2023-03-30 12:12:18,101 INFO  [Collectd-Thread-5-of-50] scheduleFindInterfacesWithService: begin: SNMP
+2023-03-30 12:12:18,102 INFO  [Collectd-Thread-7-of-50] scheduleInterfacesWithService: begin: WS-Man
+2023-03-30 12:12:18,102 INFO  [Collectd-Thread-7-of-50] scheduleFindInterfacesWithService: begin: WS-Man
+2023-03-30 12:12:18,102 INFO  [Collectd-Thread-6-of-50] scheduleInterfacesWithService: begin: WMI
+2023-03-30 12:12:18,102 INFO  [Collectd-Thread-6-of-50] scheduleFindInterfacesWithService: begin: WMI
+2023-03-30 12:12:18,102 INFO  [Collectd-Thread-9-of-50] scheduleInterfacesWithService: begin: VMware-HostSystem
+2023-03-30 12:12:18,102 INFO  [Collectd-Thread-9-of-50] scheduleFindInterfacesWithService: begin: VMware-HostSystem
+2023-03-30 12:12:18,107 INFO  [Collectd-Thread-11-of-50] scheduleInterfacesWithService: begin: OpenNMS-JVM
+2023-03-30 12:12:18,107 INFO  [Collectd-Thread-11-of-50] scheduleFindInterfacesWithService: begin: OpenNMS-JVM
+2023-03-30 12:12:18,107 INFO  [Collectd-Thread-8-of-50] scheduleInterfacesWithService: begin: VMware-VirtualMachine
+2023-03-30 12:12:18,108 INFO  [Collectd-Thread-8-of-50] scheduleFindInterfacesWithService: begin: VMware-VirtualMachine
+2023-03-30 12:12:18,111 INFO  [Collectd-Thread-12-of-50] scheduleInterfacesWithService: begin: JMX-Minion
+2023-03-30 12:12:18,111 INFO  [Collectd-Thread-12-of-50] scheduleFindInterfacesWithService: begin: JMX-Minion
+2023-03-30 12:12:18,119 INFO  [Collectd-Thread-1-of-50] scheduleFindInterfacesWithService: end: Windows-Exporter. found 0 interfaces.
+2023-03-30 12:12:18,119 INFO  [Collectd-Thread-1-of-50] scheduleInterfacesWithService: end: Windows-Exporter
+2023-03-30 12:12:18,125 INFO  [Collectd-Thread-3-of-50] scheduleFindInterfacesWithService: end: Elasticsearch. found 0 interfaces.
+2023-03-30 12:12:18,125 INFO  [Collectd-Thread-13-of-50] scheduleInterfacesWithService: begin: JMX-Cassandra
+2023-03-30 12:12:18,125 INFO  [Collectd-Thread-3-of-50] scheduleInterfacesWithService: end: Elasticsearch
+2023-03-30 12:12:18,125 INFO  [Collectd-Thread-13-of-50] scheduleFindInterfacesWithService: begin: JMX-Cassandra
+2023-03-30 12:12:18,125 INFO  [Collectd-Thread-15-of-50] scheduleInterfacesWithService: begin: JMX-Kafka
+2023-03-30 12:12:18,125 INFO  [Collectd-Thread-15-of-50] scheduleFindInterfacesWithService: begin: JMX-Kafka
+2023-03-30 12:12:18,126 INFO  [Collectd-Thread-14-of-50] scheduleInterfacesWithService: begin: JMX-Cassandra-Newts
+2023-03-30 12:12:18,126 INFO  [Collectd-Thread-14-of-50] scheduleFindInterfacesWithService: begin: JMX-Cassandra-Newts
+2023-03-30 12:12:18,130 INFO  [Collectd-Thread-15-of-50] scheduleFindInterfacesWithService: end: JMX-Kafka. found 0 interfaces.
+2023-03-30 12:12:18,130 INFO  [Collectd-Thread-14-of-50] scheduleFindInterfacesWithService: end: JMX-Cassandra-Newts. found 0 interfaces.
+2023-03-30 12:12:18,131 INFO  [Collectd-Thread-15-of-50] scheduleInterfacesWithService: end: JMX-Kafka
+2023-03-30 12:12:18,131 INFO  [Collectd-Thread-13-of-50] scheduleFindInterfacesWithService: end: JMX-Cassandra. found 0 interfaces.
+2023-03-30 12:12:18,131 INFO  [Collectd-Thread-13-of-50] scheduleInterfacesWithService: end: JMX-Cassandra
+2023-03-30 12:12:18,131 INFO  [Collectd-Thread-14-of-50] scheduleInterfacesWithService: end: JMX-Cassandra-Newts
+2023-03-30 12:12:18,139 INFO  [Collectd-Thread-12-of-50] scheduleFindInterfacesWithService: end: JMX-Minion. found 0 interfaces.
+2023-03-30 12:12:18,139 INFO  [Collectd-Thread-12-of-50] scheduleInterfacesWithService: end: JMX-Minion
+2023-03-30 12:12:18,145 INFO  [Collectd-Thread-4-of-50] scheduleFindInterfacesWithService: end: PostgreSQL. found 0 interfaces.
+2023-03-30 12:12:18,145 INFO  [Collectd-Thread-4-of-50] scheduleInterfacesWithService: end: PostgreSQL
+2023-03-30 12:12:18,155 INFO  [Collectd-Thread-2-of-50] scheduleFindInterfacesWithService: end: Node-Exporter. found 0 interfaces.
+2023-03-30 12:12:18,155 INFO  [Collectd-Thread-2-of-50] scheduleInterfacesWithService: end: Node-Exporter
+2023-03-30 12:12:18,157 INFO  [Collectd-Thread-11-of-50] scheduleFindInterfacesWithService: end: OpenNMS-JVM. found 0 interfaces.
+2023-03-30 12:12:18,157 INFO  [Collectd-Thread-11-of-50] scheduleInterfacesWithService: end: OpenNMS-JVM
+2023-03-30 12:12:18,160 INFO  [Collectd-Thread-10-of-50] scheduleFindInterfacesWithService: end: VMwareCim-HostSystem. found 0 interfaces.
+2023-03-30 12:12:18,160 INFO  [Collectd-Thread-10-of-50] scheduleInterfacesWithService: end: VMwareCim-HostSystem
+2023-03-30 12:12:18,171 INFO  [Collectd-Thread-7-of-50] scheduleFindInterfacesWithService: end: WS-Man. found 0 interfaces.
+2023-03-30 12:12:18,171 INFO  [Collectd-Thread-5-of-50] scheduleFindInterfacesWithService: end: SNMP. found 0 interfaces.
+2023-03-30 12:12:18,171 INFO  [Collectd-Thread-7-of-50] scheduleInterfacesWithService: end: WS-Man
+2023-03-30 12:12:18,172 INFO  [Collectd-Thread-9-of-50] scheduleFindInterfacesWithService: end: VMware-HostSystem. found 0 interfaces.
+2023-03-30 12:12:18,172 INFO  [Collectd-Thread-9-of-50] scheduleInterfacesWithService: end: VMware-HostSystem
+2023-03-30 12:12:18,173 INFO  [Collectd-Thread-5-of-50] scheduleInterfacesWithService: end: SNMP
+2023-03-30 12:12:18,177 INFO  [Collectd-Thread-8-of-50] scheduleFindInterfacesWithService: end: VMware-VirtualMachine. found 0 interfaces.
+2023-03-30 12:12:18,177 INFO  [Collectd-Thread-8-of-50] scheduleInterfacesWithService: end: VMware-VirtualMachine
+2023-03-30 12:12:18,180 INFO  [Collectd-Thread-6-of-50] scheduleFindInterfacesWithService: end: WMI. found 0 interfaces.
+2023-03-30 12:12:18,180 INFO  [Collectd-Thread-6-of-50] scheduleInterfacesWithService: end: WMI
+2023-03-30 12:12:52,846 INFO  [collectd-Thread] scheduleInterfaceWithService: begin: 1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:12:52,940 INFO  [collectd-Thread] collector.initialize: begin: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:12:52,941 INFO  [collectd-Thread] collector.initialize: end: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:13:03,030 INFO  [collectd-Thread] scheduleInterfaceWithService: end: 1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:13:03,053 INFO  [collectd-Thread] scheduleInterfaceWithService: begin: 1/127.0.0.1/SSH
+2023-03-30 12:13:03,053 INFO  [collectd-Thread] scheduleInterfaceWithService: end: 1/127.0.0.1/SSH
+2023-03-30 12:13:03,064 INFO  [collectd-Thread] scheduleInterfaceWithService: begin: 1/127.0.0.1/SMTP
+2023-03-30 12:13:03,065 INFO  [collectd-Thread] scheduleInterfaceWithService: end: 1/127.0.0.1/SMTP
+2023-03-30 12:13:03,081 INFO  [Collectd-Thread-16-of-50] collector.collect: begin:example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:13:03,090 INFO  [collectd-Thread] scheduleInterfaceWithService: begin: 1/127.0.0.1/ICMP
+2023-03-30 12:13:03,091 INFO  [collectd-Thread] scheduleInterfaceWithService: end: 1/127.0.0.1/ICMP
+2023-03-30 12:13:03,537 INFO  [Collectd-Thread-16-of-50] collector.collect: end:example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:13:03,537 INFO  [Collectd-Thread-16-of-50] collector.collect: persistDataQueueing: begin: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:13:05,705 INFO  [Collectd-Thread-16-of-50] collector.collect: persistDataQueueing: end: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:18:04,004 INFO  [Collectd-Thread-17-of-50] collector.collect: begin:example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:18:04,072 INFO  [Collectd-Thread-17-of-50] collector.collect: end:example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:18:04,072 INFO  [Collectd-Thread-17-of-50] collector.collect: persistDataQueueing: begin: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:18:04,726 INFO  [Collectd-Thread-17-of-50] collector.collect: persistDataQueueing: end: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:23:03,934 INFO  [Collectd-Thread-18-of-50] collector.collect: begin:example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:23:04,020 INFO  [Collectd-Thread-18-of-50] collector.collect: end:example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:23:04,020 INFO  [Collectd-Thread-18-of-50] collector.collect: persistDataQueueing: begin: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:23:04,470 INFO  [Collectd-Thread-18-of-50] collector.collect: persistDataQueueing: end: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:28:03,592 INFO  [Collectd-Thread-19-of-50] collector.collect: begin:example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:28:03,674 INFO  [Collectd-Thread-19-of-50] collector.collect: end:example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:28:03,674 INFO  [Collectd-Thread-19-of-50] collector.collect: persistDataQueueing: begin: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:28:04,237 INFO  [Collectd-Thread-19-of-50] collector.collect: persistDataQueueing: end: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:33:03,380 INFO  [Collectd-Thread-20-of-50] collector.collect: begin:example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:33:03,438 INFO  [Collectd-Thread-20-of-50] collector.collect: end:example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:33:03,438 INFO  [Collectd-Thread-20-of-50] collector.collect: persistDataQueueing: begin: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:33:03,930 INFO  [Collectd-Thread-20-of-50] collector.collect: persistDataQueueing: end: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:38:04,047 INFO  [Collectd-Thread-21-of-50] collector.collect: begin:example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:38:04,106 INFO  [Collectd-Thread-21-of-50] collector.collect: end:example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:38:04,106 INFO  [Collectd-Thread-21-of-50] collector.collect: persistDataQueueing: begin: example1/1/127.0.0.1/OpenNMS-JVM
+2023-03-30 12:38:04,594 INFO  [Collectd-Thread-21-of-50] collector.collect: persistDataQueueing: end: example1/1/127.0.0.1/OpenNMS-JVM

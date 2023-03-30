@@ -1,0 +1,179 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0
+        http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+
+    <reference id="runtimeInfo" interface="org.opennms.integration.api.v1.runtime.RuntimeInfo" />
+    <reference id="alarmDao" interface="org.opennms.integration.api.v1.dao.AlarmDao" />
+    <reference id="nodeDao" interface="org.opennms.integration.api.v1.dao.NodeDao" />
+    <reference id="snmpInterfaceDao" interface="org.opennms.integration.api.v1.dao.SnmpInterfaceDao" />
+    <reference id="eventForwarder" interface="org.opennms.integration.api.v1.events.EventForwarder" />
+    <reference id="eventSubscriptionService" interface="org.opennms.integration.api.v1.events.EventSubscriptionService" />
+    <reference id="detectorClient" interface="org.opennms.integration.api.v1.detectors.DetectorClient" />
+    <reference id="pollerClient" interface="org.opennms.integration.api.v1.pollers.ServicePollerClient" />
+    <reference id="collectorClient" interface="org.opennms.integration.api.v1.collectors.ServiceCollectorClient" />
+    <reference id="userDefinedLinkDao" interface="org.opennms.integration.api.v1.topology.UserDefinedLinkDao" />
+    <reference id="keyValueStore" interface="org.opennms.integration.api.v1.distributed.KeyValueStore" />
+
+    <bean id="alarmManager" class="org.opennms.integration.api.sample.AlarmTestContextManager"/>
+    <bean id="requisitionManager" class="org.opennms.integration.api.sample.RequisitionTestContextManager"/>
+
+    <bean id="myInfoLogger" class="org.opennms.integration.api.sample.MyInfoLogger" >
+        <argument ref="runtimeInfo"/>
+        <argument ref="alarmDao"/>
+        <argument ref="nodeDao"/>
+        <argument ref="snmpInterfaceDao"/>
+    </bean>
+
+    <bean id="alarmLifecyleHealthCheck" class="org.opennms.integration.api.sample.health.AlarmLifecyleHealthCheck">
+        <argument ref="alarmManager"/>
+        <argument ref="eventForwarder"/>
+    </bean>
+    <service interface="org.opennms.integration.api.v1.health.HealthCheck" ref="alarmLifecyleHealthCheck"/>
+
+    <bean id="serviceExtensionHealthCheck" class="org.opennms.integration.api.sample.health.ServiceExtensionHealthCheck">
+        <argument ref="detectorClient"/>
+        <argument ref="pollerClient"/>
+        <argument ref="collectorClient"/>
+        <argument ref="nodeDao"/>
+    </bean>
+    <service interface="org.opennms.integration.api.v1.health.HealthCheck" ref="serviceExtensionHealthCheck"/>
+
+    <bean id="serviceExtensionOnMinionHealthCheck" class="org.opennms.integration.api.sample.health.ServiceExtensionOnMinionHealthCheck">
+        <argument ref="detectorClient"/>
+        <argument ref="pollerClient"/>
+        <argument ref="collectorClient"/>
+        <argument ref="nodeDao"/>
+    </bean>
+    <service interface="org.opennms.integration.api.v1.health.HealthCheck" ref="serviceExtensionOnMinionHealthCheck"/>
+
+    <bean id="requisitionHealthCheck" class="org.opennms.integration.api.sample.health.RequisitionHealthCheck">
+        <argument ref="nodeDao"/>
+        <argument ref="eventForwarder"/>
+        <argument ref="eventSubscriptionService"/>
+        <argument ref="requisitionManager"/>
+    </bean>
+    <service interface="org.opennms.integration.api.v1.health.HealthCheck" ref="requisitionHealthCheck"/>
+
+    <bean id="userDefinedLinkHealthCheck" class="org.opennms.integration.api.sample.health.UserDefinedLinkHealthCheck">
+        <argument ref="userDefinedLinkDao"/>
+        <argument ref="nodeDao"/>
+    </bean>
+    <service interface="org.opennms.integration.api.v1.health.HealthCheck" ref="userDefinedLinkHealthCheck"/>
+
+    <service interface="org.opennms.integration.api.v1.health.HealthCheck">
+        <bean class="org.opennms.integration.api.sample.health.MyHealthCheck">
+            <argument ref="alarmLifecyleHealthCheck"/>
+            <argument ref="serviceExtensionHealthCheck"/>
+            <argument ref="requisitionHealthCheck"/>
+            <argument ref="userDefinedLinkHealthCheck"/>
+        </bean>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.alarms.AlarmPersisterExtension">
+        <bean class="org.opennms.integration.api.sample.MyAlarmPersisterExtension" >
+            <argument ref="alarmManager"/>
+        </bean>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.alarms.AlarmLifecycleListener">
+        <bean class="org.opennms.integration.api.sample.MyAlarmLifecycleListener">
+            <argument ref="alarmManager"/>
+        </bean>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.config.events.EventConfExtension">
+        <bean class="org.opennms.integration.api.sample.MyEventConfExtension"/>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.config.syslog.SyslogMatchExtension">
+        <bean class="org.opennms.integration.api.sample.MySyslogMatchExtension"/>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.config.datacollection.SnmpCollectionExtension">
+        <bean class="org.opennms.integration.api.sample.MySnmpCollectionExtension"/>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.config.datacollection.ResourceTypesExtension">
+        <bean class="org.opennms.integration.api.sample.MyResourceTypesExtension"/>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.config.datacollection.graphs.GraphPropertiesExtension">
+        <bean class="org.opennms.integration.api.sample.MyGraphPropertiesExtension"/>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.config.thresholding.ThresholdingConfigExtension">
+        <bean class="org.opennms.integration.api.sample.MyThresholdingConfigExtension"/>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.config.thresholding.ThreshdConfigurationExtension">
+        <bean class="org.opennms.integration.api.sample.MyThreshdConfigurationExtension"/>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.detectors.ServiceDetectorFactory">
+        <bean class="org.opennms.integration.api.sample.SampleDetectorFactory"/>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.pollers.ServicePollerFactory">
+        <bean class="org.opennms.integration.api.sample.SamplePollerFactory">
+            <argument ref="runtimeInfo"/>
+        </bean>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.collectors.ServiceCollectorFactory">
+        <bean class="org.opennms.integration.api.sample.SampleCollectorFactory">
+            <argument ref="runtimeInfo"/>
+        </bean>
+    </service>
+
+    <service id="sampleExtension" interface="org.opennms.integration.api.v1.ui.UIExtension">
+        <bean class="org.opennms.integration.api.sample.SampleUIExtension">
+            <property name="id" value="samplePluginOne"/>
+            <property name="menuEntry" value="Plugin One"/>
+            <property name="resourceRoot" value="web-ui"/>
+            <property name="moduleFileName" value="RedPlugin.es.js"/>
+        </bean>
+    </service>
+
+    <service id="uiExtension" interface="org.opennms.integration.api.v1.ui.UIExtension">
+        <bean class="org.opennms.integration.api.sample.SampleUIExtension">
+            <property name="id" value="uiExtension"/>
+            <property name="menuEntry" value="OpenNMS UI Extension"/>
+            <property name="resourceRoot" value="ui-ext"/>
+            <property name="moduleFileName" value="uiextension.es.js"/>
+        </bean>
+    </service>
+    
+    <service interface="org.opennms.integration.api.v1.ticketing.TicketingPlugin">
+        <bean class="org.opennms.integration.api.sample.SampleTicketerPlugin"/>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.feedback.AlarmFeedbackListener">
+        <bean class="org.opennms.integration.api.sample.MyAlarmFeedbackListener">
+            <argument ref="alarmManager"/>
+        </bean>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.requisition.RequisitionProvider">
+        <bean class="org.opennms.integration.api.sample.MyRequisitionProvider">
+            <argument ref="requisitionManager"/>
+        </bean>
+    </service>
+
+    <service interface="org.opennms.integration.api.v1.topology.TopologyEdgeConsumer">
+        <bean class="org.opennms.integration.api.sample.MyTopologyEdgeConsumer"/>
+    </service>
+
+
+    <service interface="org.opennms.integration.api.v1.graph.GraphContainerProvider" >
+        <bean class="org.opennms.integration.api.sample.MyGraphContainerProvider"/>
+    </service>
+    <bean id="exampleGraphStatusProvider" class="org.opennms.integration.api.sample.MyCustomStatusProvider">
+        <argument ref="alarmDao" />
+    </bean>
+    <service ref="exampleGraphStatusProvider" interface="org.opennms.integration.api.v1.graph.status.StatusProvider" />
+    <service ref="exampleGraphStatusProvider" interface="org.opennms.integration.api.v1.graph.status.LegacyStatusProvider" />
+
+    <bean id="keyValueStoreClient" class="org.opennms.integration.api.sample.KeyValueStoreClient" init-method="keyValueOperation">
+        <argument ref="keyValueStore"/>
+    </bean>
+</blueprint>

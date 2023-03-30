@@ -1,0 +1,6 @@
+80
+wrap:mvn:com.mchange/c3p0/0.9.5.5$Bundle-SymbolicName=c3p0&Bundle-Version=0.9.5.5&Import-Package=javax.management,javax.naming,javax.sql,javax.xml.parsers,org.postgresql;resolution:=optional,org.w3c.dom
+32
+80
+1680174771663
+0

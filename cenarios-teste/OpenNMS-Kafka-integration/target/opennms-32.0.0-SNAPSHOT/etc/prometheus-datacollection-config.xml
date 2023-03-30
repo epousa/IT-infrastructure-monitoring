@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<prometheus-datacollection-config rrd-repository="/home/epousa/dev/opennms/target/opennms-32.0.0-SNAPSHOT/share/rrd/snmp/">
+   <!-- See prometheus-datacollection.d -->
+</prometheus-datacollection-config>

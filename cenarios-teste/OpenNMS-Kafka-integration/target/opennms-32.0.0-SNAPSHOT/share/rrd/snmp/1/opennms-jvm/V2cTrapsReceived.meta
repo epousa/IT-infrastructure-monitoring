@@ -1,0 +1,3 @@
+#Thu Mar 30 12:13:03 WEST 2023
+GROUP=OpenNMS_Name_Trapd
+JMX_OpenNMS.Name.Trapd.V2cTrapsReceived=V2cTrapsReceived

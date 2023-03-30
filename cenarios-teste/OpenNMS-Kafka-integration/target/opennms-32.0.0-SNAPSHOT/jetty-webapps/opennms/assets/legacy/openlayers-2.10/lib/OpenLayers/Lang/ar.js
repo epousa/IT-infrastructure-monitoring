@@ -1,0 +1,1 @@
+OpenLayers.Lang.ar=OpenLayers.Util.applyDefaults({permalink:"وصلة دائمة",baseLayer:"الطبقة الاساسية",readNotImplemented:"القراءة غير محققة.",writeNotImplemented:"الكتابة غير محققة",errorLoadingGML:"خطأ عند تحميل الملف جي ام ال ${url}",scale:"النسبة = 1 : ${scaleDenom}",W:"غ",E:"شر",N:"شم",S:"ج"});

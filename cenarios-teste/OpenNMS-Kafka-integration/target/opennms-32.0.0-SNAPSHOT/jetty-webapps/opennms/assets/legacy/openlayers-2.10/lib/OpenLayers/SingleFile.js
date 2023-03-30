@@ -1,0 +1,1 @@
+var OpenLayers={singleFile:!0};
