@@ -58,6 +58,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.opennms.netmgt.xml.event.AlarmData;
+
 public class EventsMapper {
 
     private static final Logger LOG = LoggerFactory.getLogger(EventsMapper.class);
@@ -67,14 +69,20 @@ public class EventsMapper {
     private static EventBuilder opennms_event;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
     private static Date date;
+    private static AlarmData alarmData;
+        
+
+    //opennms_event.getLogmsg().setDest(dest); <- suprimir ou não eventos
+    //setAlarmData(AlarmData) <- acrescentar dados de alarme
 
     static{
         // handlers.put("eventTime", event -> LOG.info(event.asCharacters().getData()));
         handlers.put("alarm-id", event -> {
             opennms_event.setUei("uei.opennms.org/"+event.asCharacters().getData());
             opennms_event.setSource("Default");
-            opennms_event.setSeverity(OnmsSeverity.get("Major").getLabel());
+            alarmData.setReductionKey("uei.opennms.org/"+event.asCharacters().getData());
             
+            // alarmData.setClearKey(source.getClearKey());
             // LOG.info(event.asCharacters().getData());
         });
 
@@ -93,12 +101,19 @@ public class EventsMapper {
 
         handlers.put("alarmSeverity", event -> {
             //severity
-            // opennms_event.setSeverity(OnmsSeverity.get(event.asCharacters().getData()).getLabel());
+            // opennms_event.setSeverity(OnmsSeverity.get("Major").getLabel());
+            opennms_event.setSeverity(OnmsSeverity.get(event.asCharacters().getData()).getLabel());
         });
 
         handlers.put("alarmStatus", event -> {
-            
+            if(event.asCharacters().getData().equals("Active")){
+                alarmData.setAlarmType(1);
+            }else if(event.asCharacters().getData().equals("Inactive")){
+                alarmData.setAlarmType(2);
+            }
             LOG.info(event.asCharacters().getData());
+
+            opennms_event.setAlarmData(alarmData);
         });
 
         // handlers.put("alarmText", event -> {
@@ -117,7 +132,7 @@ public class EventsMapper {
 
         handlers.put("alarmTypeId", event -> {
             //logMessage
-            // getString(event.asCharacters().getData()).ifPresent(opennms_event::setLogMessage);
+            //getString(event.asCharacters().getData()).ifPresent(opennms_event::setLogMessage);
         });
 
         // handlers.put("customField1", event -> LOG.info(event.asCharacters().getData()));
@@ -140,7 +155,7 @@ public class EventsMapper {
 
         handlers.put("neIpAddress", event -> {
             //ip address
-            // getString(event.asCharacters().getData()).ifPresent(ip -> opennms_event.setInterface(InetAddressUtils.getInetAddress(ip)));
+            //getString(event.asCharacters().getData()).ifPresent(ip -> opennms_event.setInterface(InetAddressUtils.getInetAddress(ip)));
         });
 
         handlers.put("objectId", event -> {
@@ -150,7 +165,7 @@ public class EventsMapper {
 
         handlers.put("proposedRepairAction", event -> {
             //description
-            // getString(event.asCharacters().getData()).ifPresent(opennms_event::setDescription);
+            //getString(event.asCharacters().getData()).ifPresent(opennms_event::setDescription);
         });
 
         handlers.put("raisedTime", event -> {
@@ -179,6 +194,7 @@ public class EventsMapper {
 
         XMLEventReader xmlEventReader = xmlInputFactory.createXMLEventReader(new StringReader(record.value()));
         opennms_event = new EventBuilder();
+        alarmData = new AlarmData();
 
         while(xmlEventReader.hasNext()) {
             XMLEvent event = xmlEventReader.nextEvent();
