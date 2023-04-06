@@ -59,6 +59,10 @@
  import java.util.Date;
  
  import org.opennms.netmgt.xml.event.AlarmData;
+ import org.opennms.netmgt.model.OnmsIpInterface;
+ import org.opennms.netmgt.model.OnmsNode;
+ import org.opennms.netmgt.model.OnmsNodeList;
+
  
  public class EventsMapper {
  
@@ -70,6 +74,11 @@
      private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
      private static Date date;
      private static AlarmData alarmData;
+     private static List<OnmsNode> node_list;
+     private static OnmsIpInterface iface = new OnmsIpInterface();
+
+    //  private static OnmsNode Node = new OnmsNode();
+     
         
      static{
          // handlers.put("eventTime", event -> LOG.info(event.asCharacters().getData()));
@@ -151,8 +160,25 @@
          });
  
          handlers.put("neIpAddress", event -> {
-            //ip address
-            getString(event.asCharacters().getData()).ifPresent(ip -> opennms_event.setInterface(InetAddressUtils.getInetAddress(ip)));
+            //ip address.
+            
+            //iterates through all nodes.
+            for(OnmsNode node:node_list){
+                iface = node.getInterfaceWithAddress(InetAddressUtils.getInetAddress(event.asCharacters().getData()));
+                if (iface != null) {
+                    //exit the loop if iface is found
+                    break;
+                }
+            }
+
+            //check if the for finished the entire loop
+            if (iface != null) {
+                //sets the node id as the iface node id returned.
+                opennms_event.setIpInterface(iface);
+            }else{
+                getString(event.asCharacters().getData()).ifPresent(ip -> opennms_event.setInterface(InetAddressUtils.getInetAddress(ip)));
+            }
+            
          });
  
          handlers.put("objectId", event -> {
@@ -188,6 +214,9 @@
          XMLEventReader xmlEventReader = xmlInputFactory.createXMLEventReader(new StringReader(record.value()));
          opennms_event = new EventBuilder();
          alarmData = new AlarmData();
+
+         //fetch all nodes for each function call to ensure it has all recent nodes
+         node_list = OnmsNodeList.getObjects();
  
          while(xmlEventReader.hasNext()) {
              XMLEvent event = xmlEventReader.nextEvent();
