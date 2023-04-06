@@ -193,12 +193,12 @@ public class OpenNMSKafkaConsumer {
 
                 List<Event> opennms_events = new ArrayList<>();
                 for (ConsumerRecord<String, String> record : records) {
-                    LOG.info(record.value());
+                    // LOG.info(record.value());
                     try {
                         opennms_events.add(EventsMapper.toEventXml(record));
         
                     } catch (XMLStreamException e) {
-                        LOG.warn("Error while parsing xml event with key {}", record.key());
+                        LOG.info("Error while parsing xml event with key {}", record.key());
                     }
                 }   
                 forwardEventsToOpenNMS(opennms_events);
@@ -212,7 +212,7 @@ public class OpenNMSKafkaConsumer {
             // SendNowSync sends events in synchronous mode which puts more backpressure on Kafka.
             eventForwarder.sendNowSync(log);
             log.getEvents().getEventCollection().forEach(event -> {
-                LOG.debug(" Event with uei {}, source {}, severity {}, ip_address {}, descr {}forwarded to OpenNMS", event.getUei(), event.getSource(),event.getSeverity());
+                LOG.debug(" Event with uei {}, source {}, severity {} forwarded to OpenNMS", event.getUei(), event.getSource(),event.getSeverity());
             });
         }
     }
