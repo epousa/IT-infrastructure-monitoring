@@ -74,8 +74,11 @@
      private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
      private static Date date;
      private static AlarmData alarmData;
+     
      private static List<OnmsNode> node_list;
      private static OnmsIpInterface iface = new OnmsIpInterface();
+     private static OnmsNodeList nodeList = new OnmsNodeList();
+
 
     //  private static OnmsNode Node = new OnmsNode();
      
@@ -87,22 +90,22 @@
             alarmData.setReductionKey("uei.opennms.org/"+event.asCharacters().getData());
             
              //alarmData.setClearKey(source.getClearKey());
-             //LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          //handlers.put("idalarm", handlers.get("alarm-id"));
          handlers.put("alarmNotificationOrigin", event -> {
             opennms_event.setSource("Default");
-            // LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("alarmResource", event -> {
-            // LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("alarmResourceUiName", event -> {
            
-            // LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("alarmSeverity", event -> {
@@ -116,7 +119,7 @@
              }else if(event.asCharacters().getData().equalsIgnoreCase("Inactive")){
                  alarmData.setAlarmType(2);
              }
-            //  LOG.info(event.asCharacters().getData());
+             LOG.info(event.asCharacters().getData());
  
              opennms_event.setAlarmData(alarmData);
          });
@@ -133,7 +136,7 @@
  
          handlers.put("alarmType", event -> {
             // getString(event.asCharacters().getData()).ifPresent(opennms_event::setLogMessage);
-            //LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("alarmTypeId", event -> {
@@ -147,39 +150,28 @@
          // handlers.put("customField2", event -> LOG.info(event.asCharacters().getData()));
          // handlers.put("customField3", event -> LOG.info(event.asCharacters().getData()));
          handlers.put("deviceRefId", event -> {
-            //LOG.info(event.asCharacters().getData());
+            //fetch all nodes for each function call to ensure it has all recent nodes
+            
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("eventType", event -> {
-            //LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("lastStatusChangeTime", event -> {
              
-            //LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("neIpAddress", event -> {
             //ip address.
             
-            //iterates through all nodes.
-            for(OnmsNode node:node_list){
-                iface = node.getInterfaceWithAddress(InetAddressUtils.getInetAddress(event.asCharacters().getData()));
-                if (iface != null) {
-                    //exit the loop if iface is found
-                    break;
-                }
-            }
-
-            //check if the for finished the entire loop
-            if (iface != null) {
-                //sets the node id as the iface node id returned.
-                opennms_event.setIpInterface(iface);
-            }else{
-                getString(event.asCharacters().getData()).ifPresent(ip -> opennms_event.setInterface(InetAddressUtils.getInetAddress(ip)));
-            }
+            getString(event.asCharacters().getData()).ifPresent(ip -> opennms_event.setInterface(InetAddressUtils.getInetAddress(ip)));
             
          });
+
+        
  
          handlers.put("objectId", event -> {
             //LOG.info(event.asCharacters().getData());
@@ -192,8 +184,8 @@
  
          handlers.put("raisedTime", event -> {
              try {
-                 opennms_event.setTime(dateFormat.parse(event.asCharacters().getData()));
-                //LOG.info(event.asCharacters().getData());
+                opennms_event.setTime(dateFormat.parse(event.asCharacters().getData()));
+                LOG.info(event.asCharacters().getData());
              } catch (ParseException e) {
                  e.printStackTrace();
              }
@@ -201,11 +193,11 @@
          });
  
          handlers.put("serviceAffecting", event -> {
-            //LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("tl1Cause", event -> {
-            // LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
      }
  
@@ -215,9 +207,6 @@
          opennms_event = new EventBuilder();
          alarmData = new AlarmData();
 
-         //fetch all nodes for each function call to ensure it has all recent nodes
-         node_list = OnmsNodeList.getObjects();
- 
          while(xmlEventReader.hasNext()) {
              XMLEvent event = xmlEventReader.nextEvent();
              if (event.isStartElement()) {
