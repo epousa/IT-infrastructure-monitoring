@@ -152,19 +152,8 @@
          // handlers.put("customField3", event -> LOG.info(event.asCharacters().getData()));
          handlers.put("deviceRefId", event -> {
             //fetch all nodes for each function call to ensure it has all recent nodes
-        
-            node_list = nodeDao.findByLabel(event.asCharacters().getData());
-
-            if(!node_list.isEmpty()){
-                LOG.info("Found node with label!");
-                node = node_list.get(0);
-                opennms_event.setNodeid(node.getId());
-            }else{
-                LOG.info("no matches found"); 
-            }
             
             LOG.info(event.asCharacters().getData());
-         
          });
  
          handlers.put("eventType", event -> {
