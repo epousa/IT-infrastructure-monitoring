@@ -1,1 +1,0 @@
-OpenLayers.Symbolizer.Polygon=OpenLayers.Class(OpenLayers.Symbolizer,{strokeColor:null,strokeOpacity:null,strokeWidth:null,strokeLinecap:null,strokeDashstyle:null,fillColor:null,fillOpacity:null,initialize:function(l){OpenLayers.Symbolizer.prototype.initialize.apply(this,arguments)},CLASS_NAME:"OpenLayers.Symbolizer.Polygon"});

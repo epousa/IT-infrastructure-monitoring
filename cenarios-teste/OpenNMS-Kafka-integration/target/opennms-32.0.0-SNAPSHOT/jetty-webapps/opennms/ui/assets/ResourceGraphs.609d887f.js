@@ -1,1 +1,0 @@
-import{_ as o,A as _,o as s,j as t,B as c}from"./index.5d30604a.js";const r={},n={id:"card"};function a(d,p){const e=_("router-view");return s(),t("div",n,[c(e)])}const i=o(r,[["render",a],["__scopeId","data-v-5f13f042"]]);export{i as default};

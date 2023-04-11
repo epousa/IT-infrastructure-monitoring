@@ -1,3 +1,0 @@
-#Thu Mar 30 12:13:04 WEST 2023
-GROUP=java_lang_type_ClassLoading
-JMX_java.lang\:type\=ClassLoading.UnloadedClass=UnloadedClass

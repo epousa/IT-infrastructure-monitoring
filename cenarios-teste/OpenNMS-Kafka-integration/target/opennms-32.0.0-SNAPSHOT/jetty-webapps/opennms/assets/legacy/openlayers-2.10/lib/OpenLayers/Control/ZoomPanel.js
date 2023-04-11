@@ -1,1 +1,0 @@
-OpenLayers.Control.ZoomPanel=OpenLayers.Class(OpenLayers.Control.Panel,{initialize:function(o){OpenLayers.Control.Panel.prototype.initialize.apply(this,[o]),this.addControls([new OpenLayers.Control.ZoomIn,new OpenLayers.Control.ZoomToMaxExtent,new OpenLayers.Control.ZoomOut])},CLASS_NAME:"OpenLayers.Control.ZoomPanel"});

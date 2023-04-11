@@ -1,6 +1,0 @@
-1680174809607:config:edit org.opennms.features.kafka.consumer.client
-1680174830855:config:property-set bootstrap.servers 10.254.254.106:9092
-1680174843736:config:property-set eventsTopic opennms-kafka-events
-1680174851292:config:update
-1680174867210:feature:install opennms-kafka-consumer
-1680174874278:log:tail

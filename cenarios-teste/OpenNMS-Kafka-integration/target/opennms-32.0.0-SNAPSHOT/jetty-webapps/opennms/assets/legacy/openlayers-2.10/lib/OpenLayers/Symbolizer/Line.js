@@ -1,1 +1,0 @@
-OpenLayers.Symbolizer.Line=OpenLayers.Class(OpenLayers.Symbolizer,{strokeColor:null,strokeOpacity:null,strokeWidth:null,strokeLinecap:null,strokeDashstyle:null,initialize:function(e){OpenLayers.Symbolizer.prototype.initialize.apply(this,arguments)},CLASS_NAME:"OpenLayers.Symbolizer.Line"});

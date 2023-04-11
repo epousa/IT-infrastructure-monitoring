@@ -1,3 +1,0 @@
-#Thu Mar 30 12:18:04 WEST 2023
-GROUP=org_opennms_core_ipc_twin_subscriber_name___updateReceived
-JMX_org.opennms.core.ipc.twin.subscriber.name...updateReceived.UpdateReceived=UpdateReceived

@@ -1,1 +1,0 @@
-OpenLayers.Geometry.MultiPoint=OpenLayers.Class(OpenLayers.Geometry.Collection,{componentTypes:["OpenLayers.Geometry.Point"],initialize:function(e){OpenLayers.Geometry.Collection.prototype.initialize.apply(this,arguments)},addPoint:function(e,n){this.addComponent(e,n)},removePoint:function(e){this.removeComponent(e)},CLASS_NAME:"OpenLayers.Geometry.MultiPoint"});

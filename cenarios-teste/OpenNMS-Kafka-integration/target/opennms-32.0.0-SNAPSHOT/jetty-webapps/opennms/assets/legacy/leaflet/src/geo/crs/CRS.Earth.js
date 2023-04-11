@@ -1,1 +1,0 @@
-L.CRS.Earth=L.extend({},L.CRS,{wrapLng:[-180,180],R:6371e3,distance:function(t,a){var n=Math.PI/180,h=t.lat*n,s=a.lat*n,M=Math.sin(h)*Math.sin(s)+Math.cos(h)*Math.cos(s)*Math.cos((a.lng-t.lng)*n);return this.R*Math.acos(Math.min(M,1))}});

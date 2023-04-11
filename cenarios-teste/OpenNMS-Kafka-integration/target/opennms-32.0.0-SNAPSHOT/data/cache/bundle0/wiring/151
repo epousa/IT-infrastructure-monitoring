@@ -1,8 +1,0 @@
-osgi.wiring.package; (&(osgi.wiring.package=javax.servlet.http)(version>=3.1.0))
-0; version=3.1.0
-osgi.wiring.package; (&(osgi.wiring.package=javax.servlet.descriptor)(version>=3.1.0))
-0; version=3.1.0
-osgi.wiring.package; (&(osgi.wiring.package=javax.servlet.annotation)(version>=3.1.0))
-0; version=3.1.0
-osgi.wiring.package; (&(osgi.wiring.package=javax.servlet)(version>=3.1.0))
-0; version=3.1.0

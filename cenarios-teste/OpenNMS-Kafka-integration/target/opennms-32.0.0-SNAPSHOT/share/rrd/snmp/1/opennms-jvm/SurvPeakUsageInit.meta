@@ -1,3 +1,0 @@
-#Thu Mar 30 12:13:04 WEST 2023
-GROUP=java_lang_type_MemoryPool_name__Survivor_Space
-JMX_java.lang\:type\=MemoryPool.name..Survivor.Space.SurvPeakUsageInit=SurvPeakUsageInit

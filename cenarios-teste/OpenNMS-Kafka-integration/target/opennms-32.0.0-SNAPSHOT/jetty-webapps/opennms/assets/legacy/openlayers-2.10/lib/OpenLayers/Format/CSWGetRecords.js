@@ -1,1 +1,0 @@
-OpenLayers.Format.CSWGetRecords=function(e){e=OpenLayers.Util.applyDefaults(e,OpenLayers.Format.CSWGetRecords.DEFAULTS);var r=OpenLayers.Format.CSWGetRecords["v"+e.version.replace(/\./g,"_")];if(!r)throw"Unsupported CSWGetRecords version: "+e.version;return new r(e)},OpenLayers.Format.CSWGetRecords.DEFAULTS={version:"2.0.2"};

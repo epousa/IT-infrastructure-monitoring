@@ -1,3 +1,0 @@
-#Thu Mar 30 12:18:04 WEST 2023
-GROUP=org_opennms_netmgt_flows_name_logEnrichment
-JMX_org.opennms.netmgt.flows.name.logEnrichment.FlowLogEnrich5m=FlowLogEnrich5m

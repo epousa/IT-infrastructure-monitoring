@@ -1,9 +1,0 @@
-2023-03-30 12:12:12,774 INFO  [Main] o.o.n.d.AbstractServiceDaemon: passive initializing.
-2023-03-30 12:12:12,778 INFO  [Main] o.o.n.d.AbstractServiceDaemon: passive initializing.
-2023-03-30 12:12:12,778 DEBUG [Main] o.o.n.e.EventIpcManagerDefaultImpl: Adding event listener passive for UEIs: uei.opennms.org/services/passiveServiceStatus
-2023-03-30 12:12:12,780 INFO  [Main] o.o.n.d.AbstractServiceDaemon: passive initialization complete.
-2023-03-30 12:12:12,780 INFO  [Main] o.o.n.d.AbstractServiceDaemon: passive initialization complete.
-2023-03-30 12:12:18,076 INFO  [Main] o.o.n.d.AbstractServiceDaemon: passive starting.
-2023-03-30 12:12:18,076 INFO  [Main] o.o.n.d.AbstractServiceDaemon: passive starting.
-2023-03-30 12:12:18,076 INFO  [Main] o.o.n.d.AbstractServiceDaemon: passive started.
-2023-03-30 12:12:18,076 INFO  [Main] o.o.n.d.AbstractServiceDaemon: passive started.

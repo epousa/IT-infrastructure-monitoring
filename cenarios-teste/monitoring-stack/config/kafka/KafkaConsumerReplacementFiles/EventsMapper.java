@@ -79,8 +79,6 @@
     //  private static List<OnmsNode> node_list;
     //  private static OnmsNode node;
     //  private static final NodeDaoHibernate nodeDao = new NodeDaoHibernate();
-
-
     //  private static OnmsNode Node = new OnmsNode();
      
         

@@ -1,1 +1,0 @@
-L.CRS.Simple=L.extend({},L.CRS,{projection:L.Projection.LonLat,transformation:new L.Transformation(1,0,-1,0),scale:function(n){return Math.pow(2,n)},zoom:function(n){return Math.log(n)/Math.LN2},distance:function(n,t){var o=t.lng-n.lng,a=t.lat-n.lat;return Math.sqrt(o*o+a*a)},infinite:!0});

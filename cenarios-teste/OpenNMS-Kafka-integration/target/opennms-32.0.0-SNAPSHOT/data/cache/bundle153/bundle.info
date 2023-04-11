@@ -1,6 +1,0 @@
-153
-wrap:mvn:javax.validation/validation-api/1.0.0.GA$Bundle-SymbolicName=javax.validation:validation-api&Bundle-Version=1.0.0&Export-Package=javax.validation;version="1.0.0",javax.validation.bootstrap;version="1.0.0",javax.validation.constraints;version="1.0.0",javax.validation.groups;version="1.0.0",javax.validation.metadata;version="1.0.0",javax.validation.spi;version="1.0.0"
-32
-80
-1680174771853
-0

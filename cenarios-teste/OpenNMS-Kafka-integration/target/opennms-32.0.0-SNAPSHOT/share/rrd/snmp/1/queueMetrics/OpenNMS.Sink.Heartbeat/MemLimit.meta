@@ -1,3 +1,0 @@
-#Thu Mar 30 12:13:04 WEST 2023
-GROUP=org_apache_activemq_type_Broker_brokerName_localhost_destinationType_Queue_destinationName__
-JMX_org.apache.activemq\:type\=Broker.brokerName.localhost.destinationType.Queue.destinationName...MemLimit=MemLimit

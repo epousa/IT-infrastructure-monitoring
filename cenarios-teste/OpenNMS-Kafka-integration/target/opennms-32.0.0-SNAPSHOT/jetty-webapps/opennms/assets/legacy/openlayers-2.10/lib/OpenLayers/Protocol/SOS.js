@@ -1,1 +1,0 @@
-OpenLayers.Protocol.SOS=function(e){e=OpenLayers.Util.applyDefaults(e,OpenLayers.Protocol.SOS.DEFAULTS);var o=OpenLayers.Protocol.SOS["v"+e.version.replace(/\./g,"_")];if(!o)throw"Unsupported SOS version: "+e.version;return new o(e)},OpenLayers.Protocol.SOS.DEFAULTS={version:"1.0.0"};

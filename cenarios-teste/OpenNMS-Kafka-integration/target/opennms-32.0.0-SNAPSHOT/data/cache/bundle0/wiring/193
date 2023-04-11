@@ -1,2 +1,0 @@
-osgi.wiring.package; (osgi.wiring.package=javax.management)
-0; version=0.0.0

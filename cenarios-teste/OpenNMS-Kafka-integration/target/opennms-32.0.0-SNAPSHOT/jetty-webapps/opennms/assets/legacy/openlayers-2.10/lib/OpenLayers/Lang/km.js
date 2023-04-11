@@ -1,1 +1,0 @@
-OpenLayers.Lang.km=OpenLayers.Util.applyDefaults({permalink:"តំណភ្ជាប់អចិន្ត្រៃយ៍",baseLayer:"ស្រទាប់បាត​",errorLoadingGML:"កំហុសកំឡុងពេលផ្ទុកឯកសារ GML ${url}",scale:"មាត្រដ្ឋាន = ១ ៖ ${scaleDenom}"});
