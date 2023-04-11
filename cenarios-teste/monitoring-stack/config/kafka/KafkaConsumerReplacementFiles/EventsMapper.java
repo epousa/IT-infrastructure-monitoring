@@ -89,21 +89,21 @@
             alarmData.setReductionKey("uei.opennms.org/"+event.asCharacters().getData());
             
              //alarmData.setClearKey(source.getClearKey());
-            LOG.info(event.asCharacters().getData());
+            // LOG.info(event.asCharacters().getData());
          });
  
          //handlers.put("idalarm", handlers.get("alarm-id"));
          handlers.put("alarmNotificationOrigin", event -> {
             opennms_event.setSource("Default");
-            LOG.info(event.asCharacters().getData());
+            // LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("alarmResource", event -> {
-            LOG.info(event.asCharacters().getData());
+            // LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("alarmResourceUiName", event -> {
-            LOG.info(event.asCharacters().getData());
+            // LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("alarmSeverity", event -> {
@@ -134,7 +134,7 @@
  
          handlers.put("alarmType", event -> {
             // getString(event.asCharacters().getData()).ifPresent(opennms_event::setLogMessage);
-            LOG.info(event.asCharacters().getData());
+            // LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("alarmTypeId", event -> {
@@ -154,23 +154,23 @@
                 pstmt.setString(1, event.asCharacters().getData());
                 ResultSet rs = pstmt.executeQuery();
                 while (rs.next()) {
-                    LOG.info("Node ID: " + rs.getInt("nodeid"));
+                    // LOG.info("Node ID: " + rs.getInt("nodeid"));
                     opennms_event.setNodeid(rs.getInt("nodeid"));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
             
-            LOG.info(event.asCharacters().getData());
+            // LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("eventType", event -> {
-            LOG.info(event.asCharacters().getData());
+            // LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("lastStatusChangeTime", event -> {
              
-            LOG.info(event.asCharacters().getData());
+            // LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("neIpAddress", event -> {
@@ -202,11 +202,11 @@
          });
  
          handlers.put("serviceAffecting", event -> {
-            LOG.info(event.asCharacters().getData());
+            // LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("tl1Cause", event -> {
-            LOG.info(event.asCharacters().getData());
+            // LOG.info(event.asCharacters().getData());
          });
      }
  
