@@ -56,14 +56,16 @@
  
  import java.text.ParseException;
  import java.text.SimpleDateFormat;
+ import java.util.ArrayList;
  import java.util.Date;
  
  import org.opennms.netmgt.xml.event.AlarmData;
- import org.opennms.netmgt.model.OnmsNode;
 
-//  import org.opennms.features.apilayer.dao.NodeDaoImpl;
-//  import org.opennms.netmgt.dao.api.NodeDao;
-//  import org.opennms.netmgt.dao.hibernate.NodeDaoHibernate;
+ import java.sql.Connection;
+ import java.sql.DriverManager;
+ import java.sql.PreparedStatement;
+ import java.sql.ResultSet;
+ import java.sql.SQLException;
 
  public class EventsMapper{
  
@@ -75,12 +77,10 @@
      private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
      private static Date date;
      private static AlarmData alarmData;
-     
-    //  private static List<OnmsNode> node_list;
-    //  private static OnmsNode node;
-    //  private static final NodeDaoHibernate nodeDao = new NodeDaoHibernate();
-    //  private static OnmsNode Node = new OnmsNode();
-     
+
+     private static final String jdbcUrl = "jdbc:postgresql://localhost:5432/opennms";
+     private static final String username = "opennms";
+     private static final String password = "opennms";
         
      static{
          // handlers.put("eventTime", event -> LOG.info(event.asCharacters().getData()));
@@ -103,7 +103,6 @@
          });
  
          handlers.put("alarmResourceUiName", event -> {
-           
             LOG.info(event.asCharacters().getData());
          });
  
@@ -149,7 +148,18 @@
          // handlers.put("customField2", event -> LOG.info(event.asCharacters().getData()));
          // handlers.put("customField3", event -> LOG.info(event.asCharacters().getData()));
          handlers.put("deviceRefId", event -> {
-            //fetch all nodes for each function call to ensure it has all recent nodes
+            try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)) {
+                String query = "SELECT nodeid FROM node WHERE nodelabel = ?";
+                PreparedStatement pstmt = conn.prepareStatement(query);
+                pstmt.setString(1, event.asCharacters().getData());
+                ResultSet rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    LOG.info("Node ID: " + rs.getInt("nodeid"));
+                    opennms_event.setNodeid(rs.getInt("nodeid"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             
             LOG.info(event.asCharacters().getData());
          });
