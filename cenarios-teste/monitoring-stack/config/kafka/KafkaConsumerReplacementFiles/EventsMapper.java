@@ -59,8 +59,13 @@
  import java.util.Date;
  
  import org.opennms.netmgt.xml.event.AlarmData;
- 
- public class EventsMapper {
+ import org.opennms.netmgt.model.OnmsNode;
+
+//  import org.opennms.features.apilayer.dao.NodeDaoImpl;
+//  import org.opennms.netmgt.dao.api.NodeDao;
+//  import org.opennms.netmgt.dao.hibernate.NodeDaoHibernate;
+
+ public class EventsMapper{
  
      private static final Logger LOG = LoggerFactory.getLogger(EventsMapper.class);
      private static final Map<String, Consumer<XMLEvent>> handlers = new HashMap<>();
@@ -70,6 +75,14 @@
      private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
      private static Date date;
      private static AlarmData alarmData;
+     
+    //  private static List<OnmsNode> node_list;
+    //  private static OnmsNode node;
+    //  private static final NodeDaoHibernate nodeDao = new NodeDaoHibernate();
+
+
+    //  private static OnmsNode Node = new OnmsNode();
+     
         
      static{
          // handlers.put("eventTime", event -> LOG.info(event.asCharacters().getData()));
@@ -78,22 +91,22 @@
             alarmData.setReductionKey("uei.opennms.org/"+event.asCharacters().getData());
             
              //alarmData.setClearKey(source.getClearKey());
-             //LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          //handlers.put("idalarm", handlers.get("alarm-id"));
          handlers.put("alarmNotificationOrigin", event -> {
             opennms_event.setSource("Default");
-            // LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("alarmResource", event -> {
-            // LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("alarmResourceUiName", event -> {
            
-            // LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("alarmSeverity", event -> {
@@ -107,7 +120,7 @@
              }else if(event.asCharacters().getData().equalsIgnoreCase("Inactive")){
                  alarmData.setAlarmType(2);
              }
-            //  LOG.info(event.asCharacters().getData());
+             LOG.info(event.asCharacters().getData());
  
              opennms_event.setAlarmData(alarmData);
          });
@@ -124,7 +137,7 @@
  
          handlers.put("alarmType", event -> {
             // getString(event.asCharacters().getData()).ifPresent(opennms_event::setLogMessage);
-            //LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("alarmTypeId", event -> {
@@ -138,22 +151,39 @@
          // handlers.put("customField2", event -> LOG.info(event.asCharacters().getData()));
          // handlers.put("customField3", event -> LOG.info(event.asCharacters().getData()));
          handlers.put("deviceRefId", event -> {
-            //LOG.info(event.asCharacters().getData());
+            //fetch all nodes for each function call to ensure it has all recent nodes
+        
+            node_list = nodeDao.findByLabel(event.asCharacters().getData());
+
+            if(!node_list.isEmpty()){
+                LOG.info("Found node with label!");
+                node = node_list.get(0);
+                opennms_event.setNodeid(node.getId());
+            }else{
+                LOG.info("no matches found"); 
+            }
+            
+            LOG.info(event.asCharacters().getData());
+         
          });
  
          handlers.put("eventType", event -> {
-            //LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("lastStatusChangeTime", event -> {
              
-            //LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("neIpAddress", event -> {
-            //ip address
+            //ip address.
+            
             getString(event.asCharacters().getData()).ifPresent(ip -> opennms_event.setInterface(InetAddressUtils.getInetAddress(ip)));
+            
          });
+
+        
  
          handlers.put("objectId", event -> {
             //LOG.info(event.asCharacters().getData());
@@ -166,8 +196,8 @@
  
          handlers.put("raisedTime", event -> {
              try {
-                 opennms_event.setTime(dateFormat.parse(event.asCharacters().getData()));
-                //LOG.info(event.asCharacters().getData());
+                opennms_event.setTime(dateFormat.parse(event.asCharacters().getData()));
+                LOG.info(event.asCharacters().getData());
              } catch (ParseException e) {
                  e.printStackTrace();
              }
@@ -175,11 +205,11 @@
          });
  
          handlers.put("serviceAffecting", event -> {
-            //LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
  
          handlers.put("tl1Cause", event -> {
-            // LOG.info(event.asCharacters().getData());
+            LOG.info(event.asCharacters().getData());
          });
      }
  
@@ -188,7 +218,7 @@
          XMLEventReader xmlEventReader = xmlInputFactory.createXMLEventReader(new StringReader(record.value()));
          opennms_event = new EventBuilder();
          alarmData = new AlarmData();
- 
+
          while(xmlEventReader.hasNext()) {
              XMLEvent event = xmlEventReader.nextEvent();
              if (event.isStartElement()) {
