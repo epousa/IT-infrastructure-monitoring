@@ -28,7 +28,7 @@ def create_event_protobuf(uei,source,severity,host,node_id,ip_address,service_na
 if __name__ == "__main__":
 
     # Create a Kafka producer and define topic
-    producer = KafkaProducer(bootstrap_servers='192.168.1.30:9092')
+    producer = KafkaProducer(bootstrap_servers='10.254.254.73:9092')
     topic = 'opennms-kafka-events'
     key = b'localhost'
 
