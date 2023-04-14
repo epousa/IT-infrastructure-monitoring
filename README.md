@@ -29,7 +29,7 @@ $ time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -p dir -Dskip
 >```
 >./assemble.pl -p dir -DskipTests
 >```
-* ## Run postgres, Kafka and Grafana containers
+## Run postgres, Kafka and Grafana containers
 ```
 cd ~/dev
 docker-compose up -d
