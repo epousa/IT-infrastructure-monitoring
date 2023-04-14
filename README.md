@@ -47,7 +47,7 @@ docker-compose up -d
 > 
 > Atleast postgres container needs to be running before initializing the database schema.
 
-## Setup OpenNMS
+## OpenNMS Setup 
 
 Set the OpenNMS release version in a global environment variable
 ```
