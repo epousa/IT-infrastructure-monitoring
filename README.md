@@ -69,7 +69,7 @@ Initialize the database schema
 ./target/opennms-"${ONMS_RELEASE}"/bin/install -dis
 ```
 
-## Operate OpenNMS
+## OpenNMS Main Operations
 Start the core server instance, verbose, and enable remote debugging on port 8001/tcp. 
 ```
 ./target/opennms-"${ONMS_RELEASE}"/bin/opennms -vtf start
