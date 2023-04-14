@@ -4,15 +4,7 @@
 * [Technologies](#technologies)
 * [Setup](#setup) 
 
-## General info
-This project is simple Lorem ipsum dolor generator.
-	
-## Technologies
-Project is created with:
-* Lorem version: 12.3
-* Ipsum version: 2.33
-* Ament library version: 999
-
+# Setup 
 ## Build OpeNMS from Source
 Get the source from GitHub in your home directory
 ```
@@ -31,14 +23,13 @@ Clean, Compile and assemble from source
 $ time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -p dir -DskipTests)
 ```
 
-
 > **Warning**
 >
 > You may face errors when trying to simply start the openNMS you built after turning off your system which wont let OpenNMS run. If so, one way to fix it is to assemble it again. 
 >```
 >./assemble.pl -p dir -DskipTests
 >```
-## Run postgres, Kafka and Grafana containers
+* ## Run postgres, Kafka and Grafana containers
 ```
 cd ~/dev
 docker-compose up -d
