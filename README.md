@@ -101,7 +101,7 @@ To use and configure this feature by creating or editing `{OPENNMS_HOME}/etc/ope
 ```
 org.opennms.grafanaBox.show = true
 org.opennms.grafanaBox.apiKey = <Your Grafana Api key>
-org.opennms.grafanaBox.tag = show
+org.opennms.grafanaBox.tag = <Your dashboards tag>
 ```
 * `org.opennms.grafanaBox.show` -> Determines whether a Grafana Dashboard Box showing the available dashboards is included on the home page.
  
