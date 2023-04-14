@@ -140,6 +140,8 @@ org.opennms.grafanaBox.tag = <Your dashboards tag>
 
 ### OpenNMS - Surveillence view and Dashboard
 
+For alarms to be displayed in the OpenNMS Dashboard, nodes must be associated with a category present in the surveillence view. Otherwise, they will only show up in the alarms view.
+
 ### OpenNMS - Users and Groups
 
 ### OpenNMS - Kafka Consumer
