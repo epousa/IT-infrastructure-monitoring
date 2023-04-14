@@ -121,11 +121,11 @@
         });
 
         handlers.put("alarmStatus", event -> {
-            // if(event.asCharacters().getData().equalsIgnoreCase("Active")){
-            alarmData.setAlarmType(1);
-            // }else if(event.asCharacters().getData().equalsIgnoreCase("Inactive")){
-            //     alarmData.setAlarmType(2);
-            // }
+            if(event.asCharacters().getData().equalsIgnoreCase("Active")){
+                alarmData.setAlarmType(1);
+            }else if(event.asCharacters().getData().equalsIgnoreCase("Inactive")){
+                alarmData.setAlarmType(2);
+            }
             LOG.info(event.asCharacters().getData());
 
             opennms_event.setAlarmData(alarmData);
