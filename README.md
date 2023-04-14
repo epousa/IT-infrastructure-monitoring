@@ -21,7 +21,7 @@ cd ~/dev/opennms
 > ulimit -n 16384
 > ```
 
-Replace default EventsMapper.java and OpenNMSKafkaConsumer.java.
+Replace default `EventsMapper.java` and `OpenNMSKafkaConsumer.java` files.
 ```
 cd cenarios-teste/monitoring-stack/config/kafka/KafkaReplacementFiles
 cp EventsMapper.java features/kafka/consumer/src/main/java/org/opennms/features/kafka/consumer/events/
