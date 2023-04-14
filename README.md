@@ -8,11 +8,11 @@
 - [Technologies](#technologies) 
 - [Features](#features)
   * [Grafana - OpenNMS Helm Plugin](#Grafana---OpenNMS-Helm-Plugin)
-  * [OpenNMS - Grafana dashboard box](#sub-heading-5)
-  * [OpenNMS - Surveillence view and Dashboard](#sub-heading-6)
-  * [OpenNMS - Users and Groups](#sub-heading-7)
-  * [OpenNMS - Kafka Consumer](#sub-heading-8)
-  * [OpenNMS - Alarm Correlation](#sub-heading-9)
+  * [OpenNMS - Grafana dashboard box](#OpenNMS---Grafana-dashboard-box)
+  * [OpenNMS - Surveillence view and Dashboard](#OpenNMS---Surveillence-view-and-Dashboard)
+  * [OpenNMS - Users and Groups](#OpenNMS---Users-and-Groups)
+  * [OpenNMS - Kafka Consumer](#OpenNMS---Kafka-Consumer)
+  * [OpenNMS - Alarm Correlation](#OpenNMS---Alarm-Correlation)
 
 ## Technologies 
 In System:
