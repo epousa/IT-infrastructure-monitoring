@@ -1,9 +1,11 @@
 # Monitorização de infraestrutura de TI 
 ## Table of contents
-* [Setup](#setup) 
+- [Setup](#setup) 
+  * [Build OpeNMS from Source](#sub-heading)
+* [Technologies](#technologies) 
 * [Features](#features)
 
-# Technologies 
+## Technologies 
 In System:
 * Costumized OpenNMS instance;
 
@@ -13,8 +15,8 @@ Docker Containers:
 * Kafka;
 * Zookeeper;
 
-# Setup 
-## Build OpeNMS from Source
+## Setup 
+### Build OpeNMS from Source
 Get the source from GitHub in your home directory
 ```
 git clone https://github.com/OpenNMS/opennms.git ~/dev/opennms
@@ -46,7 +48,7 @@ time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -p dir -DskipTe
 >```
 >./assemble.pl -p dir -DskipTests
 >```
-## Run postgres, Kafka and Grafana containers
+### Run postgres, Kafka and Grafana containers
 ```
 cd ~/dev
 docker-compose up -d
@@ -55,7 +57,7 @@ docker-compose up -d
 > 
 > Atleast postgres container needs to be running before initializing the database schema.
 
-## OpenNMS Setup 
+### OpenNMS Setup 
 
 Set the OpenNMS release version in a global environment variable
 ```
@@ -77,7 +79,7 @@ Initialize the database schema
 ./target/opennms-"${ONMS_RELEASE}"/bin/install -dis
 ```
 
-## OpenNMS Main Operations
+### OpenNMS Main Operations
 Start the core server instance, verbose, and enable remote debugging on port 8001/tcp. 
 ```
 ./target/opennms-"${ONMS_RELEASE}"/bin/opennms -vtf start
@@ -91,8 +93,8 @@ Stop the core server instance
 ./target/opennms-"${ONMS_RELEASE}"/bin/opennms stop
 ```
 
-# Features
-## Grafana - OpenNMS Helm Plugin
+## Features
+### Grafana - OpenNMS Helm Plugin
 To avoid problems with the plugin, the Grafana container uses `opennms/helm:latest` image. This plugin has to be installed in your Grafana instance. To do so, go to `configurations -> plugins` and search for `OpenNMS Helm`, install and enable it. 
 
 Next step is to create a datasource. This can be done by going to `configurations -> datasources`. The plugin allows you to choose between three different datasources to interact with your openNMS core instance: `OpenNMS Entities`, `OpenNMS Flow` and `OpenNMS Performance`.
@@ -107,7 +109,7 @@ Now just create a dashboard. Go to `Create -> Dashboards` and select `alarm tabl
 >
 > Since Grafana is running as a docker container insert the IP address of your machine instead of localhost in the OpenNMS Core instance URL.
 
-## OpenNMS - Grafana dashboard box
+### OpenNMS - Grafana dashboard box
 
 To use and configure this feature by creating or editing `{OPENNMS_HOME}/etc/opennms.properties.d/grafana.properties` and setting the following configuration properties:
 ```
@@ -127,10 +129,10 @@ org.opennms.grafanaBox.tag = <Your dashboards tag>
 > 
 > * To filter multiple dashboards by their tags, use the same tag for all dashboards you want to see in OpenNMS Grafana dashboard box;
 
-## OpenNMS - Surveillence view and Dashboard
+### OpenNMS - Surveillence view and Dashboard
 
-## OpenNMS - Users and Groups
+### OpenNMS - Users and Groups
 
-## OpenNMS - Kafka Consumer
+### OpenNMS - Kafka Consumer
 
-## OpenNMS - Alarm Correlation
+### OpenNMS - Alarm Correlation
