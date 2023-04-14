@@ -93,7 +93,19 @@ Stop the core server instance
 
 # Features
 ## Grafana - OpenNMS Helm Plugin
+To avoid problems with the plugin, the Grafana container uses `opennms/helm:latest` image. This plugin has to be installed in your Grafana instance. To do so, go to `configurations -> plugins` and search for `OpenNMS Helm`, install and enable it. 
 
+Next step is to create a datasource. This can be done by going to `configurations -> datasources`. The plugin allows you to choose between three different datasources to interact with your openNMS core instance: `OpenNMS Entities`, `OpenNMS Flow` and `OpenNMS Performance`.
+
+For this project the most important datasource is OpenNMS Entities, because it's responsible for fetching alarms and display them.
+
+After selecting a datasource, you will need to fill the HTTP URL with OpenNMS Core instance URL, toggle basic auth and insert OpenNMS Core instance Credentials. 
+
+Now just create a dashboard. Go to `Create -> Dashboards` and select `alarm table` under visualizations and costumize your alarm table with the columns you want.
+
+> **Note**
+>
+> Since Grafana is running as a docker container insert the IP address of your machine instead of localhost in the OpenNMS Core instance URL.
 
 ## OpenNMS - Grafana dashboard box
 
