@@ -1,7 +1,7 @@
 # Monitorização de infraestrutura de TI 
 ## Table of contents
 - [Setup](#setup) 
-  * [Build OpeNMS from Source](#sub-heading)
+  * [Build OpeNMS from Source](#Build-OpeNMS-from-Source)
   * [Run postgres, Kafka and Grafana containers](#sub-heading-1)
   * [OpenNMS Setup](#sub-heading-2)
   * [OpenNMS Main Operations](#sub-heading-3)
