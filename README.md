@@ -2,17 +2,17 @@
 ## Table of contents
 - [Setup](#setup) 
   * [Build OpeNMS from Source](#sub-heading)
-  * [Run postgres, Kafka and Grafana containers](#sub-heading)
-  * [OpenNMS Setup](#sub-heading)
-  * [OpenNMS Main Operations](#sub-heading)
+  * [Run postgres, Kafka and Grafana containers](#sub-heading-1)
+  * [OpenNMS Setup](#sub-heading-2)
+  * [OpenNMS Main Operations](#sub-heading-3)
 - [Technologies](#technologies) 
 - [Features](#features)
-  * [Grafana - OpenNMS Helm Plugin](#sub-heading)
-  * [OpenNMS - Grafana dashboard box](#sub-heading)
-  * [OpenNMS - Surveillence view and Dashboard](#sub-heading)
-  * [OpenNMS - Users and Groups](#sub-heading)
-  * [OpenNMS - Kafka Consumer](#sub-heading)
-  * [OpenNMS - Alarm Correlation](#sub-heading)
+  * [Grafana - OpenNMS Helm Plugin](#sub-heading-4)
+  * [OpenNMS - Grafana dashboard box](#sub-heading-5)
+  * [OpenNMS - Surveillence view and Dashboard](#sub-heading-6)
+  * [OpenNMS - Users and Groups](#sub-heading-7)
+  * [OpenNMS - Kafka Consumer](#sub-heading-8)
+  * [OpenNMS - Alarm Correlation](#sub-heading-9)
 
 ## Technologies 
 In System:
