@@ -7,7 +7,7 @@
   * [OpenNMS Main Operations](#OpenNMS-Main-Operations)
 - [Technologies](#technologies) 
 - [Features](#features)
-  * [Grafana - OpenNMS Helm Plugin](#sub-heading-4)
+  * [Grafana - OpenNMS Helm Plugin](#Grafana-OpenNMS-Helm-Plugin)
   * [OpenNMS - Grafana dashboard box](#sub-heading-5)
   * [OpenNMS - Surveillence view and Dashboard](#sub-heading-6)
   * [OpenNMS - Users and Groups](#sub-heading-7)
