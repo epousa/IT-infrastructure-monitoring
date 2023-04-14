@@ -41,10 +41,14 @@ $ time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -p dir -Dskip
 ## Run postgres, Kafka and Grafana containers
 ```
 cd ~/dev
-docker compose up -d
+docker-compose up -d
 ```
+> **Warning**
+> 
+> Atleast postgres container needs to be running before initializing the database schema.
 
 ## Setup OpenNMS
+
 Set the OpenNMS release version in a global environment variable
 ```
 cd ~/dev/opennms
@@ -71,6 +75,7 @@ Start the core server instance, verbose, and enable remote debugging on port 800
 ./target/opennms-"${ONMS_RELEASE}"/bin/opennms -vtf start
 ```
 > **Note**
+>
 > Remove -f option to run it in background
 
 Stop the core server instance
