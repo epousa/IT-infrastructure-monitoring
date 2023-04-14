@@ -2,7 +2,7 @@
 ## Table of contents
 - [Setup](#setup) 
   * [Build OpeNMS from Source](#Build-OpeNMS-from-Source)
-  * [Run postgres, Kafka and Grafana containers](#Run-postgres,-Kafka-and-Grafana-containers)
+  * [Run postgres, Kafka and Grafana containers](#Run-postgres-Kafka-and-Grafana-containers)
   * [OpenNMS Setup](#OpenNMS-Setup)
   * [OpenNMS Main Operations](#OpenNMS-Main-Operations)
 - [Technologies](#technologies) 
