@@ -19,16 +19,25 @@ Get the source from GitHub in your home directory
 git clone https://github.com/OpenNMS/opennms.git ~/dev/opennms
 cd ~/dev/opennms
 ```
+> **Warning**
+>
+> Raise the limit of open files. Otherwise the build will fail.
+> ```
+> ulimit -n 16384
+> ```
+
 Clean, Compile and assemble from source
 ```
 $ time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -p dir -DskipTests)
 ```
+
+
 > **Warning**
 >
-> After turning off and on the computer there maybe errors when trying to start your OpenNMS build again. One way to fix it is to assemble it again.
-```
-./assemble.pl -p dir -DskipTests
-```
+> You may face errors when trying to simply start the openNMS you built after turning off your system which wont let OpenNMS run. If so, one way to fix it is to assemble it again. 
+>```
+>./assemble.pl -p dir -DskipTests
+>```
 ## Run postgres, Kafka and Grafana containers
 ```
 cd ~/dev
