@@ -14,11 +14,16 @@ Project is created with:
 * Ament library version: 999
 	
 ## Setup
-To run this project, install it locally using npm:
+
 
 ```
-$ cd ../lorem
-$ npm install
-$ npm start
+$ git clone https://github.com/OpenNMS/opennms.git ~/dev/opennms
+$ cd ~/dev/opennms
+$ time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -p dir -DskipTests)
+$ export ONMS_RELEASE=$(./.circleci/scripts/pom2version.sh pom.xml)
+$ echo "RUNAS=$(id -u -n)" > "target/opennms-${ONMS_RELEASE}/etc/opennms.conf"
+$ ./target/opennms-"${ONMS_RELEASE}"/bin/runjava -s
+$ ./target/opennms-"${ONMS_RELEASE}"/bin/install -dis
+$ ./target/opennms-"${ONMS_RELEASE}"/bin/opennms -vt start
 ```
 
