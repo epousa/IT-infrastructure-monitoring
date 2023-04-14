@@ -12,7 +12,7 @@ Project is created with:
 * Lorem version: 12.3
 * Ipsum version: 2.33
 * Ament library version: 999
-	
+
 ## Build OpeNMS from Source
 Get the source from GitHub in your home directory
 ```
@@ -38,8 +38,8 @@ docker compose up -d
 ## Setup OpenNMS
 Set the OpenNMS release version in a global environment variable
 ```
+cd ~/dev/opennms
 $ export ONMS_RELEASE=$(./.circleci/scripts/pom2version.sh pom.xml)
-
 ```
 Run the core server instance as your user instead of the opennms system user
 ```
