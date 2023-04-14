@@ -23,7 +23,12 @@ Clean, Compile and assemble from source
 ```
 $ time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -p dir -DskipTests)
 ```
-
+> **Warning**
+>
+> After turning off and on the computer there maybe errors when trying to start your OpenNMS build again. One way to fix it is to assemble it again.
+```
+./assemble.pl -p dir -DskipTests
+```
 ## Run postgres, Kafka and Grafana containers
 ```
 cd ~/dev
@@ -52,18 +57,17 @@ Initialize the database schema
 ```
 
 ## Operate OpenNMS
-Start the core server instance, verbose, and enable remote debugging on port 8001/tcp. Remove -f option to run it in background
+Start the core server instance, verbose, and enable remote debugging on port 8001/tcp. 
 ```
 ./target/opennms-"${ONMS_RELEASE}"/bin/opennms -vtf start
 ```
-* ⚠️ After turning off and on the computer there maybe errors when trying to start your OpenNMS build. One way to fix it is to assemble it again.
-```
-* ./assemble.pl -p dir -DskipTests
-```
+> **Note**
+> Remove -f option to run it in background
 
 Stop the core server instance
 ```
 ./target/opennms-"${ONMS_RELEASE}"/bin/opennms stop
 ```
+
 
 
