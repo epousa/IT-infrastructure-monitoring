@@ -4,8 +4,14 @@
 * [Features](#features)
 
 # Technologies 
+In System:
+* Costumized OpenNMS instance;
 
-
+Docker Containers: 
+* Grafana;
+* Postgres;
+* Kafka;
+* Zookeeper;
 
 # Setup 
 ## Build OpeNMS from Source
@@ -86,6 +92,26 @@ Stop the core server instance
 ```
 
 # Features
+## Grafana - OpenNMS Helm Plugin
 
 
+## OpenNMS - Grafana dashboard box
+
+To use and configure this feature by creating or editing `{OPENNMS_HOME}/etc/opennms.properties.d/grafana.properties` and setting the following configuration properties:
+```
+org.opennms.grafanaBox.show = true
+org.opennms.grafanaBox.apiKey = <Your Grafana Api key>
+org.opennms.grafanaBox.tag = show
+```
+* `org.opennms.grafanaBox.show` -> Determines whether a Grafana Dashboard Box showing the available dashboards is included on the home page.
+ 
+* `org.opennms.grafanaBox.apiKey` -> The Grafana API key. This key is needed for REST calls to work.
+
+* `org.opennms.grafanaBox.tag` -> A tag that specifies which dashboards to display in the Grafana Dashboard Box. The tag must be assigned to an existing dashboard for it to be included. When no tag is specified, all dashboards are displayed.
+
+> **Note**
+>
+> * To create Grafana Api Key go to your `Grafana instance configurations -> API keys`;
+> 
+> * To filter multiple dashboards by their tags, use the same tag for all dashboards you want to see in OpenNMS Grafana dashboard box;
 
