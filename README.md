@@ -56,6 +56,10 @@ Start the core server instance, verbose, and enable remote debugging on port 800
 ```
 ./target/opennms-"${ONMS_RELEASE}"/bin/opennms -vtf start
 ```
+* ⚠️ After turning off and on the computer there maybe errors when trying to start your OpenNMS build. One way to fix it is to assemble it again.
+```
+* ./assemble.pl -p dir -DskipTests
+```
 
 Stop the core server instance
 ```
