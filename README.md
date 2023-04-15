@@ -144,7 +144,9 @@ For alarms to be displayed in the OpenNMS Dashboard, nodes must be associated wi
 
 > **Note**
 >
-> For some reason the logmsg parameter is set as doNotOverride in the security section of the `eventconf.xml` file. This will prevent events to set the desired logmsg. To fix it, just comment this `<doNotOverride>logmsg</doNotOverride>` and you will be able to set your logmsg in events.
+> For some reason the logmsg parameter is set as doNotOverride in the security section of the `eventconf.xml` file. This will prevent events to set the desired logmsg. To fix it, just comment this `<doNotOverride>logmsg</doNotOverride>` and you will be able to set your logmsg in events. 
+> 
+> Then reset Eventd daemon with  `send-event.pl uei.opennms.org/internal/reloadDaemonConfig -p 'daemonName Eventd'` to register the change.
 
 ### OpenNMS - Users and Groups
 
