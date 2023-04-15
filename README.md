@@ -67,6 +67,8 @@ docker-compose up -d
 > **Warning**
 > 
 > Atleast postgres container needs to be running before initializing the database schema.
+>
+> It's necessary to let the openNMS instance know the postgres credentials. To do so, you must modify `target/{OPENNMS VERSION}/etc/opennms-datasources.xml` file accordingly.
 
 ### OpenNMS Setup 
 
