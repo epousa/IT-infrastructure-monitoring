@@ -1,0 +1,349 @@
+--       ==================================================================
+-- Copyright (C) 2014 by  HUAWEI TECHNOLOGIES. All rights reserved.
+-- 
+-- Description: HUAWEI ITUT ALARM MIB
+-- Reference:
+-- Version: V1.0
+-- History: 
+--  V1.0      2012-03-22   publish
+-- ==================================================================
+
+	HUAWEI-ITUT-ALARM-MIB DEFINITIONS ::= BEGIN
+ 
+		IMPORTS
+			hwDatacomm			
+				FROM HUAWEI-MIB			
+			OBJECT-GROUP, MODULE-COMPLIANCE, NOTIFICATION-GROUP			
+				FROM SNMPv2-CONF			
+			Integer32, Unsigned32, Counter64, OBJECT-TYPE, MODULE-IDENTITY, 
+			NOTIFICATION-TYPE			
+				FROM SNMPv2-SMI			
+			RowStatus, DateAndTime			
+				FROM SNMPv2-TC;
+
+	
+		hwItutAlarmMIB MODULE-IDENTITY 
+			LAST-UPDATED "201401011715Z"		-- Jan 1, 2014 at 17:15 GMT
+			ORGANIZATION 
+				"Huawei Technologies Co.,Ltd."
+			CONTACT-INFO 
+				"Huawei Industrial Base
+				Bantian, Longgang 
+				Shenzhen 518129
+				People's Republic of China
+				Website: http://www.huawei.com
+				Email: support@huawei.com
+				"
+			DESCRIPTION 
+				"The MIB module describes a generic solution to transfer alarms and 
+				store the current list of active alarms."
+ 
+			REVISION "201401011715Z"		-- Jan 1, 2014 at 17:15 GMT
+			DESCRIPTION
+				"The 1.02 revision of this MIB module , add alarm object para in itut alarm trap."
+
+			REVISION "201310121715Z"		-- Oct 12, 2013 at 17:15 GMT
+			DESCRIPTION
+				"The 1.01 revision of this MIB module , add alarm clear type enum."
+
+			REVISION "201305051150Z"		-- May 05, 2013 at 11:50 GMT
+			DESCRIPTION
+				"The initial revision of this MIB module ."
+			::= { hwDatacomm 319 }
+			
+	
+--
+-- Node definitions
+--
+		hwItutAlarmObjects OBJECT IDENTIFIER ::= { hwItutAlarmMIB 1 }
+		hwItutAlarmNotifications OBJECT IDENTIFIER ::= { hwItutAlarmMIB 2 }
+				
+		hwItutAlarmReportTable OBJECT-TYPE
+			SYNTAX SEQUENCE OF HwItutAlarmReportEntry
+			MAX-ACCESS not-accessible
+			STATUS current
+			DESCRIPTION
+				"The alarm list table."
+			::= { hwItutAlarmObjects 1 }
+
+		hwItutAlarmReportEntry OBJECT-TYPE
+			SYNTAX HwItutAlarmReportEntry
+			MAX-ACCESS not-accessible
+			STATUS current
+			DESCRIPTION
+				"Entries appear in this table when alarms are raised.  They
+				are removed when the alarm is cleared."
+			INDEX { hwItutAlarmSequence }
+			::= { hwItutAlarmReportTable 1 }
+		
+		HwItutAlarmReportEntry ::=
+			SEQUENCE { 
+				hwItutAlarmSequence
+					Unsigned32,
+				hwItutAlarmId
+					Unsigned32,
+				hwItutAlarmState
+					INTEGER,
+				hwItutAlarmSeverity
+					INTEGER,
+				hwItutAlarmReasonCode
+					Unsigned32,
+				hwItutAlarmTime
+					DateAndTime,
+				hwItutAlarmClrReason
+					INTEGER,
+				hwItutAlarmCorrelationType
+					INTEGER,
+				hwItutAlarmParentSequence
+					Unsigned32,
+				hwItutAlarmPara
+					OCTET STRING,
+				hwItutAlarmObject
+					Unsigned32
+			 }
+
+		hwItutAlarmSequence OBJECT-TYPE
+			SYNTAX Unsigned32 (1..2147483647)
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"A strictly monotonically increasing integer which acts as the index of all alarms and events. 
+				It wraps back to 1 after it reaches its maximum value."
+			::= { hwItutAlarmReportEntry 1 }
+		
+		hwItutAlarmId OBJECT-TYPE
+			SYNTAX Unsigned32
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"The id of an alarm."
+			::= { hwItutAlarmReportEntry 2 }
+
+		hwItutAlarmState OBJECT-TYPE
+      		        SYNTAX INTEGER
+                            {
+                            start(1),
+                            end(2)
+                            }
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"The state of an alarm."
+			::= { hwItutAlarmReportEntry 3 }
+
+		hwItutAlarmSeverity OBJECT-TYPE
+			SYNTAX INTEGER
+				{
+				critical(1),
+				major(2),
+				minor(3),
+				warning(4)
+				}
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"Alarm Severity."
+			::= { hwItutAlarmReportEntry 4 }
+
+		hwItutAlarmReasonCode OBJECT-TYPE
+			SYNTAX Unsigned32 (0..2147483647)
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"The reason code for the alarm."
+			::= { hwItutAlarmReportEntry 5 }
+
+		hwItutAlarmTime OBJECT-TYPE
+			SYNTAX DateAndTime
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"This object indicates the time when an alarm is generated or cleared."
+			::= { hwItutAlarmReportEntry 6 }
+
+		hwItutAlarmClrReason OBJECT-TYPE
+			SYNTAX INTEGER
+				{
+				serviceResume(1),
+				manualClear(2),
+				objectDelete(3),
+				verifyClear(4),
+				batchClear(5),
+				monitorClear(6),
+				suppressClear(7),
+				reverseClear(8),
+				other(255)
+				}
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"The clear reason when alarm is cleared. it's other when alarm is start "
+			::= { hwItutAlarmReportEntry 7 }
+
+		hwItutAlarmCorrelationType OBJECT-TYPE
+			SYNTAX INTEGER
+				{
+				rootCause(1),
+				nonRootCause(2),
+				independent(3)
+				}
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"The alarm correlation type."
+			::= { hwItutAlarmReportEntry 8 }
+
+		hwItutAlarmParentSequence OBJECT-TYPE
+			SYNTAX Unsigned32 (0..2147483647)
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"The parent alarm sequence if this alarm is nonRootCause. It's 0 if this alarm is root or independent"
+			::= { hwItutAlarmReportEntry 9 }
+											
+		hwItutAlarmPara OBJECT-TYPE
+			SYNTAX OCTET STRING (SIZE (0..1400))
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"This object indicates the parameters of an active alarm."
+			::= { hwItutAlarmReportEntry 10 }
+
+		hwItutAlarmObject OBJECT-TYPE
+			SYNTAX Unsigned32 (0..2147483647)
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"The object of the alarm."
+			::= { hwItutAlarmReportEntry 11 }
+											
+
+		hwItutEventReportTable OBJECT-TYPE
+			SYNTAX SEQUENCE OF HwItutEventReportEntry
+			MAX-ACCESS not-accessible
+			STATUS current
+			DESCRIPTION
+				"The event report table."
+			::= { hwItutAlarmObjects 2 }
+
+		hwItutEventReportEntry OBJECT-TYPE
+			SYNTAX HwItutEventReportEntry
+			MAX-ACCESS not-accessible
+			STATUS current
+			DESCRIPTION
+				"Entries appear in this table when event are raised."
+			INDEX { hwItutEventSequence }
+			::= { hwItutEventReportTable 1 }
+			
+		
+		
+		HwItutEventReportEntry ::=
+			SEQUENCE 
+			{ 
+			hwItutEventSequence 
+			     Unsigned32,
+			hwItutEventId
+				Unsigned32,
+			hwItutEventSeverity
+			        INTEGER,
+		       hwItutEventTime
+		        	DateAndTime,
+			hwItutEventPara
+				OCTET STRING
+			 }
+			 
+		hwItutEventSequence OBJECT-TYPE
+			SYNTAX Unsigned32 (1..2147483647)
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"The sequence of an event."
+			::= { hwItutEventReportEntry 1 }		 
+
+		hwItutEventId OBJECT-TYPE
+			SYNTAX Unsigned32
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"The id of an event."
+			::= { hwItutEventReportEntry 2 }
+
+		hwItutEventSeverity OBJECT-TYPE
+			SYNTAX INTEGER
+				{
+				critical(1),
+				major(2),
+				minor(3),
+				warning(4)
+				}
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"Event Severity."
+			::= { hwItutEventReportEntry 3 }
+
+		hwItutEventTime OBJECT-TYPE
+			SYNTAX DateAndTime
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"This object indicates the time when an event is generated ."
+			::= { hwItutEventReportEntry 4 }
+											
+		hwItutEventPara OBJECT-TYPE
+			SYNTAX OCTET STRING (SIZE (0..1400))
+			MAX-ACCESS read-only
+			STATUS current
+			DESCRIPTION
+				"This object indicates the parameters of an event alarm."
+			::= { hwItutEventReportEntry 5 }
+					
+				
+		hwItutAlarmTrap NOTIFICATION-TYPE
+		        OBJECTS { hwItutAlarmSequence, hwItutAlarmId, hwItutAlarmState, hwItutAlarmSeverity, hwItutAlarmReasonCode, hwItutAlarmTime, hwItutAlarmClrReason, hwItutAlarmCorrelationType, hwItutAlarmParentSequence, hwItutAlarmPara, hwItutAlarmObject } 
+			STATUS current
+			DESCRIPTION 
+				"The alarm notification channel. NE report an alarm through this trap"
+			::= { hwItutAlarmNotifications 1 }
+		
+		hwItutEventTrap NOTIFICATION-TYPE
+		        OBJECTS { hwItutEventSequence, hwItutEventId, hwItutEventSeverity, hwItutEventTime, hwItutEventPara } 
+			STATUS current
+			DESCRIPTION 
+				"The event notification channel. NE report an event through this trap"
+			::= { hwItutAlarmNotifications 2 }
+		
+		hwItutAlarmConformance OBJECT IDENTIFIER ::= { hwItutAlarmMIB 3 }
+		
+		hwItutAlarmCompliances OBJECT IDENTIFIER ::= { hwItutAlarmConformance 1 }
+		
+		hwItutAlarmCompliance MODULE-COMPLIANCE
+			STATUS current
+			DESCRIPTION 
+				"The compliance statement for entities which 
+				implement the Huawei ITUT Alarm mib."
+			MODULE -- this module
+				MANDATORY-GROUPS { hwItutAlarmReliabilityGroup }
+			::= { hwItutAlarmCompliances 1 }
+			
+		hwItutAlarmGroups OBJECT IDENTIFIER ::= { hwItutAlarmConformance 2 }
+		
+		hwItutAlarmReliabilityGroup OBJECT-GROUP
+			OBJECTS { hwItutAlarmSequence, hwItutAlarmId, hwItutAlarmState, hwItutAlarmSeverity, hwItutAlarmReasonCode, hwItutAlarmTime, hwItutAlarmClrReason, hwItutAlarmCorrelationType, hwItutAlarmParentSequence, hwItutAlarmPara, hwItutAlarmObject }
+			STATUS current
+			DESCRIPTION 
+				"The objects for ITUT alarm reliability and snmp target address list."
+			::= { hwItutAlarmGroups 1 }
+		
+		hwItutAlarmTrapInfoGroup NOTIFICATION-GROUP
+			NOTIFICATIONS { hwItutAlarmTrap, hwItutEventTrap }
+			STATUS current
+			DESCRIPTION 
+				"ITUT Alarm trap nodes."
+			::= { hwItutAlarmGroups 2 }
+		
+	END
+
+--
+-- HUAWEI-ITUT-ALARM-MIB.mib
+--

@@ -4,5 +4,4 @@ config/kafka/kafka_events_format/
 config/kafka/pythonKafkaProducer/venv/
 config/kafka/pythonKafkaProducer/src/my_event_pb2.py
 config/kafka/pythonKafkaProducer/src/_pycache_/
-config/kafka/opennms-datasource.xml
 opennms/
