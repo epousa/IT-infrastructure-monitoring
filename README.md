@@ -176,6 +176,9 @@ To ensure that the feature continues to be installed on subsequent restarts, add
 ```
 echo "opennms-kafka-consumer" | sudo tee ${OPENNMS_HOME}/etc/featuresBoot.d/kafka-consumer.boot
 ```
+> **Note**
+>
+> At this stage, the kafka consumer is already using our costume EventsMapper.java and OpenNMSKafkaConsumer.java files that fit our needs.
 
 ### OpenNMS - Alarm Correlation
 
