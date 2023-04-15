@@ -1,0 +1,69 @@
+version: '3'
+
+networks:
+  monitoring:
+    driver: bridge
+
+volumes:
+  volume-postgres: {}
+  volume-grafana: {}
+
+services:
+  database:
+    image: postgres:latest
+    container_name: database
+    env_file:
+      - ./env/postgres.env
+    volumes:
+      - ./mount-volumes/volume-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 30s
+      retries: 3
+    networks:
+      - monitoring
+    ports:
+      - "5432:5432"
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    env_file:
+      - ./env/zookeeper.env
+    networks:
+      - monitoring
+
+  broker:
+    image: confluentinc/cp-kafka:latest
+    container_name: broker
+    ports:
+    # To learn about configuring Kafka for access across networks see
+    # https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    env_file:
+      - ./env/broker.env
+    networks:
+      - monitoring
+
+  grafana:
+    image: opennms/helm:latest
+    container_name: grafana
+    env_file:
+      - ./env/grafana.env
+    volumes:
+      #Not named volumes need to be given permissions. Run "precious" script to do so. sudo chmod -R 777 volume-grafana
+      - ./mount-volumes/volume-grafana:/var/lib/grafana
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-I", "http://localhost:3000/login"]
+      interval: 1m
+      timeout: 5s
+      retries: 3
+    networks:
+      - monitoring
+    ports:
+      - "3000:3000" 
+
+
