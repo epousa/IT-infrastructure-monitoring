@@ -19,11 +19,17 @@ elif [ $1 = "assemble" ]; then
 
   #move to opennms directory
   cd opennms
+
+  #assemble opennms
   ./assemble.pl -p dir -DskipTests
 
 elif [ $1 = "compile" ]; then
   #raise the open files limit
   ulimit -n 16384
+
+  #copy kafka consumer replacement files to their corresponding directories.
+  cp config/kafka/KafkaConsumerReplacementFiles/EventsMapper.java opennms/features/kafka/consumer/src/main/java/org/opennms/features/kafka/consumer/events/
+  cp config/kafka/KafkaConsumerReplacementFiles/OpenNMSKafkaConsumer.java opennms/features/kafka/consumer/src/main/java/org/opennms/features/kafka/consumer/
 
   #move to opennms directory
   cd opennms
@@ -45,6 +51,10 @@ elif [ $1 = "from-scretch" ]; then
   #raise the open files limit
   ulimit -n 16384
 
+  #copy kafka consumer replacement files to their corresponding directories.
+  cp config/kafka/KafkaConsumerReplacementFiles/EventsMapper.java opennms/features/kafka/consumer/src/main/java/org/opennms/features/kafka/consumer/events/
+  cp config/kafka/KafkaConsumerReplacementFiles/OpenNMSKafkaConsumer.java opennms/features/kafka/consumer/src/main/java/org/opennms/features/kafka/consumer/
+  
   #change to opennms directory
   cd opennms
 
