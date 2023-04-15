@@ -187,7 +187,7 @@ To fetch performance data from a node using SNMP you need to configure snmpd ser
 
 Then go to openNMS configure SNMP by IP through `settings -> Configure SNMP Community Names by IP Address` and insert the IP of the desired node with the correct community string. At last, navigate to that node and rescan manually to detect the SNMP service.
 
-
+Every configuration made can be checked in the `/target/{OPENNMS VERSION}/etc/snmp-config.xml` file.
 
 ### OpenNMS - Receive SNMP Traps
 
