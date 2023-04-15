@@ -142,6 +142,10 @@ org.opennms.grafanaBox.tag = <Your dashboards tag>
 
 For alarms to be displayed in the OpenNMS Dashboard, nodes must be associated with a category present in the surveillence view. Otherwise, they will only show up in the alarms view.
 
+> **Note**
+>
+> For some reason the logmsg parameter is set as doNotOverride in the security section of the `eventconf.xml` file. This will prevent events to set the desired logmsg. To fix it, just comment this `<doNotOverride>logmsg</doNotOverride>` and you will be able to set your logmsg in events.
+
 ### OpenNMS - Users and Groups
 
 ### OpenNMS - Kafka Consumer
