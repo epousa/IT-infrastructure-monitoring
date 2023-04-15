@@ -6,13 +6,15 @@
   * [OpenNMS Setup](#OpenNMS-Setup)
   * [OpenNMS Main Operations](#OpenNMS-Main-Operations)
 - [Technologies](#technologies) 
-- [Features](#features)
+- [Main Features](#Main-Features)
   * [Grafana - OpenNMS Helm Plugin](#Grafana---OpenNMS-Helm-Plugin)
   * [OpenNMS - Grafana dashboard box](#OpenNMS---Grafana-dashboard-box)
   * [OpenNMS - Surveillence view and Dashboard](#OpenNMS---Surveillence-view-and-Dashboard)
   * [OpenNMS - Users and Groups](#OpenNMS---Users-and-Groups)
   * [OpenNMS - Kafka Consumer](#OpenNMS---Kafka-Consumer)
   * [OpenNMS - Alarm Correlation](#OpenNMS---Alarm-Correlation)
+- [Helper Features](#Helper-Features)
+  * [Python Kafka Producer](#Python-Kafka-Producer)
 
 ## Technologies 
 In System:
@@ -102,7 +104,7 @@ Stop the core server instance
 ./target/opennms-"${ONMS_RELEASE}"/bin/opennms stop
 ```
 
-## Features
+## Main Features
 ### Grafana - OpenNMS Helm Plugin
 To avoid problems with the plugin, the Grafana container uses `opennms/helm:latest` image. This plugin has to be installed in your Grafana instance. To do so, go to `configurations -> plugins` and search for `OpenNMS Helm`, install and enable it. 
 
@@ -152,4 +154,31 @@ For alarms to be displayed in the OpenNMS Dashboard, nodes must be associated wi
 
 ### OpenNMS - Kafka Consumer
 
+Configure features and Kafka client via Karaf shell
+```
+ssh -p 8101 admin@localhost
+```
+
+Configure Kafka for Event Consumer
+```
+config:edit org.opennms.features.kafka.consumer.client
+config:property-set bootstrap.servers my-kafka-ip-1:9092,my-kafka-ip-2:9092
+config:property-set eventsTopic opennms-kafka-events
+config:update
+```
+
+Install Kafka Consumer feature
+```
+feature:install opennms-kafka-consumer
+```
+
+To ensure that the feature continues to be installed on subsequent restarts, add opennms-kafka-consumer to a file in featuresBoot.d:
+```
+echo "opennms-kafka-consumer" | sudo tee ${OPENNMS_HOME}/etc/featuresBoot.d/kafka-consumer.boot
+```
+
 ### OpenNMS - Alarm Correlation
+
+
+## Helper Features
+#### Python Kafka Producer
