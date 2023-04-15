@@ -1,0 +1,8 @@
+<snmp-config xmlns="http://xmlns.opennms.org/xsd/config/snmp" version="v2c" read-community="public" timeout="1800" retry="1">
+   <definition write-community="private">
+      <range begin="10.171.5.100" end="10.171.5.101"/>
+   </definition>
+   <definition write-community="private" read-community="your-community-string">
+      <specific>192.168.1.30</specific>
+   </definition>
+</snmp-config>
