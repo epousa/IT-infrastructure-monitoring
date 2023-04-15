@@ -55,9 +55,13 @@ time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -p dir -DskipTe
 
 > **Warning**
 >
-> You may face errors when trying to simply start the openNMS you built after turning off your system which wont let OpenNMS run. If so, one way to fix it is to assemble it again. 
+> You may face errors when trying to simply start the openNMS you built after turning off your system which wont let OpenNMS run. If so, one way to fix it is by cleaning the cache 
 >```
->./assemble.pl -p dir -DskipTests
+>{OPENNMS_HOME}/bin/fix-karaf-setup.sh
+>```
+> Or by assembling it again. 
+>```
+> ./assemble.pl -p dir -DskipTests
 >```
 ### Run postgres, Kafka and Grafana containers
 ```
