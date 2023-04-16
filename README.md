@@ -195,6 +195,29 @@ Every configuration made can be checked in the `/target/{OPENNMS VERSION}/etc/sn
 
 ### OpenNMS - Receive SNMP Traps
 
+Enable Masquerade to allow port forwarding
+```
+sudo firewall-cmd --permanent --add-masquerade
+```
+
+Forward SNMP Trap UDP port 162 to 10162
+```
+sudo firewall-cmd --permanent --add-port=162/udp
+sudo firewall-cmd --permanent --add-port=10162/udp
+sudo firewall-cmd --permanent --add-forward-port=port=162:proto=udp:toport=10162
+sudo systemctl reload firewalld
+```
+> **Note**
+> This is needed because Trapd is listening for SNMP Traps in port 10162. This can be confirmed by checking `dev/opennms/target/{OPENNMS VERSION}/logs/trapd.log`
+
+You can verify your firewall and port forwarding configuration by sending an SNMP trap from a remote system to your Horizon core instance:
+```
+snmptrap -v 2c -c public opennms-core-host '' 1.3.6.1.4.1.2021.991.17 .1.3.6.1.2.1.1.6.0 s "Milky Way"
+```
+> **Note**
+>
+> When you're sending SNMP traps from the same system where OpenNMS is running, the traffic doesn't actually go through the network interface, but stays within the loopback interface. In this case, you need to specify the port explicitly, since the redirect rule only affects traffic that comes through the network interface
+
 
 ### OpenNMS - Alarm Correlation
 
