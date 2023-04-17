@@ -20,6 +20,8 @@
     + [OpenNMS - Users and Groups](#OpenNMS---Users-and-Groups)
   * [Data Collection](#Data-Collection)
     + [OpenNMS - Kafka Consumer](#OpenNMS---Kafka-Consumer)
+    + [OpenNMS - SNMP Data collection](#OpenNMS---SNMP-Data-collection)
+    + [OpenNMS - Receive SNMP Traps](#Receive-SNMP-Traps)
     + [OpenNMS - Alarm Correlation](#OpenNMS---Alarm-Correlation)
 - [Helper Features](#Helper-Features)
   * [Python Kafka Producer](#Python-Kafka-Producer)
