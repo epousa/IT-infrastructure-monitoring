@@ -16,9 +16,9 @@
     + [OpenNMS - Ops Board](#Ops-Board)
     + [OpenNMS - Map](#OpenNMS---Map)
     + [OpenNMS - Topology](#OpenNMS---Topology)
-  * Access
+  * [Access](#access)
     + [OpenNMS - Users and Groups](#OpenNMS---Users-and-Groups)
-  * Data Collection
+  * [Data Collection](#Data-Collection)
     + [OpenNMS - Kafka Consumer](#OpenNMS---Kafka-Consumer)
     + [OpenNMS - Alarm Correlation](#OpenNMS---Alarm-Correlation)
 - [Helper Features](#Helper-Features)
