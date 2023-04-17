@@ -6,21 +6,31 @@
   * [OpenNMS Setup](#OpenNMS-Setup)
   * [OpenNMS Main Operations](#OpenNMS-Main-Operations)
 - [Technologies](#technologies) 
+  * [In System](#in-system)
+  * [Docker Containers](#Docker-Containers)
 - [Main Features](#Main-Features)
-  * [Grafana - OpenNMS Helm Plugin](#Grafana---OpenNMS-Helm-Plugin)
-  * [OpenNMS - Grafana dashboard box](#OpenNMS---Grafana-dashboard-box)
-  * [OpenNMS - Surveillence view and Dashboard](#OpenNMS---Surveillence-view-and-Dashboard)
-  * [OpenNMS - Users and Groups](#OpenNMS---Users-and-Groups)
-  * [OpenNMS - Kafka Consumer](#OpenNMS---Kafka-Consumer)
-  * [OpenNMS - Alarm Correlation](#OpenNMS---Alarm-Correlation)
+  * [View](#view)
+    + [Grafana - OpenNMS Helm Plugin](#Grafana---OpenNMS-Helm-Plugin)
+    + [OpenNMS - Grafana dashboard box](#OpenNMS---Grafana-dashboard-box)
+    + [OpenNMS - Surveillence and Dashboard](#OpenNMS---Surveillence-and-Dashboard)
+    + [OpenNMS - Ops Board](#Ops-Board)
+    + [OpenNMS - Map](#OpenNMS---Map)
+    + [OpenNMS - Topology](#OpenNMS---Topology)
+  * [Access](#access)
+    + [OpenNMS - Users and Groups](#OpenNMS---Users-and-Groups)
+  * [Data Collection](#Data-Collection)
+    + [OpenNMS - Kafka Consumer](#OpenNMS---Kafka-Consumer)
+    + [OpenNMS - SNMP Data collection](#OpenNMS---SNMP-Data-collection)
+    + [OpenNMS - Receive SNMP Traps](#Receive-SNMP-Traps)
+    + [OpenNMS - Alarm Correlation](#OpenNMS---Alarm-Correlation)
 - [Helper Features](#Helper-Features)
   * [Python Kafka Producer](#Python-Kafka-Producer)
 
 ## Technologies 
-In System:
+### In System:
 * Costumized OpenNMS instance;
 
-Docker Containers: 
+### Docker Containers: 
 * Grafana;
 * Postgres;
 * Kafka;
@@ -111,7 +121,9 @@ Stop the core server instance
 ```
 
 ## Main Features
-### Grafana - OpenNMS Helm Plugin
+
+### View
+#### Grafana - OpenNMS Helm Plugin
 To avoid problems with the plugin, the Grafana container uses `opennms/helm:latest` image. This plugin has to be installed in your Grafana instance. To do so, go to `configurations -> plugins` and search for `OpenNMS Helm`, install and enable it. 
 
 Next step is to create a datasource. This can be done by going to `configurations -> datasources`. The plugin allows you to choose between three different datasources to interact with your openNMS core instance: `OpenNMS Entities`, `OpenNMS Flow` and `OpenNMS Performance`.
@@ -126,7 +138,7 @@ Now just create a dashboard. Go to `Create -> Dashboards` and select `alarm tabl
 >
 > Since Grafana is running as a docker container insert the IP address of your machine instead of localhost in the OpenNMS Core instance URL.
 
-### OpenNMS - Grafana dashboard box
+#### OpenNMS - Grafana dashboard box
 
 To use and configure this feature by creating or editing `{OPENNMS_HOME}/etc/opennms.properties.d/grafana.properties` and setting the following configuration properties:
 ```
@@ -146,7 +158,7 @@ org.opennms.grafanaBox.tag = <Your dashboards tag>
 > 
 > * To filter multiple dashboards by their tags, use the same tag for all dashboards you want to see in OpenNMS Grafana dashboard box;
 
-### OpenNMS - Surveillence view and Dashboard
+#### OpenNMS - Surveillence and Dashboard - View
 
 For alarms to be displayed in the OpenNMS Dashboard, nodes must be associated with a category present in the surveillence view. Otherwise, they will only show up in the alarms view.
 
@@ -156,8 +168,16 @@ For alarms to be displayed in the OpenNMS Dashboard, nodes must be associated wi
 > 
 > Then reset Eventd daemon with  `send-event.pl uei.opennms.org/internal/reloadDaemonConfig -p 'daemonName Eventd'` to register the change.
 
-### OpenNMS - Users and Groups
+#### OpenNMS - Ops Board
 
+#### OpenNMS - Map
+
+#### OpenNMS - Topology
+
+## Access 
+#### OpenNMS - Users and Groups
+
+## Data Collection
 ### OpenNMS - Kafka Consumer
 
 Configure features and Kafka client via Karaf shell
