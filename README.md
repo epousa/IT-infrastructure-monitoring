@@ -180,6 +180,11 @@ For alarms to be displayed in the OpenNMS Dashboard, nodes must be associated wi
 ## Data Collection
 ### OpenNMS - Kafka Consumer
 
+> **Note**
+>
+> The modified files, EventsMapper.java and OpenNMSKafkaConsumer.java are implemented in such a way that makes it simple to support different formats and different xml parameters. It's a HUGE advantage.
+
+
 Configure features and Kafka client via Karaf shell
 ```
 ssh -p 8101 admin@localhost
