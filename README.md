@@ -26,9 +26,8 @@
 - [Helper Features](#Helper-Features)
   * [Python Kafka Producer](#Python-Kafka-Producer)
 - [Possible Problems](#Possible-Problems)
-  * [Database](#Database)
-    + [liquidbase access to database locked by another access made](#liquidbase-access-to-database-locked-by-another-access-made)
-    + [Only able to send events directly to eventd from localhost and not from other devices](#Only-able-to-send-events-directly-to-eventd-from-localhost-and-not-from-other-devices)
+  * [liquidbase access to database locked by another access made](#liquidbase-access-to-database-locked-by-another-access-made)
+  * [Only able to send events directly to eventd from localhost and not from other devices](#Only-able-to-send-events-directly-to-eventd-from-localhost-and-not-from-other-devices)
 
 ## Technologies 
 ### In System:
