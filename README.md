@@ -27,6 +27,7 @@
   * [Python Kafka Producer](#Python-Kafka-Producer)
 - [Possible Problems](#Possible-Problems)
   * [Database](#Database)
+    + [liquidbase access to database locked by another access made](#liquidbase-access-to-database-locked-by-another-access-made)
 
 ## Technologies 
 ### In System:
@@ -250,10 +251,10 @@ snmptrap -v 2c -c public opennms-core-host '' 1.3.6.1.4.1.2021.991.17 .1.3.6.1.2
 
 
 ## Helper Features
-#### Python Kafka Producer
+### Python Kafka Producer
 
 ## Possible Problems
-#Database liquidbase access to database locked by another access made.
+### Database liquidbase access to database locked by another access made.
 
 Liquibase is waiting for a lock on the public.databasechangeloglock table and gets stuck here
 ```
