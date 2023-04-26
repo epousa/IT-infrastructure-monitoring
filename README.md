@@ -264,7 +264,7 @@ Liquibase is waiting for a lock on the public.databasechangeloglock table and ge
 21:24:34.523 [Main] INFO  liquibase.lockservice.StandardLockService - Waiting for changelog lock....
 ```
 
-######################### Connecting to opennms postgres database   ################################
+Connecting to opennms postgres database
 ```
 docker exec -it <container_name> psql -U <username> -d <database_name> ->  docker exec -it <container_name> psql -U opennms -d opennms
 
@@ -301,4 +301,6 @@ If you want to allow any device to send events to eventd change TCPAddress and U
 </EventdConfiguration>
 
 ```
+
+And it's solved.
 
