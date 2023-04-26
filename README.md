@@ -283,3 +283,22 @@ UPDATE public.databasechangeloglock SET locked = false, lockgranted = null, lock
 ```
 
 And the database schema will be initialized correctly.
+
+### Only able to send events directly to eventd from localhost and not from other devices
+
+Eventd is configured to only accept events from localhost. This can be changed in the `eventd-configarition.xml` file.
+This is the original file.
+
+```
+<EventdConfiguration xmlns="http://xmlns.opennms.org/xsd/config/eventd" TCPAddress="127.0.0.1" TCPPort="5817" UDPAddress="127.0.0.1" UDPPort="5817" receivers="5" getNextEventID="SELECT nextval('eventsNxtId')" socketSoTimeoutRequired="yes" socketSoTimeoutPeriod="3000">
+</EventdConfiguration>
+```
+
+If you want to allow any device to send events to eventd change TCPAddress and UDPAddress to *. 
+
+```
+<EventdConfiguration xmlns="http://xmlns.opennms.org/xsd/config/eventd" TCPAddress="*" TCPPort="5817" UDPAddress="*" UDPPort="5817" receivers="5" getNextEventID="SELECT nextval('eventsNxtId')" socketSoTimeoutRequired="yes" socketSoTimeoutPeriod="3000">
+</EventdConfiguration>
+
+```
+
