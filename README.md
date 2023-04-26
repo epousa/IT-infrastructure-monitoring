@@ -265,10 +265,9 @@ Liquibase is waiting for a lock on the public.databasechangeloglock table and ge
 ```
 
 ######################### Connecting to opennms postgres database   ################################
-
+```
 docker exec -it <container_name> psql -U <username> -d <database_name> ->  docker exec -it <container_name> psql -U opennms -d opennms
 
-```
 opennms=> SELECT * FROM public.databasechangeloglock;
  id | locked |      lockgranted       |        lockedby         
 ----+--------+------------------------+-------------------------
