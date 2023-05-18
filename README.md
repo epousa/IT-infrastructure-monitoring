@@ -25,6 +25,9 @@
     + [OpenNMS - Alarm Correlation](#OpenNMS---Alarm-Correlation)
 - [Helper Features](#Helper-Features)
   * [Python Kafka Producer](#Python-Kafka-Producer)
+- [Possible Problems](#Possible-Problems)
+  * [liquidbase access to database locked by another access made](#liquidbase-access-to-database-locked-by-another-access-made)
+  * [Only able to send events directly to eventd from localhost and not from other devices](#Only-able-to-send-events-directly-to-eventd-from-localhost-and-not-from-other-devices)
 
 ## Technologies 
 ### In System:
@@ -180,6 +183,11 @@ For alarms to be displayed in the OpenNMS Dashboard, nodes must be associated wi
 ## Data Collection
 ### OpenNMS - Kafka Consumer
 
+> **Note**
+>
+> The modified files, EventsMapper.java and OpenNMSKafkaConsumer.java are implemented in such a way that makes it simple to support different formats and different xml parameters. It's a HUGE advantage.
+
+
 Configure features and Kafka client via Karaf shell
 ```
 ssh -p 8101 admin@localhost
@@ -243,4 +251,56 @@ snmptrap -v 2c -c public opennms-core-host '' 1.3.6.1.4.1.2021.991.17 .1.3.6.1.2
 
 
 ## Helper Features
-#### Python Kafka Producer
+### Python Kafka Producer
+
+## Possible Problems
+### liquidbase access to database locked by another access made.
+
+Liquibase is waiting for a lock on the public.databasechangeloglock table and gets stuck here
+```
+21:24:34.519 [Main] INFO  liquibase.executor.jvm.JdbcExecutor - SELECT COUNT(*) FROM public.databasechangeloglock
+21:24:34.520 [Main] INFO  liquibase.executor.jvm.JdbcExecutor - SELECT COUNT(*) FROM public.databasechangeloglock
+21:24:34.522 [Main] INFO  liquibase.executor.jvm.JdbcExecutor - SELECT LOCKED FROM public.databasechangeloglock WHERE ID=1
+21:24:34.523 [Main] INFO  liquibase.lockservice.StandardLockService - Waiting for changelog lock....
+```
+
+Connecting to opennms postgres database
+```
+docker exec -it <container_name> psql -U <username> -d <database_name> ->  docker exec -it <container_name> psql -U opennms -d opennms
+
+opennms=> SELECT * FROM public.databasechangeloglock;
+ id | locked |      lockgranted       |        lockedby         
+----+--------+------------------------+-------------------------
+  1 | t      | 2023-04-26 20:08:30.17 | 172.19.0.1 (172.19.0.1)
+(1 row)
+```
+
+Table exists in the public schema of your opennms database, and it currently has a lock on it. The locked column value is true which indicates that the lock is active, and the lockgranted column value shows when the lock was granted.
+To release the lock do this:
+
+```
+UPDATE public.databasechangeloglock SET locked = false, lockgranted = null, lockedby = null WHERE id = 1;
+```
+
+And the database schema will be initialized correctly.
+
+### Only able to send events directly to eventd from localhost and not from other devices
+
+Eventd is configured to only accept events from localhost. This can be changed in the `eventd-configarition.xml` file.
+This is the original file.
+
+```
+<EventdConfiguration xmlns="http://xmlns.opennms.org/xsd/config/eventd" TCPAddress="127.0.0.1" TCPPort="5817" UDPAddress="127.0.0.1" UDPPort="5817" receivers="5" getNextEventID="SELECT nextval('eventsNxtId')" socketSoTimeoutRequired="yes" socketSoTimeoutPeriod="3000">
+</EventdConfiguration>
+```
+
+If you want to allow any device to send events to eventd change TCPAddress and UDPAddress to *. 
+
+```
+<EventdConfiguration xmlns="http://xmlns.opennms.org/xsd/config/eventd" TCPAddress="*" TCPPort="5817" UDPAddress="*" UDPPort="5817" receivers="5" getNextEventID="SELECT nextval('eventsNxtId')" socketSoTimeoutRequired="yes" socketSoTimeoutPeriod="3000">
+</EventdConfiguration>
+
+```
+
+And it's solved.
+
