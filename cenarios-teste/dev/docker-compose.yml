@@ -1,4 +1,4 @@
-version: '3'
+version: '3.0'
 
 networks:
   monitoring:
@@ -7,6 +7,7 @@ networks:
 volumes:
   volume-postgres: {}
   volume-grafana: {}
+  # volume-elasticsearch: {}
 
 services:
   database:
@@ -64,6 +65,19 @@ services:
     networks:
       - monitoring
     ports:
-      - "3000:3000" 
+      - "3000:3000"
+
+  # elasticsearch:
+  #   container_name: elasticsearch
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
+  #   environment:
+  #     xpack.security.enabled: "false"
+  #     discovery.type: "single-node"
+  #   volumes:
+  #     - ./mount-volumes/volume-elasticsearch:/usr/share/elasticsearch/data
+  #   networks:
+  #     - monitoring
+  #   ports:
+  #     - 9200:9200
 
 

@@ -90,15 +90,15 @@
      private static final String username = "opennms";
      private static final String password = "opennms";
      private static final String query = "SELECT nodeid FROM node WHERE nodelabel = ?";
+     
+     private static String uei_foundation = "uei.opennms.org/vendor/nokia/";
 
      //Handlers implementation
      static{
-        // handlers.put("eventTime", event -> LOG.info(event.asCharacters().getData()));
         handlers.put("alarm-id", event -> {
-           opennms_event.setUei("uei.nokia/"+event.asCharacters().getData());
-           alarmData.setReductionKey("uei.nokia/"+event.asCharacters().getData());
-            //alarmData.setClearKey(source.getClearKey());
-           // LOG.info(event.asCharacters().getData());
+           //Set alarm reduction key as {alarm-id}
+           alarmData.setReductionKey(event.asCharacters().getData());
+           //LOG.info(event.asCharacters().getData());
         });
 
         //handlers.put("idalarm", handlers.get("alarm-id"));
@@ -112,7 +112,9 @@
         });
 
         handlers.put("alarmResourceUiName", event -> {
-           // LOG.info(event.asCharacters().getData());
+            //Set event UEI as uei.opennms.org/vendor/nokia/{alarmResourceUiName}
+            opennms_event.setUei(uei_foundation+event.asCharacters().getData().replaceAll(" ", "/"));
+            // LOG.info(event.asCharacters().getData());
         });
 
         handlers.put("alarmSeverity", event -> {
@@ -121,12 +123,18 @@
         });
 
         handlers.put("alarmStatus", event -> {
+            //Set auto clean to false
+            alarmData.setAutoClean(false);
+
             if(event.asCharacters().getData().equalsIgnoreCase("Active")){
                 alarmData.setAlarmType(1);
             }else if(event.asCharacters().getData().equalsIgnoreCase("Inactive")){
                 alarmData.setAlarmType(2);
+
+                //Set clear key as reduction key of the problem
+                alarmData.setClearKey(alarmData.getReductionKey());
             }
-            LOG.info(event.asCharacters().getData());
+            // LOG.info(event.asCharacters().getData());
 
             opennms_event.setAlarmData(alarmData);
         });
@@ -142,13 +150,11 @@
         // handlers.put("alarmText", event -> LOG.info(event.asCharacters().getData()));
 
         handlers.put("alarmType", event -> {
-           // getString(event.asCharacters().getData()).ifPresent(opennms_event::setLogMessage);
            // LOG.info(event.asCharacters().getData());
         });
 
         handlers.put("alarmTypeId", event -> {
            //logMessage
-           // opennms_event.setLogMessage(event.asCharacters().getData());
            opennms_event.setLogDest("logndisplay");
            getString(event.asCharacters().getData()).ifPresent(opennms_event::setLogMessage);
         });
@@ -156,6 +162,7 @@
         // handlers.put("customField1", event -> LOG.info(event.asCharacters().getData()));
         // handlers.put("customField2", event -> LOG.info(event.asCharacters().getData()));
         // handlers.put("customField3", event -> LOG.info(event.asCharacters().getData()));
+
         handlers.put("deviceRefId", event -> {
            try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)) {
                String query = "SELECT nodeid FROM node WHERE nodelabel = ?";
@@ -200,7 +207,7 @@
         handlers.put("raisedTime", event -> {
             try {
                opennms_event.setTime(dateFormat.parse(event.asCharacters().getData()));
-            //    LOG.info(event.asCharacters().getData());
+               //LOG.info(event.asCharacters().getData());
             } catch (ParseException e) {
                 e.printStackTrace();
             }
