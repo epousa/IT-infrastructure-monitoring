@@ -46,6 +46,10 @@ if __name__ == "__main__":
         print(f"Severity: {severity_value}")
         print('---')
 
+        alarm_data = ET.SubElement(event, 'alarm-data')
+        alarm_data.set('reduction-key', uei_value)
+        alarm_data.set('alarm-type', str(1))
+        
     # Remove the namespace prefix
     for elem in root.iter():
         if '}' in elem.tag:
