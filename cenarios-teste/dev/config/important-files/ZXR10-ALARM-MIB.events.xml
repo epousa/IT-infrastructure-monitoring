@@ -542,6 +542,548 @@
       </varbindsdecode>
    </event>
 
+   <!-- Clear Critical Traps -->
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.3.302.8</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>1</mevalue>
+         </maskelement>
+		 <!-- Filter for when parm[#5] = information -->
+		 <varbind>
+			<vbnumber>5</vbnumber>
+			<vbvalue>7</vbvalue>
+		 </varbind>
+		 <!-- Filter for when parm[#6] = disappeared -->
+		 <varbind>
+			<vbnumber>6</vbnumber>
+			<vbvalue>0</vbvalue>
+		 </varbind>
+      </mask>
+      <uei>uei.opennms.org/traps/ZXR10-ALARM-MIB/curAlarmTrapCriticalClr</uei>
+      <event-label>ZXR10-ALARM-MIB defined trap event: curAlarmTrap</event-label>
+      <descr>
+&lt;p>When an alarm occurred, &#xd;
+           send the trap PDU to uniform network manager.&#xd;
+           Through the configuration command alarm trap-oid-expand, &#xd;
+           the trap OID can be expanded, adding alarm status and code.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmFlowID&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmCode&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmClass&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>
+		commonAlarm(1)
+		digitalThresholdCrossingAlarm(2)
+		analogThresholdCrossingAlarm(3)
+		switchEvent(4)
+		commonEvent(5)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmType&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>
+		atCommunicationsalarm(0)
+		atQosalarm(1)
+		atEquipmentalarm(2)
+		atProcessingerroralarm(3)
+		atEnvironmentalalarm(4)
+		atAll(255)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmLevel&lt;/b>&lt;/td>&lt;td>
+	%parm[#5]%;&lt;/td>&lt;td>&lt;p>
+		emergency(1)
+		alert(2)
+		critical(3)
+		error(4)
+		warning(5)
+		notification(6)
+		information(7)
+		debugging(8)
+		invalid(9)
+		all(255)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmStatus&lt;/b>&lt;/td>&lt;td>
+	%parm[#6]%;&lt;/td>&lt;td>&lt;p>
+		disappeared(0)
+		occured(1)
+		updated(2)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmOccuredTime&lt;/b>&lt;/td>&lt;td>
+	%parm[#7]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmDisappearedTime&lt;/b>&lt;/td>&lt;td>
+	%parm[#8]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDType&lt;/b>&lt;/td>&lt;td>
+	%parm[#9]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPID&lt;/b>&lt;/td>&lt;td>
+	%parm[#10]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmParaType&lt;/b>&lt;/td>&lt;td>
+	%parm[#11]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmParaValue&lt;/b>&lt;/td>&lt;td>
+	%parm[#12]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmDescription&lt;/b>&lt;/td>&lt;td>
+	%parm[#13]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmStdCode&lt;/b>&lt;/td>&lt;td>
+	%parm[#14]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmComment&lt;/b>&lt;/td>&lt;td>
+	%parm[#15]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmNetID&lt;/b>&lt;/td>&lt;td>
+	%parm[#16]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmGlobalFlowID&lt;/b>&lt;/td>&lt;td>
+	%parm[#17]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmUpdatedTime&lt;/b>&lt;/td>&lt;td>
+	%parm[#18]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmThAlmPeriod&lt;/b>&lt;/td>&lt;td>
+	%parm[#19]%;&lt;/td>&lt;td>&lt;p>
+		fiveMinutes(5)
+		fifteenMinutes(15)
+		twentyFourHours(24)
+		invalid(254)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmThAlmType&lt;/b>&lt;/td>&lt;td>
+	%parm[#20]%;&lt;/td>&lt;td>&lt;p>
+		highCrossing(1)
+		preHighCrossing(2)
+		preLowCrossing(3)
+		lowCrossing(4)
+		maxReferenceValueCrossing(5)
+		minReferenceValueCrossing(6)
+		invalid(254)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmThPerfValue&lt;/b>&lt;/td>&lt;td>
+	%parm[#21]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmReturnMode&lt;/b>&lt;/td>&lt;td>
+	%parm[#22]%;&lt;/td>&lt;td>&lt;p>
+		return(1)
+		unreturn(2)
+		invalid(254)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmProtectType&lt;/b>&lt;/td>&lt;td>
+	%parm[#23]%;&lt;/td>&lt;td>&lt;p>
+		onePlusOneBidir(1)
+		fourFBidirOneForOneExtra(2)
+		fourFBidirOneForOneNoextrA(3)
+		twoFBlsrExtra(4)
+		twoFBlsrNoextra(5)
+		fourFBlsrNoextra(6)
+		fourFBlsrExtra(7)
+		oneForNMslinear(8)
+		twoFUnidirMsringNoextra(9)
+		onePlusoneUnidir(10)
+		fourFUnidirOneForOneExtra(11)
+		fourFUnidirOneForOneNoextra(12)
+		oneForNUnidirExtra(13)
+		oneForNUnidirNoextra(14)
+		nFOneForNExtra(15)
+		sncpOnePlusOneProtect(16)
+		sncpOneForOneProtect(17)
+		oneByoneBidir(22)
+		oneByoneUnidir(23)
+		sncpOnePlusOneProtectBidir(24)
+		sncpOnePlusOneProtectUnidi(25)
+		sncpOneByOneProtectBidir(26)
+		sncpOneByOneProtectUnidi(27)
+		ringWrappingProtect(28)
+		ringSteeringProtect(29)
+		pwonePlusone2Send2RcvProtect(30)
+		pwonePlusone2Send1RcvProtect(31)
+		pwoneByone1Send2RcvProtect(32)
+		pwoneByone1Send1RcvProtect(33)
+		onePlusone2Send2RcvProtectBi(40)
+		onePlusone2Send1RcvProtectBi(41)
+		onePlusone2Send2RcvProtectUni(42)
+		onePlusone2Send1RcvProtectUni(43)
+		oneByone1Send2RcvProtectBi(44)
+		oneByone1Send1RcvProtectBi(45)
+		oneByone1Send2RcvProtectUni(46)
+		oneByone1Send1RcvProtectUni(47)
+		wdmMSLinearOnePlusOne(129)
+		wdmMSLinearOneForOne(130)
+		wdmCHLinearOnePlusOne(131)
+		wdmCHLinearOneForOne(132)
+		wdmMSTwosharering(133)
+		wdmCHTworingOneForOne(134)
+		wdmCHTworingOnePlusOne(135)
+		wdmCHTwosharering(136)
+		wdmCHOneForN(137)
+		wdmCHMForN(138)
+		boardOnePlusOne(204)
+		boardOneForN(205)
+		atmUnidirOnePlusOne(300)
+		atmBidirOnePlusOne(301)
+		atmOneForN(302)
+		mplsOnePlusOne(400)
+		mplsOneForN(401)
+		sncpRelated(402)
+		invalid(65534)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmSwitchReason&lt;/b>&lt;/td>&lt;td>
+	%parm[#24]%;&lt;/td>&lt;td>&lt;p>
+		na(1)
+		restored(2)
+		signalfailofw(3)
+		signalmismatch(4)
+		signaldegrade(5)
+		automaticswitch(6)
+		forceswitch(7)
+		exerciseswitch(8)
+		lockout(9)
+		manualswitch(10)
+		signalfailofp(11)
+		low(12)
+		dnr(13)
+		signaldegradeofp(14)
+		wtrTimerExpires(15)
+		mappingSwitchtoW(18)
+		mappingSwitchtoP(19)
+		invalid(65534)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmUlPrtGroupWrkStat&lt;/b>&lt;/td>&lt;td>
+	%parm[#25]%;&lt;/td>&lt;td>&lt;p>
+		switchToWork(1)
+		switchToProtect(2)
+		switchPointDelete(3)
+		sswitchToWork(4)
+		sswitchToProrect(5)
+		turnswitchToProtect(6)
+		retraceswitchToProtect(7)
+		switchToEclock(30)
+		switchToLclock(31)
+		switchToIclock(32)
+		switchToHoldclock(33)
+		switchToClock(34)
+		clockToLockstat(35)
+		clockToUnlockstat(36)
+		clockToCatchstat(37)
+		clockToTrackstat(38)
+		invalid(65534)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDTypeSwitchFrom&lt;/b>&lt;/td>&lt;td>
+	%parm[#26]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDSwitchFrom&lt;/b>&lt;/td>&lt;td>
+	%parm[#27]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDTypeSwitchTo&lt;/b>&lt;/td>&lt;td>
+	%parm[#28]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDSwitchTo&lt;/b>&lt;/td>&lt;td>
+	%parm[#29]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTimestamp&lt;/b>&lt;/td>&lt;td>
+	%parm[#30]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDLen&lt;/b>&lt;/td>&lt;td>
+	%parm[#31]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDLenSwitchFrom&lt;/b>&lt;/td>&lt;td>
+	%parm[#32]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDLenSwitchTo&lt;/b>&lt;/td>&lt;td>
+	%parm[#33]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmOccuredMs&lt;/b>&lt;/td>&lt;td>
+	%parm[#34]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmUpdatedMs&lt;/b>&lt;/td>&lt;td>
+	%parm[#35]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmDisappearedMs&lt;/b>&lt;/td>&lt;td>
+	%parm[#36]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmNeedConfirm&lt;/b>&lt;/td>&lt;td>
+	%parm[#37]%;&lt;/td>&lt;td>&lt;p>
+		need(1)
+		noNeed(2)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmParaVarBindList&lt;/b>&lt;/td>&lt;td>
+	%parm[#38]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmName&lt;/b>&lt;/td>&lt;td>
+	%parm[#39]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	curAlarmTrap trap received
+	curAlarmFlowID=%parm[#1]%
+	curAlarmCode=%parm[#2]%
+	curAlarmClass=%parm[#3]%
+	curAlarmType=%parm[#4]%
+	curAlarmLevel=%parm[#5]%
+	curAlarmStatus=%parm[#6]%
+	curAlarmOccuredTime=%parm[#7]%
+	curAlarmDisappearedTime=%parm[#8]%
+	curAlarmTPIDType=%parm[#9]%
+	curAlarmTPID=%parm[#10]%
+	curAlarmParaType=%parm[#11]%
+	curAlarmParaValue=%parm[#12]%
+	curAlarmDescription=%parm[#13]%
+	curAlarmStdCode=%parm[#14]%
+	curAlarmComment=%parm[#15]%
+	curAlarmNetID=%parm[#16]%
+	curAlarmGlobalFlowID=%parm[#17]%
+	curAlarmUpdatedTime=%parm[#18]%
+	curAlarmThAlmPeriod=%parm[#19]%
+	curAlarmThAlmType=%parm[#20]%
+	curAlarmThPerfValue=%parm[#21]%
+	curAlarmReturnMode=%parm[#22]%
+	curAlarmProtectType=%parm[#23]%
+	curAlarmSwitchReason=%parm[#24]%
+	curAlarmUlPrtGroupWrkStat=%parm[#25]%
+	curAlarmTPIDTypeSwitchFrom=%parm[#26]%
+	curAlarmTPIDSwitchFrom=%parm[#27]%
+	curAlarmTPIDTypeSwitchTo=%parm[#28]%
+	curAlarmTPIDSwitchTo=%parm[#29]%
+	curAlarmTimestamp=%parm[#30]%
+	curAlarmTPIDLen=%parm[#31]%
+	curAlarmTPIDLenSwitchFrom=%parm[#32]%
+	curAlarmTPIDLenSwitchTo=%parm[#33]%
+	curAlarmOccuredMs=%parm[#34]%
+	curAlarmUpdatedMs=%parm[#35]%
+	curAlarmDisappearedMs=%parm[#36]%
+	curAlarmNeedConfirm=%parm[#37]%
+	curAlarmParaVarBindList=%parm[#38]%
+	curAlarmName=%parm[#39]%&lt;/p>
+	</logmsg>
+      <severity>Normal</severity>
+	  <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%:%parm[#3]%:%parm[#4]%" alarm-type="2" clear-key="uei.opennms.org/traps/ZXR10-ALARM-MIB/curAlarmTrapCritical:%dpname%:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%:%parm[#3]%:%parm[#4]%"/>
+      <varbindsdecode>
+         <parmid>parm[#3]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="commonAlarm"/>
+         <decode varbindvalue="2" varbinddecodedstring="digitalThresholdCrossingAlarm"/>
+         <decode varbindvalue="3" varbinddecodedstring="analogThresholdCrossingAlarm"/>
+         <decode varbindvalue="4" varbinddecodedstring="switchEvent"/>
+         <decode varbindvalue="5" varbinddecodedstring="commonEvent"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#4]</parmid>
+         <decode varbindvalue="0" varbinddecodedstring="atCommunicationsalarm"/>
+         <decode varbindvalue="1" varbinddecodedstring="atQosalarm"/>
+         <decode varbindvalue="2" varbinddecodedstring="atEquipmentalarm"/>
+         <decode varbindvalue="3" varbinddecodedstring="atProcessingerroralarm"/>
+         <decode varbindvalue="4" varbinddecodedstring="atEnvironmentalalarm"/>
+         <decode varbindvalue="255" varbinddecodedstring="atAll"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#5]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="emergency"/>
+         <decode varbindvalue="2" varbinddecodedstring="alert"/>
+         <decode varbindvalue="3" varbinddecodedstring="critical"/>
+         <decode varbindvalue="4" varbinddecodedstring="error"/>
+         <decode varbindvalue="5" varbinddecodedstring="warning"/>
+         <decode varbindvalue="6" varbinddecodedstring="notification"/>
+         <decode varbindvalue="7" varbinddecodedstring="information"/>
+         <decode varbindvalue="8" varbinddecodedstring="debugging"/>
+         <decode varbindvalue="9" varbinddecodedstring="invalid"/>
+         <decode varbindvalue="255" varbinddecodedstring="all"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#6]</parmid>
+         <decode varbindvalue="0" varbinddecodedstring="disappeared"/>
+         <decode varbindvalue="1" varbinddecodedstring="occured"/>
+         <decode varbindvalue="2" varbinddecodedstring="updated"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#19]</parmid>
+         <decode varbindvalue="5" varbinddecodedstring="fiveMinutes"/>
+         <decode varbindvalue="15" varbinddecodedstring="fifteenMinutes"/>
+         <decode varbindvalue="24" varbinddecodedstring="twentyFourHours"/>
+         <decode varbindvalue="254" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#20]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="highCrossing"/>
+         <decode varbindvalue="2" varbinddecodedstring="preHighCrossing"/>
+         <decode varbindvalue="3" varbinddecodedstring="preLowCrossing"/>
+         <decode varbindvalue="4" varbinddecodedstring="lowCrossing"/>
+         <decode varbindvalue="5" varbinddecodedstring="maxReferenceValueCrossing"/>
+         <decode varbindvalue="6" varbinddecodedstring="minReferenceValueCrossing"/>
+         <decode varbindvalue="254" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#22]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="return"/>
+         <decode varbindvalue="2" varbinddecodedstring="unreturn"/>
+         <decode varbindvalue="254" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#23]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="onePlusOneBidir"/>
+         <decode varbindvalue="2" varbinddecodedstring="fourFBidirOneForOneExtra"/>
+         <decode varbindvalue="3" varbinddecodedstring="fourFBidirOneForOneNoextrA"/>
+         <decode varbindvalue="4" varbinddecodedstring="twoFBlsrExtra"/>
+         <decode varbindvalue="5" varbinddecodedstring="twoFBlsrNoextra"/>
+         <decode varbindvalue="6" varbinddecodedstring="fourFBlsrNoextra"/>
+         <decode varbindvalue="7" varbinddecodedstring="fourFBlsrExtra"/>
+         <decode varbindvalue="8" varbinddecodedstring="oneForNMslinear"/>
+         <decode varbindvalue="9" varbinddecodedstring="twoFUnidirMsringNoextra"/>
+         <decode varbindvalue="10" varbinddecodedstring="onePlusoneUnidir"/>
+         <decode varbindvalue="11" varbinddecodedstring="fourFUnidirOneForOneExtra"/>
+         <decode varbindvalue="12" varbinddecodedstring="fourFUnidirOneForOneNoextra"/>
+         <decode varbindvalue="13" varbinddecodedstring="oneForNUnidirExtra"/>
+         <decode varbindvalue="14" varbinddecodedstring="oneForNUnidirNoextra"/>
+         <decode varbindvalue="15" varbinddecodedstring="nFOneForNExtra"/>
+         <decode varbindvalue="16" varbinddecodedstring="sncpOnePlusOneProtect"/>
+         <decode varbindvalue="17" varbinddecodedstring="sncpOneForOneProtect"/>
+         <decode varbindvalue="22" varbinddecodedstring="oneByoneBidir"/>
+         <decode varbindvalue="23" varbinddecodedstring="oneByoneUnidir"/>
+         <decode varbindvalue="24" varbinddecodedstring="sncpOnePlusOneProtectBidir"/>
+         <decode varbindvalue="25" varbinddecodedstring="sncpOnePlusOneProtectUnidi"/>
+         <decode varbindvalue="26" varbinddecodedstring="sncpOneByOneProtectBidir"/>
+         <decode varbindvalue="27" varbinddecodedstring="sncpOneByOneProtectUnidi"/>
+         <decode varbindvalue="28" varbinddecodedstring="ringWrappingProtect"/>
+         <decode varbindvalue="29" varbinddecodedstring="ringSteeringProtect"/>
+         <decode varbindvalue="30" varbinddecodedstring="pwonePlusone2Send2RcvProtect"/>
+         <decode varbindvalue="31" varbinddecodedstring="pwonePlusone2Send1RcvProtect"/>
+         <decode varbindvalue="32" varbinddecodedstring="pwoneByone1Send2RcvProtect"/>
+         <decode varbindvalue="33" varbinddecodedstring="pwoneByone1Send1RcvProtect"/>
+         <decode varbindvalue="40" varbinddecodedstring="onePlusone2Send2RcvProtectBi"/>
+         <decode varbindvalue="41" varbinddecodedstring="onePlusone2Send1RcvProtectBi"/>
+         <decode varbindvalue="42" varbinddecodedstring="onePlusone2Send2RcvProtectUni"/>
+         <decode varbindvalue="43" varbinddecodedstring="onePlusone2Send1RcvProtectUni"/>
+         <decode varbindvalue="44" varbinddecodedstring="oneByone1Send2RcvProtectBi"/>
+         <decode varbindvalue="45" varbinddecodedstring="oneByone1Send1RcvProtectBi"/>
+         <decode varbindvalue="46" varbinddecodedstring="oneByone1Send2RcvProtectUni"/>
+         <decode varbindvalue="47" varbinddecodedstring="oneByone1Send1RcvProtectUni"/>
+         <decode varbindvalue="129" varbinddecodedstring="wdmMSLinearOnePlusOne"/>
+         <decode varbindvalue="130" varbinddecodedstring="wdmMSLinearOneForOne"/>
+         <decode varbindvalue="131" varbinddecodedstring="wdmCHLinearOnePlusOne"/>
+         <decode varbindvalue="132" varbinddecodedstring="wdmCHLinearOneForOne"/>
+         <decode varbindvalue="133" varbinddecodedstring="wdmMSTwosharering"/>
+         <decode varbindvalue="134" varbinddecodedstring="wdmCHTworingOneForOne"/>
+         <decode varbindvalue="135" varbinddecodedstring="wdmCHTworingOnePlusOne"/>
+         <decode varbindvalue="136" varbinddecodedstring="wdmCHTwosharering"/>
+         <decode varbindvalue="137" varbinddecodedstring="wdmCHOneForN"/>
+         <decode varbindvalue="138" varbinddecodedstring="wdmCHMForN"/>
+         <decode varbindvalue="204" varbinddecodedstring="boardOnePlusOne"/>
+         <decode varbindvalue="205" varbinddecodedstring="boardOneForN"/>
+         <decode varbindvalue="300" varbinddecodedstring="atmUnidirOnePlusOne"/>
+         <decode varbindvalue="301" varbinddecodedstring="atmBidirOnePlusOne"/>
+         <decode varbindvalue="302" varbinddecodedstring="atmOneForN"/>
+         <decode varbindvalue="400" varbinddecodedstring="mplsOnePlusOne"/>
+         <decode varbindvalue="401" varbinddecodedstring="mplsOneForN"/>
+         <decode varbindvalue="402" varbinddecodedstring="sncpRelated"/>
+         <decode varbindvalue="65534" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#24]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="na"/>
+         <decode varbindvalue="2" varbinddecodedstring="restored"/>
+         <decode varbindvalue="3" varbinddecodedstring="signalfailofw"/>
+         <decode varbindvalue="4" varbinddecodedstring="signalmismatch"/>
+         <decode varbindvalue="5" varbinddecodedstring="signaldegrade"/>
+         <decode varbindvalue="6" varbinddecodedstring="automaticswitch"/>
+         <decode varbindvalue="7" varbinddecodedstring="forceswitch"/>
+         <decode varbindvalue="8" varbinddecodedstring="exerciseswitch"/>
+         <decode varbindvalue="9" varbinddecodedstring="lockout"/>
+         <decode varbindvalue="10" varbinddecodedstring="manualswitch"/>
+         <decode varbindvalue="11" varbinddecodedstring="signalfailofp"/>
+         <decode varbindvalue="12" varbinddecodedstring="low"/>
+         <decode varbindvalue="13" varbinddecodedstring="dnr"/>
+         <decode varbindvalue="14" varbinddecodedstring="signaldegradeofp"/>
+         <decode varbindvalue="15" varbinddecodedstring="wtrTimerExpires"/>
+         <decode varbindvalue="18" varbinddecodedstring="mappingSwitchtoW"/>
+         <decode varbindvalue="19" varbinddecodedstring="mappingSwitchtoP"/>
+         <decode varbindvalue="65534" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#25]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="switchToWork"/>
+         <decode varbindvalue="2" varbinddecodedstring="switchToProtect"/>
+         <decode varbindvalue="3" varbinddecodedstring="switchPointDelete"/>
+         <decode varbindvalue="4" varbinddecodedstring="sswitchToWork"/>
+         <decode varbindvalue="5" varbinddecodedstring="sswitchToProrect"/>
+         <decode varbindvalue="6" varbinddecodedstring="turnswitchToProtect"/>
+         <decode varbindvalue="7" varbinddecodedstring="retraceswitchToProtect"/>
+         <decode varbindvalue="30" varbinddecodedstring="switchToEclock"/>
+         <decode varbindvalue="31" varbinddecodedstring="switchToLclock"/>
+         <decode varbindvalue="32" varbinddecodedstring="switchToIclock"/>
+         <decode varbindvalue="33" varbinddecodedstring="switchToHoldclock"/>
+         <decode varbindvalue="34" varbinddecodedstring="switchToClock"/>
+         <decode varbindvalue="35" varbinddecodedstring="clockToLockstat"/>
+         <decode varbindvalue="36" varbinddecodedstring="clockToUnlockstat"/>
+         <decode varbindvalue="37" varbinddecodedstring="clockToCatchstat"/>
+         <decode varbindvalue="38" varbinddecodedstring="clockToTrackstat"/>
+         <decode varbindvalue="65534" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#37]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="need"/>
+         <decode varbindvalue="2" varbinddecodedstring="noNeed"/>
+      </varbindsdecode>
+   </event>
+   
     <!-- Major Traps + Problem alarm-type -->
 	<event>
       <mask>
@@ -920,6 +1462,548 @@
 	</logmsg>
       <severity>Major</severity>
 	  <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%:%parm[#3]%:%parm[#4]%" alarm-type="1" auto-clean="false"/>
+      <varbindsdecode>
+         <parmid>parm[#3]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="commonAlarm"/>
+         <decode varbindvalue="2" varbinddecodedstring="digitalThresholdCrossingAlarm"/>
+         <decode varbindvalue="3" varbinddecodedstring="analogThresholdCrossingAlarm"/>
+         <decode varbindvalue="4" varbinddecodedstring="switchEvent"/>
+         <decode varbindvalue="5" varbinddecodedstring="commonEvent"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#4]</parmid>
+         <decode varbindvalue="0" varbinddecodedstring="atCommunicationsalarm"/>
+         <decode varbindvalue="1" varbinddecodedstring="atQosalarm"/>
+         <decode varbindvalue="2" varbinddecodedstring="atEquipmentalarm"/>
+         <decode varbindvalue="3" varbinddecodedstring="atProcessingerroralarm"/>
+         <decode varbindvalue="4" varbinddecodedstring="atEnvironmentalalarm"/>
+         <decode varbindvalue="255" varbinddecodedstring="atAll"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#5]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="emergency"/>
+         <decode varbindvalue="2" varbinddecodedstring="alert"/>
+         <decode varbindvalue="3" varbinddecodedstring="critical"/>
+         <decode varbindvalue="4" varbinddecodedstring="error"/>
+         <decode varbindvalue="5" varbinddecodedstring="warning"/>
+         <decode varbindvalue="6" varbinddecodedstring="notification"/>
+         <decode varbindvalue="7" varbinddecodedstring="information"/>
+         <decode varbindvalue="8" varbinddecodedstring="debugging"/>
+         <decode varbindvalue="9" varbinddecodedstring="invalid"/>
+         <decode varbindvalue="255" varbinddecodedstring="all"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#6]</parmid>
+         <decode varbindvalue="0" varbinddecodedstring="disappeared"/>
+         <decode varbindvalue="1" varbinddecodedstring="occured"/>
+         <decode varbindvalue="2" varbinddecodedstring="updated"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#19]</parmid>
+         <decode varbindvalue="5" varbinddecodedstring="fiveMinutes"/>
+         <decode varbindvalue="15" varbinddecodedstring="fifteenMinutes"/>
+         <decode varbindvalue="24" varbinddecodedstring="twentyFourHours"/>
+         <decode varbindvalue="254" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#20]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="highCrossing"/>
+         <decode varbindvalue="2" varbinddecodedstring="preHighCrossing"/>
+         <decode varbindvalue="3" varbinddecodedstring="preLowCrossing"/>
+         <decode varbindvalue="4" varbinddecodedstring="lowCrossing"/>
+         <decode varbindvalue="5" varbinddecodedstring="maxReferenceValueCrossing"/>
+         <decode varbindvalue="6" varbinddecodedstring="minReferenceValueCrossing"/>
+         <decode varbindvalue="254" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#22]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="return"/>
+         <decode varbindvalue="2" varbinddecodedstring="unreturn"/>
+         <decode varbindvalue="254" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#23]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="onePlusOneBidir"/>
+         <decode varbindvalue="2" varbinddecodedstring="fourFBidirOneForOneExtra"/>
+         <decode varbindvalue="3" varbinddecodedstring="fourFBidirOneForOneNoextrA"/>
+         <decode varbindvalue="4" varbinddecodedstring="twoFBlsrExtra"/>
+         <decode varbindvalue="5" varbinddecodedstring="twoFBlsrNoextra"/>
+         <decode varbindvalue="6" varbinddecodedstring="fourFBlsrNoextra"/>
+         <decode varbindvalue="7" varbinddecodedstring="fourFBlsrExtra"/>
+         <decode varbindvalue="8" varbinddecodedstring="oneForNMslinear"/>
+         <decode varbindvalue="9" varbinddecodedstring="twoFUnidirMsringNoextra"/>
+         <decode varbindvalue="10" varbinddecodedstring="onePlusoneUnidir"/>
+         <decode varbindvalue="11" varbinddecodedstring="fourFUnidirOneForOneExtra"/>
+         <decode varbindvalue="12" varbinddecodedstring="fourFUnidirOneForOneNoextra"/>
+         <decode varbindvalue="13" varbinddecodedstring="oneForNUnidirExtra"/>
+         <decode varbindvalue="14" varbinddecodedstring="oneForNUnidirNoextra"/>
+         <decode varbindvalue="15" varbinddecodedstring="nFOneForNExtra"/>
+         <decode varbindvalue="16" varbinddecodedstring="sncpOnePlusOneProtect"/>
+         <decode varbindvalue="17" varbinddecodedstring="sncpOneForOneProtect"/>
+         <decode varbindvalue="22" varbinddecodedstring="oneByoneBidir"/>
+         <decode varbindvalue="23" varbinddecodedstring="oneByoneUnidir"/>
+         <decode varbindvalue="24" varbinddecodedstring="sncpOnePlusOneProtectBidir"/>
+         <decode varbindvalue="25" varbinddecodedstring="sncpOnePlusOneProtectUnidi"/>
+         <decode varbindvalue="26" varbinddecodedstring="sncpOneByOneProtectBidir"/>
+         <decode varbindvalue="27" varbinddecodedstring="sncpOneByOneProtectUnidi"/>
+         <decode varbindvalue="28" varbinddecodedstring="ringWrappingProtect"/>
+         <decode varbindvalue="29" varbinddecodedstring="ringSteeringProtect"/>
+         <decode varbindvalue="30" varbinddecodedstring="pwonePlusone2Send2RcvProtect"/>
+         <decode varbindvalue="31" varbinddecodedstring="pwonePlusone2Send1RcvProtect"/>
+         <decode varbindvalue="32" varbinddecodedstring="pwoneByone1Send2RcvProtect"/>
+         <decode varbindvalue="33" varbinddecodedstring="pwoneByone1Send1RcvProtect"/>
+         <decode varbindvalue="40" varbinddecodedstring="onePlusone2Send2RcvProtectBi"/>
+         <decode varbindvalue="41" varbinddecodedstring="onePlusone2Send1RcvProtectBi"/>
+         <decode varbindvalue="42" varbinddecodedstring="onePlusone2Send2RcvProtectUni"/>
+         <decode varbindvalue="43" varbinddecodedstring="onePlusone2Send1RcvProtectUni"/>
+         <decode varbindvalue="44" varbinddecodedstring="oneByone1Send2RcvProtectBi"/>
+         <decode varbindvalue="45" varbinddecodedstring="oneByone1Send1RcvProtectBi"/>
+         <decode varbindvalue="46" varbinddecodedstring="oneByone1Send2RcvProtectUni"/>
+         <decode varbindvalue="47" varbinddecodedstring="oneByone1Send1RcvProtectUni"/>
+         <decode varbindvalue="129" varbinddecodedstring="wdmMSLinearOnePlusOne"/>
+         <decode varbindvalue="130" varbinddecodedstring="wdmMSLinearOneForOne"/>
+         <decode varbindvalue="131" varbinddecodedstring="wdmCHLinearOnePlusOne"/>
+         <decode varbindvalue="132" varbinddecodedstring="wdmCHLinearOneForOne"/>
+         <decode varbindvalue="133" varbinddecodedstring="wdmMSTwosharering"/>
+         <decode varbindvalue="134" varbinddecodedstring="wdmCHTworingOneForOne"/>
+         <decode varbindvalue="135" varbinddecodedstring="wdmCHTworingOnePlusOne"/>
+         <decode varbindvalue="136" varbinddecodedstring="wdmCHTwosharering"/>
+         <decode varbindvalue="137" varbinddecodedstring="wdmCHOneForN"/>
+         <decode varbindvalue="138" varbinddecodedstring="wdmCHMForN"/>
+         <decode varbindvalue="204" varbinddecodedstring="boardOnePlusOne"/>
+         <decode varbindvalue="205" varbinddecodedstring="boardOneForN"/>
+         <decode varbindvalue="300" varbinddecodedstring="atmUnidirOnePlusOne"/>
+         <decode varbindvalue="301" varbinddecodedstring="atmBidirOnePlusOne"/>
+         <decode varbindvalue="302" varbinddecodedstring="atmOneForN"/>
+         <decode varbindvalue="400" varbinddecodedstring="mplsOnePlusOne"/>
+         <decode varbindvalue="401" varbinddecodedstring="mplsOneForN"/>
+         <decode varbindvalue="402" varbinddecodedstring="sncpRelated"/>
+         <decode varbindvalue="65534" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#24]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="na"/>
+         <decode varbindvalue="2" varbinddecodedstring="restored"/>
+         <decode varbindvalue="3" varbinddecodedstring="signalfailofw"/>
+         <decode varbindvalue="4" varbinddecodedstring="signalmismatch"/>
+         <decode varbindvalue="5" varbinddecodedstring="signaldegrade"/>
+         <decode varbindvalue="6" varbinddecodedstring="automaticswitch"/>
+         <decode varbindvalue="7" varbinddecodedstring="forceswitch"/>
+         <decode varbindvalue="8" varbinddecodedstring="exerciseswitch"/>
+         <decode varbindvalue="9" varbinddecodedstring="lockout"/>
+         <decode varbindvalue="10" varbinddecodedstring="manualswitch"/>
+         <decode varbindvalue="11" varbinddecodedstring="signalfailofp"/>
+         <decode varbindvalue="12" varbinddecodedstring="low"/>
+         <decode varbindvalue="13" varbinddecodedstring="dnr"/>
+         <decode varbindvalue="14" varbinddecodedstring="signaldegradeofp"/>
+         <decode varbindvalue="15" varbinddecodedstring="wtrTimerExpires"/>
+         <decode varbindvalue="18" varbinddecodedstring="mappingSwitchtoW"/>
+         <decode varbindvalue="19" varbinddecodedstring="mappingSwitchtoP"/>
+         <decode varbindvalue="65534" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#25]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="switchToWork"/>
+         <decode varbindvalue="2" varbinddecodedstring="switchToProtect"/>
+         <decode varbindvalue="3" varbinddecodedstring="switchPointDelete"/>
+         <decode varbindvalue="4" varbinddecodedstring="sswitchToWork"/>
+         <decode varbindvalue="5" varbinddecodedstring="sswitchToProrect"/>
+         <decode varbindvalue="6" varbinddecodedstring="turnswitchToProtect"/>
+         <decode varbindvalue="7" varbinddecodedstring="retraceswitchToProtect"/>
+         <decode varbindvalue="30" varbinddecodedstring="switchToEclock"/>
+         <decode varbindvalue="31" varbinddecodedstring="switchToLclock"/>
+         <decode varbindvalue="32" varbinddecodedstring="switchToIclock"/>
+         <decode varbindvalue="33" varbinddecodedstring="switchToHoldclock"/>
+         <decode varbindvalue="34" varbinddecodedstring="switchToClock"/>
+         <decode varbindvalue="35" varbinddecodedstring="clockToLockstat"/>
+         <decode varbindvalue="36" varbinddecodedstring="clockToUnlockstat"/>
+         <decode varbindvalue="37" varbinddecodedstring="clockToCatchstat"/>
+         <decode varbindvalue="38" varbinddecodedstring="clockToTrackstat"/>
+         <decode varbindvalue="65534" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#37]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="need"/>
+         <decode varbindvalue="2" varbinddecodedstring="noNeed"/>
+      </varbindsdecode>
+   </event>
+
+   <!-- Clear Major Traps -->
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.3.302.8</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>1</mevalue>
+         </maskelement>
+		 <!-- Filter for when parm[#5] = information -->
+		 <varbind>
+			<vbnumber>5</vbnumber>
+			<vbvalue>7</vbvalue>
+		 </varbind>
+		 <!-- Filter for when parm[#6] = disappeared -->
+		 <varbind>
+			<vbnumber>6</vbnumber>
+			<vbvalue>0</vbvalue>
+		 </varbind>
+      </mask>
+      <uei>uei.opennms.org/traps/ZXR10-ALARM-MIB/curAlarmTrapMajorClr</uei>
+      <event-label>ZXR10-ALARM-MIB defined trap event: curAlarmTrap</event-label>
+      <descr>
+&lt;p>When an alarm occurred, &#xd;
+           send the trap PDU to uniform network manager.&#xd;
+           Through the configuration command alarm trap-oid-expand, &#xd;
+           the trap OID can be expanded, adding alarm status and code.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmFlowID&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmCode&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmClass&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>
+		commonAlarm(1)
+		digitalThresholdCrossingAlarm(2)
+		analogThresholdCrossingAlarm(3)
+		switchEvent(4)
+		commonEvent(5)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmType&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>
+		atCommunicationsalarm(0)
+		atQosalarm(1)
+		atEquipmentalarm(2)
+		atProcessingerroralarm(3)
+		atEnvironmentalalarm(4)
+		atAll(255)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmLevel&lt;/b>&lt;/td>&lt;td>
+	%parm[#5]%;&lt;/td>&lt;td>&lt;p>
+		emergency(1)
+		alert(2)
+		critical(3)
+		error(4)
+		warning(5)
+		notification(6)
+		information(7)
+		debugging(8)
+		invalid(9)
+		all(255)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmStatus&lt;/b>&lt;/td>&lt;td>
+	%parm[#6]%;&lt;/td>&lt;td>&lt;p>
+		disappeared(0)
+		occured(1)
+		updated(2)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmOccuredTime&lt;/b>&lt;/td>&lt;td>
+	%parm[#7]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmDisappearedTime&lt;/b>&lt;/td>&lt;td>
+	%parm[#8]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDType&lt;/b>&lt;/td>&lt;td>
+	%parm[#9]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPID&lt;/b>&lt;/td>&lt;td>
+	%parm[#10]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmParaType&lt;/b>&lt;/td>&lt;td>
+	%parm[#11]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmParaValue&lt;/b>&lt;/td>&lt;td>
+	%parm[#12]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmDescription&lt;/b>&lt;/td>&lt;td>
+	%parm[#13]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmStdCode&lt;/b>&lt;/td>&lt;td>
+	%parm[#14]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmComment&lt;/b>&lt;/td>&lt;td>
+	%parm[#15]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmNetID&lt;/b>&lt;/td>&lt;td>
+	%parm[#16]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmGlobalFlowID&lt;/b>&lt;/td>&lt;td>
+	%parm[#17]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmUpdatedTime&lt;/b>&lt;/td>&lt;td>
+	%parm[#18]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmThAlmPeriod&lt;/b>&lt;/td>&lt;td>
+	%parm[#19]%;&lt;/td>&lt;td>&lt;p>
+		fiveMinutes(5)
+		fifteenMinutes(15)
+		twentyFourHours(24)
+		invalid(254)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmThAlmType&lt;/b>&lt;/td>&lt;td>
+	%parm[#20]%;&lt;/td>&lt;td>&lt;p>
+		highCrossing(1)
+		preHighCrossing(2)
+		preLowCrossing(3)
+		lowCrossing(4)
+		maxReferenceValueCrossing(5)
+		minReferenceValueCrossing(6)
+		invalid(254)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmThPerfValue&lt;/b>&lt;/td>&lt;td>
+	%parm[#21]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmReturnMode&lt;/b>&lt;/td>&lt;td>
+	%parm[#22]%;&lt;/td>&lt;td>&lt;p>
+		return(1)
+		unreturn(2)
+		invalid(254)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmProtectType&lt;/b>&lt;/td>&lt;td>
+	%parm[#23]%;&lt;/td>&lt;td>&lt;p>
+		onePlusOneBidir(1)
+		fourFBidirOneForOneExtra(2)
+		fourFBidirOneForOneNoextrA(3)
+		twoFBlsrExtra(4)
+		twoFBlsrNoextra(5)
+		fourFBlsrNoextra(6)
+		fourFBlsrExtra(7)
+		oneForNMslinear(8)
+		twoFUnidirMsringNoextra(9)
+		onePlusoneUnidir(10)
+		fourFUnidirOneForOneExtra(11)
+		fourFUnidirOneForOneNoextra(12)
+		oneForNUnidirExtra(13)
+		oneForNUnidirNoextra(14)
+		nFOneForNExtra(15)
+		sncpOnePlusOneProtect(16)
+		sncpOneForOneProtect(17)
+		oneByoneBidir(22)
+		oneByoneUnidir(23)
+		sncpOnePlusOneProtectBidir(24)
+		sncpOnePlusOneProtectUnidi(25)
+		sncpOneByOneProtectBidir(26)
+		sncpOneByOneProtectUnidi(27)
+		ringWrappingProtect(28)
+		ringSteeringProtect(29)
+		pwonePlusone2Send2RcvProtect(30)
+		pwonePlusone2Send1RcvProtect(31)
+		pwoneByone1Send2RcvProtect(32)
+		pwoneByone1Send1RcvProtect(33)
+		onePlusone2Send2RcvProtectBi(40)
+		onePlusone2Send1RcvProtectBi(41)
+		onePlusone2Send2RcvProtectUni(42)
+		onePlusone2Send1RcvProtectUni(43)
+		oneByone1Send2RcvProtectBi(44)
+		oneByone1Send1RcvProtectBi(45)
+		oneByone1Send2RcvProtectUni(46)
+		oneByone1Send1RcvProtectUni(47)
+		wdmMSLinearOnePlusOne(129)
+		wdmMSLinearOneForOne(130)
+		wdmCHLinearOnePlusOne(131)
+		wdmCHLinearOneForOne(132)
+		wdmMSTwosharering(133)
+		wdmCHTworingOneForOne(134)
+		wdmCHTworingOnePlusOne(135)
+		wdmCHTwosharering(136)
+		wdmCHOneForN(137)
+		wdmCHMForN(138)
+		boardOnePlusOne(204)
+		boardOneForN(205)
+		atmUnidirOnePlusOne(300)
+		atmBidirOnePlusOne(301)
+		atmOneForN(302)
+		mplsOnePlusOne(400)
+		mplsOneForN(401)
+		sncpRelated(402)
+		invalid(65534)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmSwitchReason&lt;/b>&lt;/td>&lt;td>
+	%parm[#24]%;&lt;/td>&lt;td>&lt;p>
+		na(1)
+		restored(2)
+		signalfailofw(3)
+		signalmismatch(4)
+		signaldegrade(5)
+		automaticswitch(6)
+		forceswitch(7)
+		exerciseswitch(8)
+		lockout(9)
+		manualswitch(10)
+		signalfailofp(11)
+		low(12)
+		dnr(13)
+		signaldegradeofp(14)
+		wtrTimerExpires(15)
+		mappingSwitchtoW(18)
+		mappingSwitchtoP(19)
+		invalid(65534)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmUlPrtGroupWrkStat&lt;/b>&lt;/td>&lt;td>
+	%parm[#25]%;&lt;/td>&lt;td>&lt;p>
+		switchToWork(1)
+		switchToProtect(2)
+		switchPointDelete(3)
+		sswitchToWork(4)
+		sswitchToProrect(5)
+		turnswitchToProtect(6)
+		retraceswitchToProtect(7)
+		switchToEclock(30)
+		switchToLclock(31)
+		switchToIclock(32)
+		switchToHoldclock(33)
+		switchToClock(34)
+		clockToLockstat(35)
+		clockToUnlockstat(36)
+		clockToCatchstat(37)
+		clockToTrackstat(38)
+		invalid(65534)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDTypeSwitchFrom&lt;/b>&lt;/td>&lt;td>
+	%parm[#26]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDSwitchFrom&lt;/b>&lt;/td>&lt;td>
+	%parm[#27]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDTypeSwitchTo&lt;/b>&lt;/td>&lt;td>
+	%parm[#28]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDSwitchTo&lt;/b>&lt;/td>&lt;td>
+	%parm[#29]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTimestamp&lt;/b>&lt;/td>&lt;td>
+	%parm[#30]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDLen&lt;/b>&lt;/td>&lt;td>
+	%parm[#31]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDLenSwitchFrom&lt;/b>&lt;/td>&lt;td>
+	%parm[#32]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDLenSwitchTo&lt;/b>&lt;/td>&lt;td>
+	%parm[#33]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmOccuredMs&lt;/b>&lt;/td>&lt;td>
+	%parm[#34]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmUpdatedMs&lt;/b>&lt;/td>&lt;td>
+	%parm[#35]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmDisappearedMs&lt;/b>&lt;/td>&lt;td>
+	%parm[#36]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmNeedConfirm&lt;/b>&lt;/td>&lt;td>
+	%parm[#37]%;&lt;/td>&lt;td>&lt;p>
+		need(1)
+		noNeed(2)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmParaVarBindList&lt;/b>&lt;/td>&lt;td>
+	%parm[#38]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmName&lt;/b>&lt;/td>&lt;td>
+	%parm[#39]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	curAlarmTrap trap received
+	curAlarmFlowID=%parm[#1]%
+	curAlarmCode=%parm[#2]%
+	curAlarmClass=%parm[#3]%
+	curAlarmType=%parm[#4]%
+	curAlarmLevel=%parm[#5]%
+	curAlarmStatus=%parm[#6]%
+	curAlarmOccuredTime=%parm[#7]%
+	curAlarmDisappearedTime=%parm[#8]%
+	curAlarmTPIDType=%parm[#9]%
+	curAlarmTPID=%parm[#10]%
+	curAlarmParaType=%parm[#11]%
+	curAlarmParaValue=%parm[#12]%
+	curAlarmDescription=%parm[#13]%
+	curAlarmStdCode=%parm[#14]%
+	curAlarmComment=%parm[#15]%
+	curAlarmNetID=%parm[#16]%
+	curAlarmGlobalFlowID=%parm[#17]%
+	curAlarmUpdatedTime=%parm[#18]%
+	curAlarmThAlmPeriod=%parm[#19]%
+	curAlarmThAlmType=%parm[#20]%
+	curAlarmThPerfValue=%parm[#21]%
+	curAlarmReturnMode=%parm[#22]%
+	curAlarmProtectType=%parm[#23]%
+	curAlarmSwitchReason=%parm[#24]%
+	curAlarmUlPrtGroupWrkStat=%parm[#25]%
+	curAlarmTPIDTypeSwitchFrom=%parm[#26]%
+	curAlarmTPIDSwitchFrom=%parm[#27]%
+	curAlarmTPIDTypeSwitchTo=%parm[#28]%
+	curAlarmTPIDSwitchTo=%parm[#29]%
+	curAlarmTimestamp=%parm[#30]%
+	curAlarmTPIDLen=%parm[#31]%
+	curAlarmTPIDLenSwitchFrom=%parm[#32]%
+	curAlarmTPIDLenSwitchTo=%parm[#33]%
+	curAlarmOccuredMs=%parm[#34]%
+	curAlarmUpdatedMs=%parm[#35]%
+	curAlarmDisappearedMs=%parm[#36]%
+	curAlarmNeedConfirm=%parm[#37]%
+	curAlarmParaVarBindList=%parm[#38]%
+	curAlarmName=%parm[#39]%&lt;/p>
+	</logmsg>
+      <severity>Normal</severity>
+	  <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%:%parm[#3]%:%parm[#4]%" alarm-type="2" clear-key="uei.opennms.org/traps/ZXR10-ALARM-MIB/curAlarmTrapMajor:%dpname%:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%:%parm[#3]%:%parm[#4]%"/>
       <varbindsdecode>
          <parmid>parm[#3]</parmid>
          <decode varbindvalue="1" varbinddecodedstring="commonAlarm"/>
@@ -1629,6 +2713,548 @@
       </varbindsdecode>
    </event>
 
+   <!-- Clear Minor Traps -->
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.3.302.8</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>1</mevalue>
+         </maskelement>
+		 <!-- Filter for when parm[#5] = information -->
+		 <varbind>
+			<vbnumber>5</vbnumber>
+			<vbvalue>7</vbvalue>
+		 </varbind>
+		 <!-- Filter for when parm[#6] = disappeared -->
+		 <varbind>
+			<vbnumber>6</vbnumber>
+			<vbvalue>0</vbvalue>
+		 </varbind>
+      </mask>
+      <uei>uei.opennms.org/traps/ZXR10-ALARM-MIB/curAlarmTrapMinorClr</uei>
+      <event-label>ZXR10-ALARM-MIB defined trap event: curAlarmTrap</event-label>
+      <descr>
+&lt;p>When an alarm occurred, &#xd;
+           send the trap PDU to uniform network manager.&#xd;
+           Through the configuration command alarm trap-oid-expand, &#xd;
+           the trap OID can be expanded, adding alarm status and code.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmFlowID&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmCode&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmClass&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>
+		commonAlarm(1)
+		digitalThresholdCrossingAlarm(2)
+		analogThresholdCrossingAlarm(3)
+		switchEvent(4)
+		commonEvent(5)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmType&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>
+		atCommunicationsalarm(0)
+		atQosalarm(1)
+		atEquipmentalarm(2)
+		atProcessingerroralarm(3)
+		atEnvironmentalalarm(4)
+		atAll(255)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmLevel&lt;/b>&lt;/td>&lt;td>
+	%parm[#5]%;&lt;/td>&lt;td>&lt;p>
+		emergency(1)
+		alert(2)
+		critical(3)
+		error(4)
+		warning(5)
+		notification(6)
+		information(7)
+		debugging(8)
+		invalid(9)
+		all(255)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmStatus&lt;/b>&lt;/td>&lt;td>
+	%parm[#6]%;&lt;/td>&lt;td>&lt;p>
+		disappeared(0)
+		occured(1)
+		updated(2)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmOccuredTime&lt;/b>&lt;/td>&lt;td>
+	%parm[#7]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmDisappearedTime&lt;/b>&lt;/td>&lt;td>
+	%parm[#8]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDType&lt;/b>&lt;/td>&lt;td>
+	%parm[#9]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPID&lt;/b>&lt;/td>&lt;td>
+	%parm[#10]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmParaType&lt;/b>&lt;/td>&lt;td>
+	%parm[#11]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmParaValue&lt;/b>&lt;/td>&lt;td>
+	%parm[#12]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmDescription&lt;/b>&lt;/td>&lt;td>
+	%parm[#13]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmStdCode&lt;/b>&lt;/td>&lt;td>
+	%parm[#14]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmComment&lt;/b>&lt;/td>&lt;td>
+	%parm[#15]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmNetID&lt;/b>&lt;/td>&lt;td>
+	%parm[#16]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmGlobalFlowID&lt;/b>&lt;/td>&lt;td>
+	%parm[#17]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmUpdatedTime&lt;/b>&lt;/td>&lt;td>
+	%parm[#18]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmThAlmPeriod&lt;/b>&lt;/td>&lt;td>
+	%parm[#19]%;&lt;/td>&lt;td>&lt;p>
+		fiveMinutes(5)
+		fifteenMinutes(15)
+		twentyFourHours(24)
+		invalid(254)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmThAlmType&lt;/b>&lt;/td>&lt;td>
+	%parm[#20]%;&lt;/td>&lt;td>&lt;p>
+		highCrossing(1)
+		preHighCrossing(2)
+		preLowCrossing(3)
+		lowCrossing(4)
+		maxReferenceValueCrossing(5)
+		minReferenceValueCrossing(6)
+		invalid(254)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmThPerfValue&lt;/b>&lt;/td>&lt;td>
+	%parm[#21]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmReturnMode&lt;/b>&lt;/td>&lt;td>
+	%parm[#22]%;&lt;/td>&lt;td>&lt;p>
+		return(1)
+		unreturn(2)
+		invalid(254)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmProtectType&lt;/b>&lt;/td>&lt;td>
+	%parm[#23]%;&lt;/td>&lt;td>&lt;p>
+		onePlusOneBidir(1)
+		fourFBidirOneForOneExtra(2)
+		fourFBidirOneForOneNoextrA(3)
+		twoFBlsrExtra(4)
+		twoFBlsrNoextra(5)
+		fourFBlsrNoextra(6)
+		fourFBlsrExtra(7)
+		oneForNMslinear(8)
+		twoFUnidirMsringNoextra(9)
+		onePlusoneUnidir(10)
+		fourFUnidirOneForOneExtra(11)
+		fourFUnidirOneForOneNoextra(12)
+		oneForNUnidirExtra(13)
+		oneForNUnidirNoextra(14)
+		nFOneForNExtra(15)
+		sncpOnePlusOneProtect(16)
+		sncpOneForOneProtect(17)
+		oneByoneBidir(22)
+		oneByoneUnidir(23)
+		sncpOnePlusOneProtectBidir(24)
+		sncpOnePlusOneProtectUnidi(25)
+		sncpOneByOneProtectBidir(26)
+		sncpOneByOneProtectUnidi(27)
+		ringWrappingProtect(28)
+		ringSteeringProtect(29)
+		pwonePlusone2Send2RcvProtect(30)
+		pwonePlusone2Send1RcvProtect(31)
+		pwoneByone1Send2RcvProtect(32)
+		pwoneByone1Send1RcvProtect(33)
+		onePlusone2Send2RcvProtectBi(40)
+		onePlusone2Send1RcvProtectBi(41)
+		onePlusone2Send2RcvProtectUni(42)
+		onePlusone2Send1RcvProtectUni(43)
+		oneByone1Send2RcvProtectBi(44)
+		oneByone1Send1RcvProtectBi(45)
+		oneByone1Send2RcvProtectUni(46)
+		oneByone1Send1RcvProtectUni(47)
+		wdmMSLinearOnePlusOne(129)
+		wdmMSLinearOneForOne(130)
+		wdmCHLinearOnePlusOne(131)
+		wdmCHLinearOneForOne(132)
+		wdmMSTwosharering(133)
+		wdmCHTworingOneForOne(134)
+		wdmCHTworingOnePlusOne(135)
+		wdmCHTwosharering(136)
+		wdmCHOneForN(137)
+		wdmCHMForN(138)
+		boardOnePlusOne(204)
+		boardOneForN(205)
+		atmUnidirOnePlusOne(300)
+		atmBidirOnePlusOne(301)
+		atmOneForN(302)
+		mplsOnePlusOne(400)
+		mplsOneForN(401)
+		sncpRelated(402)
+		invalid(65534)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmSwitchReason&lt;/b>&lt;/td>&lt;td>
+	%parm[#24]%;&lt;/td>&lt;td>&lt;p>
+		na(1)
+		restored(2)
+		signalfailofw(3)
+		signalmismatch(4)
+		signaldegrade(5)
+		automaticswitch(6)
+		forceswitch(7)
+		exerciseswitch(8)
+		lockout(9)
+		manualswitch(10)
+		signalfailofp(11)
+		low(12)
+		dnr(13)
+		signaldegradeofp(14)
+		wtrTimerExpires(15)
+		mappingSwitchtoW(18)
+		mappingSwitchtoP(19)
+		invalid(65534)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmUlPrtGroupWrkStat&lt;/b>&lt;/td>&lt;td>
+	%parm[#25]%;&lt;/td>&lt;td>&lt;p>
+		switchToWork(1)
+		switchToProtect(2)
+		switchPointDelete(3)
+		sswitchToWork(4)
+		sswitchToProrect(5)
+		turnswitchToProtect(6)
+		retraceswitchToProtect(7)
+		switchToEclock(30)
+		switchToLclock(31)
+		switchToIclock(32)
+		switchToHoldclock(33)
+		switchToClock(34)
+		clockToLockstat(35)
+		clockToUnlockstat(36)
+		clockToCatchstat(37)
+		clockToTrackstat(38)
+		invalid(65534)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDTypeSwitchFrom&lt;/b>&lt;/td>&lt;td>
+	%parm[#26]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDSwitchFrom&lt;/b>&lt;/td>&lt;td>
+	%parm[#27]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDTypeSwitchTo&lt;/b>&lt;/td>&lt;td>
+	%parm[#28]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDSwitchTo&lt;/b>&lt;/td>&lt;td>
+	%parm[#29]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTimestamp&lt;/b>&lt;/td>&lt;td>
+	%parm[#30]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDLen&lt;/b>&lt;/td>&lt;td>
+	%parm[#31]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDLenSwitchFrom&lt;/b>&lt;/td>&lt;td>
+	%parm[#32]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmTPIDLenSwitchTo&lt;/b>&lt;/td>&lt;td>
+	%parm[#33]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmOccuredMs&lt;/b>&lt;/td>&lt;td>
+	%parm[#34]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmUpdatedMs&lt;/b>&lt;/td>&lt;td>
+	%parm[#35]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmDisappearedMs&lt;/b>&lt;/td>&lt;td>
+	%parm[#36]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmNeedConfirm&lt;/b>&lt;/td>&lt;td>
+	%parm[#37]%;&lt;/td>&lt;td>&lt;p>
+		need(1)
+		noNeed(2)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmParaVarBindList&lt;/b>&lt;/td>&lt;td>
+	%parm[#38]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	curAlarmName&lt;/b>&lt;/td>&lt;td>
+	%parm[#39]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	curAlarmTrap trap received
+	curAlarmFlowID=%parm[#1]%
+	curAlarmCode=%parm[#2]%
+	curAlarmClass=%parm[#3]%
+	curAlarmType=%parm[#4]%
+	curAlarmLevel=%parm[#5]%
+	curAlarmStatus=%parm[#6]%
+	curAlarmOccuredTime=%parm[#7]%
+	curAlarmDisappearedTime=%parm[#8]%
+	curAlarmTPIDType=%parm[#9]%
+	curAlarmTPID=%parm[#10]%
+	curAlarmParaType=%parm[#11]%
+	curAlarmParaValue=%parm[#12]%
+	curAlarmDescription=%parm[#13]%
+	curAlarmStdCode=%parm[#14]%
+	curAlarmComment=%parm[#15]%
+	curAlarmNetID=%parm[#16]%
+	curAlarmGlobalFlowID=%parm[#17]%
+	curAlarmUpdatedTime=%parm[#18]%
+	curAlarmThAlmPeriod=%parm[#19]%
+	curAlarmThAlmType=%parm[#20]%
+	curAlarmThPerfValue=%parm[#21]%
+	curAlarmReturnMode=%parm[#22]%
+	curAlarmProtectType=%parm[#23]%
+	curAlarmSwitchReason=%parm[#24]%
+	curAlarmUlPrtGroupWrkStat=%parm[#25]%
+	curAlarmTPIDTypeSwitchFrom=%parm[#26]%
+	curAlarmTPIDSwitchFrom=%parm[#27]%
+	curAlarmTPIDTypeSwitchTo=%parm[#28]%
+	curAlarmTPIDSwitchTo=%parm[#29]%
+	curAlarmTimestamp=%parm[#30]%
+	curAlarmTPIDLen=%parm[#31]%
+	curAlarmTPIDLenSwitchFrom=%parm[#32]%
+	curAlarmTPIDLenSwitchTo=%parm[#33]%
+	curAlarmOccuredMs=%parm[#34]%
+	curAlarmUpdatedMs=%parm[#35]%
+	curAlarmDisappearedMs=%parm[#36]%
+	curAlarmNeedConfirm=%parm[#37]%
+	curAlarmParaVarBindList=%parm[#38]%
+	curAlarmName=%parm[#39]%&lt;/p>
+	</logmsg>
+      <severity>Normal</severity>
+	  <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%:%parm[#3]%:%parm[#4]%" alarm-type="2" clear-key="uei.opennms.org/traps/ZXR10-ALARM-MIB/curAlarmTrapMinor:%dpname%:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%:%parm[#3]%:%parm[#4]%"/>
+      <varbindsdecode>
+         <parmid>parm[#3]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="commonAlarm"/>
+         <decode varbindvalue="2" varbinddecodedstring="digitalThresholdCrossingAlarm"/>
+         <decode varbindvalue="3" varbinddecodedstring="analogThresholdCrossingAlarm"/>
+         <decode varbindvalue="4" varbinddecodedstring="switchEvent"/>
+         <decode varbindvalue="5" varbinddecodedstring="commonEvent"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#4]</parmid>
+         <decode varbindvalue="0" varbinddecodedstring="atCommunicationsalarm"/>
+         <decode varbindvalue="1" varbinddecodedstring="atQosalarm"/>
+         <decode varbindvalue="2" varbinddecodedstring="atEquipmentalarm"/>
+         <decode varbindvalue="3" varbinddecodedstring="atProcessingerroralarm"/>
+         <decode varbindvalue="4" varbinddecodedstring="atEnvironmentalalarm"/>
+         <decode varbindvalue="255" varbinddecodedstring="atAll"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#5]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="emergency"/>
+         <decode varbindvalue="2" varbinddecodedstring="alert"/>
+         <decode varbindvalue="3" varbinddecodedstring="critical"/>
+         <decode varbindvalue="4" varbinddecodedstring="error"/>
+         <decode varbindvalue="5" varbinddecodedstring="warning"/>
+         <decode varbindvalue="6" varbinddecodedstring="notification"/>
+         <decode varbindvalue="7" varbinddecodedstring="information"/>
+         <decode varbindvalue="8" varbinddecodedstring="debugging"/>
+         <decode varbindvalue="9" varbinddecodedstring="invalid"/>
+         <decode varbindvalue="255" varbinddecodedstring="all"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#6]</parmid>
+         <decode varbindvalue="0" varbinddecodedstring="disappeared"/>
+         <decode varbindvalue="1" varbinddecodedstring="occured"/>
+         <decode varbindvalue="2" varbinddecodedstring="updated"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#19]</parmid>
+         <decode varbindvalue="5" varbinddecodedstring="fiveMinutes"/>
+         <decode varbindvalue="15" varbinddecodedstring="fifteenMinutes"/>
+         <decode varbindvalue="24" varbinddecodedstring="twentyFourHours"/>
+         <decode varbindvalue="254" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#20]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="highCrossing"/>
+         <decode varbindvalue="2" varbinddecodedstring="preHighCrossing"/>
+         <decode varbindvalue="3" varbinddecodedstring="preLowCrossing"/>
+         <decode varbindvalue="4" varbinddecodedstring="lowCrossing"/>
+         <decode varbindvalue="5" varbinddecodedstring="maxReferenceValueCrossing"/>
+         <decode varbindvalue="6" varbinddecodedstring="minReferenceValueCrossing"/>
+         <decode varbindvalue="254" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#22]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="return"/>
+         <decode varbindvalue="2" varbinddecodedstring="unreturn"/>
+         <decode varbindvalue="254" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#23]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="onePlusOneBidir"/>
+         <decode varbindvalue="2" varbinddecodedstring="fourFBidirOneForOneExtra"/>
+         <decode varbindvalue="3" varbinddecodedstring="fourFBidirOneForOneNoextrA"/>
+         <decode varbindvalue="4" varbinddecodedstring="twoFBlsrExtra"/>
+         <decode varbindvalue="5" varbinddecodedstring="twoFBlsrNoextra"/>
+         <decode varbindvalue="6" varbinddecodedstring="fourFBlsrNoextra"/>
+         <decode varbindvalue="7" varbinddecodedstring="fourFBlsrExtra"/>
+         <decode varbindvalue="8" varbinddecodedstring="oneForNMslinear"/>
+         <decode varbindvalue="9" varbinddecodedstring="twoFUnidirMsringNoextra"/>
+         <decode varbindvalue="10" varbinddecodedstring="onePlusoneUnidir"/>
+         <decode varbindvalue="11" varbinddecodedstring="fourFUnidirOneForOneExtra"/>
+         <decode varbindvalue="12" varbinddecodedstring="fourFUnidirOneForOneNoextra"/>
+         <decode varbindvalue="13" varbinddecodedstring="oneForNUnidirExtra"/>
+         <decode varbindvalue="14" varbinddecodedstring="oneForNUnidirNoextra"/>
+         <decode varbindvalue="15" varbinddecodedstring="nFOneForNExtra"/>
+         <decode varbindvalue="16" varbinddecodedstring="sncpOnePlusOneProtect"/>
+         <decode varbindvalue="17" varbinddecodedstring="sncpOneForOneProtect"/>
+         <decode varbindvalue="22" varbinddecodedstring="oneByoneBidir"/>
+         <decode varbindvalue="23" varbinddecodedstring="oneByoneUnidir"/>
+         <decode varbindvalue="24" varbinddecodedstring="sncpOnePlusOneProtectBidir"/>
+         <decode varbindvalue="25" varbinddecodedstring="sncpOnePlusOneProtectUnidi"/>
+         <decode varbindvalue="26" varbinddecodedstring="sncpOneByOneProtectBidir"/>
+         <decode varbindvalue="27" varbinddecodedstring="sncpOneByOneProtectUnidi"/>
+         <decode varbindvalue="28" varbinddecodedstring="ringWrappingProtect"/>
+         <decode varbindvalue="29" varbinddecodedstring="ringSteeringProtect"/>
+         <decode varbindvalue="30" varbinddecodedstring="pwonePlusone2Send2RcvProtect"/>
+         <decode varbindvalue="31" varbinddecodedstring="pwonePlusone2Send1RcvProtect"/>
+         <decode varbindvalue="32" varbinddecodedstring="pwoneByone1Send2RcvProtect"/>
+         <decode varbindvalue="33" varbinddecodedstring="pwoneByone1Send1RcvProtect"/>
+         <decode varbindvalue="40" varbinddecodedstring="onePlusone2Send2RcvProtectBi"/>
+         <decode varbindvalue="41" varbinddecodedstring="onePlusone2Send1RcvProtectBi"/>
+         <decode varbindvalue="42" varbinddecodedstring="onePlusone2Send2RcvProtectUni"/>
+         <decode varbindvalue="43" varbinddecodedstring="onePlusone2Send1RcvProtectUni"/>
+         <decode varbindvalue="44" varbinddecodedstring="oneByone1Send2RcvProtectBi"/>
+         <decode varbindvalue="45" varbinddecodedstring="oneByone1Send1RcvProtectBi"/>
+         <decode varbindvalue="46" varbinddecodedstring="oneByone1Send2RcvProtectUni"/>
+         <decode varbindvalue="47" varbinddecodedstring="oneByone1Send1RcvProtectUni"/>
+         <decode varbindvalue="129" varbinddecodedstring="wdmMSLinearOnePlusOne"/>
+         <decode varbindvalue="130" varbinddecodedstring="wdmMSLinearOneForOne"/>
+         <decode varbindvalue="131" varbinddecodedstring="wdmCHLinearOnePlusOne"/>
+         <decode varbindvalue="132" varbinddecodedstring="wdmCHLinearOneForOne"/>
+         <decode varbindvalue="133" varbinddecodedstring="wdmMSTwosharering"/>
+         <decode varbindvalue="134" varbinddecodedstring="wdmCHTworingOneForOne"/>
+         <decode varbindvalue="135" varbinddecodedstring="wdmCHTworingOnePlusOne"/>
+         <decode varbindvalue="136" varbinddecodedstring="wdmCHTwosharering"/>
+         <decode varbindvalue="137" varbinddecodedstring="wdmCHOneForN"/>
+         <decode varbindvalue="138" varbinddecodedstring="wdmCHMForN"/>
+         <decode varbindvalue="204" varbinddecodedstring="boardOnePlusOne"/>
+         <decode varbindvalue="205" varbinddecodedstring="boardOneForN"/>
+         <decode varbindvalue="300" varbinddecodedstring="atmUnidirOnePlusOne"/>
+         <decode varbindvalue="301" varbinddecodedstring="atmBidirOnePlusOne"/>
+         <decode varbindvalue="302" varbinddecodedstring="atmOneForN"/>
+         <decode varbindvalue="400" varbinddecodedstring="mplsOnePlusOne"/>
+         <decode varbindvalue="401" varbinddecodedstring="mplsOneForN"/>
+         <decode varbindvalue="402" varbinddecodedstring="sncpRelated"/>
+         <decode varbindvalue="65534" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#24]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="na"/>
+         <decode varbindvalue="2" varbinddecodedstring="restored"/>
+         <decode varbindvalue="3" varbinddecodedstring="signalfailofw"/>
+         <decode varbindvalue="4" varbinddecodedstring="signalmismatch"/>
+         <decode varbindvalue="5" varbinddecodedstring="signaldegrade"/>
+         <decode varbindvalue="6" varbinddecodedstring="automaticswitch"/>
+         <decode varbindvalue="7" varbinddecodedstring="forceswitch"/>
+         <decode varbindvalue="8" varbinddecodedstring="exerciseswitch"/>
+         <decode varbindvalue="9" varbinddecodedstring="lockout"/>
+         <decode varbindvalue="10" varbinddecodedstring="manualswitch"/>
+         <decode varbindvalue="11" varbinddecodedstring="signalfailofp"/>
+         <decode varbindvalue="12" varbinddecodedstring="low"/>
+         <decode varbindvalue="13" varbinddecodedstring="dnr"/>
+         <decode varbindvalue="14" varbinddecodedstring="signaldegradeofp"/>
+         <decode varbindvalue="15" varbinddecodedstring="wtrTimerExpires"/>
+         <decode varbindvalue="18" varbinddecodedstring="mappingSwitchtoW"/>
+         <decode varbindvalue="19" varbinddecodedstring="mappingSwitchtoP"/>
+         <decode varbindvalue="65534" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#25]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="switchToWork"/>
+         <decode varbindvalue="2" varbinddecodedstring="switchToProtect"/>
+         <decode varbindvalue="3" varbinddecodedstring="switchPointDelete"/>
+         <decode varbindvalue="4" varbinddecodedstring="sswitchToWork"/>
+         <decode varbindvalue="5" varbinddecodedstring="sswitchToProrect"/>
+         <decode varbindvalue="6" varbinddecodedstring="turnswitchToProtect"/>
+         <decode varbindvalue="7" varbinddecodedstring="retraceswitchToProtect"/>
+         <decode varbindvalue="30" varbinddecodedstring="switchToEclock"/>
+         <decode varbindvalue="31" varbinddecodedstring="switchToLclock"/>
+         <decode varbindvalue="32" varbinddecodedstring="switchToIclock"/>
+         <decode varbindvalue="33" varbinddecodedstring="switchToHoldclock"/>
+         <decode varbindvalue="34" varbinddecodedstring="switchToClock"/>
+         <decode varbindvalue="35" varbinddecodedstring="clockToLockstat"/>
+         <decode varbindvalue="36" varbinddecodedstring="clockToUnlockstat"/>
+         <decode varbindvalue="37" varbinddecodedstring="clockToCatchstat"/>
+         <decode varbindvalue="38" varbinddecodedstring="clockToTrackstat"/>
+         <decode varbindvalue="65534" varbinddecodedstring="invalid"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#37]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="need"/>
+         <decode varbindvalue="2" varbinddecodedstring="noNeed"/>
+      </varbindsdecode>
+   </event>
+
     <!-- Warning Traps + Problem alarm-type-->
 	<event>
       <mask>
@@ -2172,8 +3798,8 @@
       </varbindsdecode>
    </event>
 
-	<!-- Normal Traps + Resolver alarm-type-->
-	<event>
+   <!-- Clear Warning Traps -->
+   <event>
       <mask>
          <maskelement>
             <mename>id</mename>
@@ -2187,16 +3813,18 @@
             <mename>specific</mename>
             <mevalue>1</mevalue>
          </maskelement>
+		 <!-- Filter for when parm[#5] = information -->
 		 <varbind>
 			<vbnumber>5</vbnumber>
 			<vbvalue>7</vbvalue>
 		 </varbind>
+		 <!-- Filter for when parm[#6] = disappeared -->
 		 <varbind>
 			<vbnumber>6</vbnumber>
 			<vbvalue>0</vbvalue>
 		 </varbind>
       </mask>
-      <uei>uei.opennms.org/traps/ZXR10-ALARM-MIB/curAlarmTrapNormal</uei>
+      <uei>uei.opennms.org/traps/ZXR10-ALARM-MIB/curAlarmTrapWarningrClr</uei>
       <event-label>ZXR10-ALARM-MIB defined trap event: curAlarmTrap</event-label>
       <descr>
 &lt;p>When an alarm occurred, &#xd;
@@ -2545,7 +4173,7 @@
 	curAlarmName=%parm[#39]%&lt;/p>
 	</logmsg>
       <severity>Normal</severity>
-	  <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%:%parm[#3]%:%parm[#4]%" alarm-type="1" auto-clean="false"/>
+	  <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%:%parm[#3]%:%parm[#4]%" alarm-type="2" clear-key="uei.opennms.org/traps/ZXR10-ALARM-MIB/curAlarmTrapWarning:%dpname%:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%:%parm[#3]%:%parm[#4]%"/>
       <varbindsdecode>
          <parmid>parm[#3]</parmid>
          <decode varbindvalue="1" varbinddecodedstring="commonAlarm"/>
