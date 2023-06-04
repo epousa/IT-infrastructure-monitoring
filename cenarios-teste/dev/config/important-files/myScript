@@ -3,6 +3,7 @@
 # . config -> env variables Host ip, credentials etc
 # uei cannot be the same as the original event oreslse it will trigger a infinite loop
 # add donotpersist or logonly to dest logmsg of the original event. This away only the improved event will be displayed 
+# send events through the REST API or through send-event.pl script. One could be the fallback.
 # -----------------
 curl -u admin:admin \
 -X POST \
