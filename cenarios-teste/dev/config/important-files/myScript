@@ -1,5 +1,9 @@
 #!/bin/bash
-# . config env
+# ----- notes -----
+# . config -> env variables Host ip, credentials etc
+# uei cannot be the same as the original event oreslse it will trigger a infinite loop
+# add donotpersist or logonly to dest logmsg of the original event. This away only the improved event will be displayed 
+# -----------------
 curl -u admin:admin \
 -X POST \
 -d "<event><uei>uei.foo.bar</uei><interface>192.168.1.30</interface><source></source><nodeid>1</nodeid><descr>something</descr><logmsg>$1</logmsg><severity>$2</severity></event>" \
