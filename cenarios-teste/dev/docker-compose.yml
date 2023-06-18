@@ -48,7 +48,6 @@ services:
       - ./config/env/broker.env
     networks:
       - monitoring
-
   grafana:
     image: opennms/helm:latest
     container_name: grafana
@@ -66,18 +65,24 @@ services:
       - monitoring
     ports:
       - "3000:3000"
-
-  # elasticsearch:
-  #   container_name: elasticsearch
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
-  #   environment:
-  #     xpack.security.enabled: "false"
-  #     discovery.type: "single-node"
-  #   volumes:
-  #     - ./mount-volumes/volume-elasticsearch:/usr/share/elasticsearch/data
-  #   networks:
-  #     - monitoring
-  #   ports:
-  #     - 9200:9200
+  es01:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
+    environment:
+      node.name=es01
+      cluster.name=es
+      bootstrap.memory_lock=true
+      "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      discovery.type=single-node 
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # volumes:
+    #   - ./mount-volumes/volume-elasticsearch:/usr/share/elasticsearch/data
+    networks:
+      - monitoring
+    ports:
+      - 9200:9200
 
 
