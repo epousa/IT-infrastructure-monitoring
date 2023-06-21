@@ -32,16 +32,16 @@
  import java.util.Objects;
  import java.util.Optional;
  import java.util.stream.Collectors;
- 
+
  import org.opennms.core.utils.InetAddressUtils;
  import org.opennms.netmgt.model.OnmsSeverity;
  import org.opennms.netmgt.model.events.EventBuilder;
  import org.opennms.netmgt.xml.event.Event;
  import org.slf4j.Logger;
  import org.slf4j.LoggerFactory;
- 
+
  import com.google.common.base.Strings;
- 
+
  //imports needed for xml parser
  import javax.xml.stream.XMLEventReader;
  import java.io.StringReader;
@@ -57,10 +57,10 @@
  import java.text.SimpleDateFormat;
  import java.util.ArrayList;
  import java.util.Date;
- 
+
  //imports needed to turn a event into an alarm
  import org.opennms.netmgt.xml.event.AlarmData;
- 
+
  //imports needed to access opennms postgres database
  import java.sql.Connection;
  import java.sql.DriverManager;
@@ -69,13 +69,13 @@
  import java.sql.SQLException;
 
  public class EventsMapper{
-    
+
      //Logger variable
      private static final Logger LOG = LoggerFactory.getLogger(EventsMapper.class);
 
      //To handle each parameter of the xml event
      private static final Map<String, Consumer<XMLEvent>> handlers = new HashMap<>();
-    
+
      //Variables needed for xml event parser logic
      private static final XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
      private static EventBuilder opennms_event;
@@ -84,13 +84,13 @@
      //Variables needed to set the raised event time
      private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
      private static Date date;
-     
+
      //Variables needed for accessing opennms postgres database
      private static final String jdbcUrl = "jdbc:postgresql://localhost:5432/opennms";
      private static final String username = "opennms";
      private static final String password = "opennms";
      private static final String query = "SELECT nodeid FROM node WHERE nodelabel = ?";
-     
+
      private static String uei_foundation = "uei.opennms.org/vendor/nokia/";
 
      //Handlers implementation
@@ -102,39 +102,53 @@
         });
 
         //handlers.put("idalarm", handlers.get("alarm-id"));
-        handlers.put("alarmNotificationOrigin", event -> {
-           opennms_event.setSource("Default");
-           // LOG.info(event.asCharacters().getData());
-        });
+        // handlers.put("alarmNotificationOrigin", event -> {
+        //    opennms_event.setSource("Default");
+        //    // LOG.info(event.asCharacters().getData());
+        // });
 
-        handlers.put("alarmResource", event -> {
-           // LOG.info(event.asCharacters().getData());
-        });
+        // handlers.put("alarmResource", event -> {
+        //    // LOG.info(event.asCharacters().getData());
+        // });
 
         handlers.put("alarmResourceUiName", event -> {
             //Set event UEI as uei.opennms.org/vendor/nokia/{alarmResourceUiName}
-            opennms_event.setUei(uei_foundation+event.asCharacters().getData().replaceAll(" ", "/"));
+            opennms_event.setUei(uei_foundation+(event.asCharacters()).getData().replaceAll(" ", "/"));
+            opennms_event.setSource("Default");
             // LOG.info(event.asCharacters().getData());
         });
 
         handlers.put("alarmSeverity", event -> {
             //severity
-            opennms_event.setSeverity(OnmsSeverity.get(event.asCharacters().getData()).getLabel());
+            if (event.isCharacters() && (event.asCharacters().getData().equalsIgnoreCase("Major")
+                    || event.asCharacters().getData().equalsIgnoreCase("Minor")
+                    || event.asCharacters().getData().equalsIgnoreCase("Critical")
+                    || event.asCharacters().getData().equalsIgnoreCase("Warning"))) {
+                opennms_event.setSeverity(OnmsSeverity.get(event.asCharacters().getData()).getLabel());
+            } else {
+                opennms_event.setSeverity(OnmsSeverity.get("Indeterminate").getLabel());
+            }
         });
+
 
         handlers.put("alarmStatus", event -> {
             //Set auto clean to false
             alarmData.setAutoClean(false);
 
-            if(event.asCharacters().getData().equalsIgnoreCase("Active")){
-                alarmData.setAlarmType(1);
-            }else if(event.asCharacters().getData().equalsIgnoreCase("Inactive")){
-                alarmData.setAlarmType(2);
-
-                //Set clear key as reduction key of the problem
-                alarmData.setClearKey(alarmData.getReductionKey());
+            switch(event.asCharacters().getData()){
+                case "Active":
+                    alarmData.setAlarmType(1);
+                    break;
+                case "Cleared":
+                    opennms_event.setSeverity(OnmsSeverity.get("Normal").getLabel());
+                    alarmData.setAlarmType(2);
+                    //Set clear key as reduction key of the problem
+                    alarmData.setClearKey(alarmData.getReductionKey());
+                    break;
+                default:
+                    //To guarantee that every status generates a type of alarm
+                    alarmData.setAlarmType(3);
             }
-            // LOG.info(event.asCharacters().getData());
 
             opennms_event.setAlarmData(alarmData);
         });
@@ -149,14 +163,18 @@
         // });
         // handlers.put("alarmText", event -> LOG.info(event.asCharacters().getData()));
 
-        handlers.put("alarmType", event -> {
-           // LOG.info(event.asCharacters().getData());
-        });
+        // handlers.put("alarmType", event -> {
+        //    // LOG.info(event.asCharacters().getData());
+        // });
 
         handlers.put("alarmTypeId", event -> {
-           //logMessage
-           opennms_event.setLogDest("logndisplay");
-           getString(event.asCharacters().getData()).ifPresent(opennms_event::setLogMessage);
+            //logMessage
+            opennms_event.setLogDest("logndisplay");
+            if (event.isCharacters()) {
+                opennms_event.setLogMessage(event.asCharacters().getData());
+            }else{
+                opennms_event.setLogMessage("No Log Message to display");
+            }
         });
 
         // handlers.put("customField1", event -> LOG.info(event.asCharacters().getData()));
@@ -164,44 +182,51 @@
         // handlers.put("customField3", event -> LOG.info(event.asCharacters().getData()));
 
         handlers.put("deviceRefId", event -> {
-           try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)) {
-               String query = "SELECT nodeid FROM node WHERE nodelabel = ?";
-               PreparedStatement pstmt = conn.prepareStatement(query);
-               pstmt.setString(1, event.asCharacters().getData());
-               ResultSet rs = pstmt.executeQuery();
-               while (rs.next()) {
-                   // LOG.info("Node ID: " + rs.getInt("nodeid"));
-                   opennms_event.setNodeid(rs.getInt("nodeid"));
-               }
-           } catch (SQLException e) {
-               e.printStackTrace();
-           }
-           
+            if (event.isCharacters()) {
+                try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)) {
+                    // String query = "SELECT nodeid FROM node WHERE nodelabel = ?";
+                    PreparedStatement pstmt = conn.prepareStatement(query);
+                    pstmt.setString(1, event.asCharacters().getData());
+                    ResultSet rs = pstmt.executeQuery();
+                    while (rs.next()) {
+                        opennms_event.setNodeid(rs.getInt("nodeid"));
+                    }
+                    //To avoid org.postgresql.util.PSQLException: FATAL: sorry, too many clients already
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
            // LOG.info(event.asCharacters().getData());
         });
 
-        handlers.put("eventType", event -> {
-           // LOG.info(event.asCharacters().getData());
-        });
+        // handlers.put("eventType", event -> {
+        //    // LOG.info(event.asCharacters().getData());
+        // });
 
-        handlers.put("lastStatusChangeTime", event -> {
-            
-           // LOG.info(event.asCharacters().getData());
-        });
+        // handlers.put("lastStatusChangeTime", event -> {
+
+        //    // LOG.info(event.asCharacters().getData());
+        // });
 
         handlers.put("neIpAddress", event -> {
-           //ip address.
-           getString(event.asCharacters().getData()).ifPresent(ip -> opennms_event.setInterface(InetAddressUtils.getInetAddress(ip)));
-           
+            //ip address.
+            if (event.isCharacters()) {
+                opennms_event.setInterface(InetAddressUtils.getInetAddress(event.asCharacters().getData()));
+            }
         });
 
-        handlers.put("objectId", event -> {
-           //LOG.info(event.asCharacters().getData());
-        });
+        // handlers.put("objectId", event -> {
+        //    //LOG.info(event.asCharacters().getData());
+        // });
 
         handlers.put("proposedRepairAction", event -> {
             //description
-            getString(event.asCharacters().getData()).ifPresent(opennms_event::setDescription);
+            if (event.isCharacters()) {
+                opennms_event.setDescription(event.asCharacters().getData());
+            }else{
+                opennms_event.setDescription("No Description to display");
+            }
         });
 
         handlers.put("raisedTime", event -> {
@@ -211,21 +236,20 @@
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-           
         });
 
-        handlers.put("serviceAffecting", event -> {
-           // LOG.info(event.asCharacters().getData());
-        });
+        // handlers.put("serviceAffecting", event -> {
+        //    // LOG.info(event.asCharacters().getData());
+        // });
 
-        handlers.put("tl1Cause", event -> {
-           // LOG.info(event.asCharacters().getData());
-        });
+        // handlers.put("tl1Cause", event -> {
+        //    // LOG.info(event.asCharacters().getData());
+        // });
     }
- 
+
      //Function to parse xml events
      public static Event toEventXml(ConsumerRecord<String, String> record) throws XMLStreamException{
- 
+
          XMLEventReader xmlEventReader = xmlInputFactory.createXMLEventReader(new StringReader(record.value()));
          opennms_event = new EventBuilder();
          alarmData = new AlarmData();
@@ -245,7 +269,7 @@
          }
          return opennms_event.getEvent();
      }
-    
+
      //Function to parse protobuf events
      public static Event toEvent(EventsProto.Event pbEvent) {
          if (Strings.isNullOrEmpty(pbEvent.getUei())) {
@@ -276,12 +300,12 @@
          }
          return builder.getEvent();
      }
-     
+
      //Function to parse protobuf events
      public static List<Event> mapProtobufToEvents(List<EventsProto.Event> pbEvents) {
          return pbEvents.stream().map(EventsMapper::toEvent).filter(Objects::nonNull).collect(Collectors.toList());
      }
-     
+
      //Aux function to detect if a parameter is null or not
      private static Optional<String> getString(String value) {
          if (!Strings.isNullOrEmpty(value)) {
@@ -290,4 +314,4 @@
          return Optional.empty();
      }
  }
- 
+
