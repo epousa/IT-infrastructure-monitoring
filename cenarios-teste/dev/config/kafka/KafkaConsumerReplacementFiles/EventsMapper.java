@@ -97,7 +97,7 @@
      static{
         handlers.put("alarm-id", event -> {
            //Set alarm reduction key as {alarm-id}
-           alarmData.setReductionKey(event.asCharacters().getData());
+           alarmData.setReductionKey(uei_foundation+event.asCharacters().getData());
            //LOG.info(event.asCharacters().getData());
         });
 
