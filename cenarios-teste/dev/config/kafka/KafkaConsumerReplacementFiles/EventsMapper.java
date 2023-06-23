@@ -45,8 +45,6 @@
  //imports needed for xml parser
  import javax.xml.stream.XMLEventReader;
  import java.io.StringReader;
- import java.util.HashMap;
- import java.util.Map;
  import java.util.function.Consumer;
  import javax.xml.stream.XMLInputFactory;
  import javax.xml.stream.XMLStreamException;
@@ -73,9 +71,6 @@
      //Logger variable
      private static final Logger LOG = LoggerFactory.getLogger(EventsMapper.class);
 
-     //To handle each parameter of the xml event
-     private static final Map<String, Consumer<XMLEvent>> handlers = new HashMap<>();
-
      //Variables needed for xml event parser logic
      private static final XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
      private static EventBuilder opennms_event;
@@ -91,161 +86,10 @@
      private static final String password = "opennms";
      private static final String query = "SELECT nodeid FROM node WHERE nodelabel = ?";
 
-     private static String uei_foundation = "uei.opennms.org/vendor/nokia/";
-
-     //Handlers implementation
-     static{
-        handlers.put("alarm-id", event -> {
-           //Set alarm reduction key as {alarm-id}
-           alarmData.setReductionKey(uei_foundation+event.asCharacters().getData());
-           //LOG.info(event.asCharacters().getData());
-        });
-
-        //handlers.put("idalarm", handlers.get("alarm-id"));
-        // handlers.put("alarmNotificationOrigin", event -> {
-        //    opennms_event.setSource("Default");
-        //    // LOG.info(event.asCharacters().getData());
-        // });
-
-        // handlers.put("alarmResource", event -> {
-        //    // LOG.info(event.asCharacters().getData());
-        // });
-
-        handlers.put("alarmResourceUiName", event -> {
-            //Set event UEI as uei.opennms.org/vendor/nokia/{alarmResourceUiName}
-            opennms_event.setUei(uei_foundation+(event.asCharacters()).getData().replaceAll(" ", "/"));
-            opennms_event.setSource("Default");
-            // LOG.info(event.asCharacters().getData());
-        });
-
-        handlers.put("alarmSeverity", event -> {
-            //severity
-            if (event.isCharacters() && (event.asCharacters().getData().equalsIgnoreCase("Major")
-                    || event.asCharacters().getData().equalsIgnoreCase("Minor")
-                    || event.asCharacters().getData().equalsIgnoreCase("Critical")
-                    || event.asCharacters().getData().equalsIgnoreCase("Warning"))) {
-                opennms_event.setSeverity(OnmsSeverity.get(event.asCharacters().getData()).getLabel());
-            } else {
-                opennms_event.setSeverity(OnmsSeverity.get("Indeterminate").getLabel());
-            }
-        });
-
-
-        handlers.put("alarmStatus", event -> {
-            //Set auto clean to false
-            alarmData.setAutoClean(false);
-
-            switch(event.asCharacters().getData()){
-                case "Active":
-                    alarmData.setAlarmType(1);
-                    break;
-                case "Cleared":
-                    opennms_event.setSeverity(OnmsSeverity.get("Normal").getLabel());
-                    alarmData.setAlarmType(2);
-                    //Set clear key as reduction key of the problem
-                    alarmData.setClearKey(alarmData.getReductionKey());
-                    break;
-                default:
-                    //To guarantee that every status generates a type of alarm
-                    alarmData.setAlarmType(3);
-            }
-
-            opennms_event.setAlarmData(alarmData);
-        });
-
-        // handlers.put("alarmText", event -> {
-        //     if (event.isCharacters()) {
-        //         String data = event.asCharacters().getData();
-        //         if (!data.trim().isEmpty()) {
-        //             LOG.info(" {}", data);
-        //         }
-        //     }
-        // });
-        // handlers.put("alarmText", event -> LOG.info(event.asCharacters().getData()));
-
-        // handlers.put("alarmType", event -> {
-        //    // LOG.info(event.asCharacters().getData());
-        // });
-
-        handlers.put("alarmTypeId", event -> {
-            //logMessage
-            opennms_event.setLogDest("logndisplay");
-            if (event.isCharacters()) {
-                opennms_event.setLogMessage(event.asCharacters().getData());
-            }else{
-                opennms_event.setLogMessage("No Log Message to display");
-            }
-        });
-
-        // handlers.put("customField1", event -> LOG.info(event.asCharacters().getData()));
-        // handlers.put("customField2", event -> LOG.info(event.asCharacters().getData()));
-        // handlers.put("customField3", event -> LOG.info(event.asCharacters().getData()));
-
-        handlers.put("deviceRefId", event -> {
-            if (event.isCharacters()) {
-                try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)) {
-                    // String query = "SELECT nodeid FROM node WHERE nodelabel = ?";
-                    PreparedStatement pstmt = conn.prepareStatement(query);
-                    pstmt.setString(1, event.asCharacters().getData());
-                    ResultSet rs = pstmt.executeQuery();
-                    while (rs.next()) {
-                        opennms_event.setNodeid(rs.getInt("nodeid"));
-                    }
-                    //To avoid org.postgresql.util.PSQLException: FATAL: sorry, too many clients already
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-           // LOG.info(event.asCharacters().getData());
-        });
-
-        // handlers.put("eventType", event -> {
-        //    // LOG.info(event.asCharacters().getData());
-        // });
-
-        // handlers.put("lastStatusChangeTime", event -> {
-
-        //    // LOG.info(event.asCharacters().getData());
-        // });
-
-        handlers.put("neIpAddress", event -> {
-            //ip address.
-            if (event.isCharacters()) {
-                opennms_event.setInterface(InetAddressUtils.getInetAddress(event.asCharacters().getData()));
-            }
-        });
-
-        // handlers.put("objectId", event -> {
-        //    //LOG.info(event.asCharacters().getData());
-        // });
-
-        handlers.put("proposedRepairAction", event -> {
-            //description
-            if (event.isCharacters()) {
-                opennms_event.setDescription(event.asCharacters().getData());
-            }else{
-                opennms_event.setDescription("No Description to display");
-            }
-        });
-
-        handlers.put("raisedTime", event -> {
-            try {
-               opennms_event.setTime(dateFormat.parse(event.asCharacters().getData()));
-               //LOG.info(event.asCharacters().getData());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        });
-
-        // handlers.put("serviceAffecting", event -> {
-        //    // LOG.info(event.asCharacters().getData());
-        // });
-
-        // handlers.put("tl1Cause", event -> {
-        //    // LOG.info(event.asCharacters().getData());
-        // });
-    }
+     private static final String uei_foundation = "uei.opennms.org/vendor/nokia/";
+     private static String alarm_id = "";
+     private static String uei = "";
+     private static StringBuilder description;
 
      //Function to parse xml events
      public static Event toEventXml(ConsumerRecord<String, String> record) throws XMLStreamException{
@@ -253,18 +97,163 @@
          XMLEventReader xmlEventReader = xmlInputFactory.createXMLEventReader(new StringReader(record.value()));
          opennms_event = new EventBuilder();
          alarmData = new AlarmData();
+         description = new StringBuilder();
 
          while(xmlEventReader.hasNext()) {
-             XMLEvent event = xmlEventReader.nextEvent();
-             if (event.isStartElement()) {
-                 StartElement startElement = event.asStartElement();
-                 String elementName = startElement.getName().getLocalPart();
-                 Consumer<XMLEvent> handler = handlers.get(elementName);
-                 if (handler != null) {
-                     handler.accept(xmlEventReader.nextEvent());
-                 }
-             }else if (event.isEndElement() && event.asEndElement().getName().getLocalPart().equals("alarms")) {
-                 LOG.info("---- finished parsing ------");
+             XMLEvent nextEvent = xmlEventReader.nextEvent();
+             
+             if (nextEvent.isStartElement()) {
+                StartElement startElement = nextEvent.asStartElement();
+                String elementName = startElement.getName().getLocalPart();
+
+                switch(elementName){
+                    case "alarm-id":
+                        nextEvent = xmlEventReader.nextEvent(); 
+                        //Set alarm reduction key as {alarm-id}
+                        if (nextEvent.isCharacters()) {
+                            alarm_id = nextEvent.asCharacters().getData();
+                            break;
+                        }else{
+                            LOG.warn("Event will not be forwarded, `alarm-id` is required field, skipped Event");
+                            return null;
+                        }
+
+                    case "alarmResourceUiName":
+                        nextEvent = xmlEventReader.nextEvent();
+                        //Set event UEI as uei.opennms.org/vendor/nokia/{alarmResourceUiName}
+                        if (nextEvent.isCharacters()) {
+                            uei = uei_foundation+nextEvent.asCharacters().getData().replaceAll(" ", "/");
+                            
+                            opennms_event.setUei(uei);
+                            alarmData.setReductionKey(uei+":"+alarm_id);
+                            opennms_event.setSource("Default");
+                            break;
+                        }else{
+                            LOG.warn("Event will not be forwarded, `uei` is required field, skipped Event");
+                            return null;
+                        }
+
+                    case "alarmSeverity":
+                        //severity
+                        nextEvent = xmlEventReader.nextEvent();
+                        if (nextEvent.isCharacters() && (nextEvent.asCharacters().getData().equalsIgnoreCase("Major")
+                                                || nextEvent.asCharacters().getData().equalsIgnoreCase("Minor")
+                                                || nextEvent.asCharacters().getData().equalsIgnoreCase("Critical")
+                                                || nextEvent.asCharacters().getData().equalsIgnoreCase("Warning")
+                                                || nextEvent.asCharacters().getData().equalsIgnoreCase("Normal")
+                                                || nextEvent.asCharacters().getData().equalsIgnoreCase("Cleared"))){
+                            opennms_event.setSeverity(OnmsSeverity.get(nextEvent.asCharacters().getData()).getLabel());
+                        } else {
+                            opennms_event.setSeverity(OnmsSeverity.get("Indeterminate").getLabel());
+                        }
+                        break;
+
+                    case "alarmStatus":
+                        nextEvent = xmlEventReader.nextEvent();
+                        if (nextEvent.isCharacters()) {
+                            //Set auto clean to false
+                            alarmData.setAutoClean(false);
+
+                            if(nextEvent.asCharacters().getData().equalsIgnoreCase("Active")){
+                                alarmData.setAlarmType(1);
+                            }else if (nextEvent.asCharacters().getData().equalsIgnoreCase("Cleared")){
+                                opennms_event.setSeverity(OnmsSeverity.get("Normal").getLabel());
+                                alarmData.setAlarmType(2);
+                                //Set clear key as reduction key of the problem
+                                alarmData.setClearKey(alarmData.getReductionKey());
+                            }else{
+                                alarmData.setAlarmType(3);
+                            }
+
+                        }else{
+                            alarmData.setAlarmType(3);
+                        }
+                        opennms_event.setAlarmData(alarmData);
+                        break;
+
+                    case "alarmTypeId":
+                        //logMessage
+                        nextEvent = xmlEventReader.nextEvent();
+                        opennms_event.setLogDest("logndisplay");
+                        if (nextEvent.isCharacters()) {
+                            opennms_event.setLogMessage(nextEvent.asCharacters().getData());
+                        }else{
+                            opennms_event.setLogMessage("No Log Message to display");
+                        }
+                        break;
+
+                    case "deviceRefId":
+                        nextEvent = xmlEventReader.nextEvent();
+                        if (nextEvent.isCharacters()) {
+                            try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)) {
+                                // String query = "SELECT nodeid FROM node WHERE nodelabel = ?";
+                                PreparedStatement pstmt = conn.prepareStatement(query);
+                                pstmt.setString(1, nextEvent.asCharacters().getData());
+                                ResultSet rs = pstmt.executeQuery();
+                                while (rs.next()) {
+                                    opennms_event.setNodeid(rs.getInt("nodeid"));
+                                }
+                                //To avoid org.postgresql.util.PSQLException: FATAL: sorry, too many clients already
+                                conn.close();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        break;
+
+                    case "neIpAddress":
+                        //ip address.
+                        nextEvent = xmlEventReader.nextEvent();
+                        if (nextEvent.isCharacters()) {
+                            opennms_event.setInterface(InetAddressUtils.getInetAddress(nextEvent.asCharacters().getData()));
+                        }
+                        break;
+
+                    case "proposedRepairAction":
+                        //Operation Instructions
+                        nextEvent = xmlEventReader.nextEvent();
+                        if (nextEvent.isCharacters()) {
+                            opennms_event.setOperationInstructions(nextEvent.asCharacters().getData());
+                        }else{
+                            opennms_event.setOperationInstructions("No Instructions to display");
+                        }
+                        break;
+                    
+                    case "alarmNotificationOrigin":
+                    case "alarmResource":
+                    case "alarmText":
+                    case "durationOpen":
+                    case "eventType":
+                    case "objectId":
+                    case "serviceAffecting":
+                        nextEvent = xmlEventReader.nextEvent();
+                        if (nextEvent.isCharacters()) {
+                            description.append(elementName).append(": ").append(nextEvent.asCharacters().getData()).append(System.lineSeparator());
+                        }
+                        break;
+
+                    case "tl1Cause":
+                        nextEvent = xmlEventReader.nextEvent();
+                        if (nextEvent.isCharacters()) {
+                            description.append(elementName).append(": ").append(nextEvent.asCharacters().getData());
+                            opennms_event.setDescription(description.toString());
+                        }
+                        break;  
+                       
+                    case "raisedTime":
+                        nextEvent = xmlEventReader.nextEvent();
+                        if(nextEvent.isCharacters()){
+                            try {
+                                opennms_event.setTime(dateFormat.parse(nextEvent.asCharacters().getData()));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            LOG.warn("Event will not be forwarded, `raised time` is required field, skipped Event");
+                            return null;
+                        }
+                        break;        
+                }
              }
          }
          return opennms_event.getEvent();
