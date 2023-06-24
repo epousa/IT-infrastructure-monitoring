@@ -197,6 +197,7 @@
                      try {
                         Event parsed_event = EventsMapper.toEventXml(record);
                         if(parsed_event != null){
+                            //To avoid NullPointerException
                             opennms_events.add(parsed_event);
                         }else{
                             LOG.warn("Invalid Event. Missing Parameters. Wont be in parsed event list");    
@@ -206,6 +207,7 @@
                      }
                  }  
                  if(!opennms_events.isEmpty()){
+                    //Only sends if there are parsed events in the list
                     forwardEventsToOpenNMS(opennms_events);
                  }else{
                     LOG.warn("Empty parsed events list. Not sending anything");
