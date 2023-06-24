@@ -71,33 +71,26 @@
      //Logger variable
      private static final Logger LOG = LoggerFactory.getLogger(EventsMapper.class);
 
-     //Variables needed for xml event parser logic
-     private static final XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-     private static EventBuilder opennms_event;
-     private static AlarmData alarmData;
-
-     //Variables needed to set the raised event time
-     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-     private static Date date;
-
-     //Variables needed for accessing opennms postgres database
-     private static final String jdbcUrl = "jdbc:postgresql://localhost:5432/opennms";
-     private static final String username = "opennms";
-     private static final String password = "opennms";
-     private static final String query = "SELECT nodeid FROM node WHERE nodelabel = ?";
-
-     private static final String uei_foundation = "uei.opennms.org/vendor/nokia/";
-     private static String alarm_id = "";
-     private static String uei = "";
-     private static StringBuilder description;
-
      //Function to parse xml events
      public static Event toEventXml(ConsumerRecord<String, String> record) throws XMLStreamException{
 
+         //Variables needed for xml event parser logic
+         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
          XMLEventReader xmlEventReader = xmlInputFactory.createXMLEventReader(new StringReader(record.value()));
-         opennms_event = new EventBuilder();
-         alarmData = new AlarmData();
-         description = new StringBuilder();
+
+         //Variables needed to set the event time
+         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+         Date date = new Date();
+
+         EventBuilder opennms_event = new EventBuilder();
+         AlarmData alarmData = new AlarmData();
+         StringBuilder description = new StringBuilder();
+
+         String uei_foundation = "uei.opennms.org/vendor/nokia/";
+         StringBuilder uei = new StringBuilder();
+         String alarm_id = new String();
+         boolean flag = false;
+
 
          while(xmlEventReader.hasNext()) {
              XMLEvent nextEvent = xmlEventReader.nextEvent();
@@ -122,10 +115,10 @@
                         nextEvent = xmlEventReader.nextEvent();
                         //Set event UEI as uei.opennms.org/vendor/nokia/{alarmResourceUiName}
                         if (nextEvent.isCharacters()) {
-                            uei = uei_foundation+nextEvent.asCharacters().getData().replaceAll(" ", "/");
+                            uei.append(uei_foundation).append(nextEvent.asCharacters().getData().replaceAll(" ", "/"));
                             
-                            opennms_event.setUei(uei);
-                            alarmData.setReductionKey(uei+":"+alarm_id);
+                            opennms_event.setUei(uei.toString());
+                            alarmData.setReductionKey(uei.append(":").append(alarm_id).toString());
                             opennms_event.setSource("Default");
                             break;
                         }else{
@@ -185,9 +178,9 @@
                     case "deviceRefId":
                         nextEvent = xmlEventReader.nextEvent();
                         if (nextEvent.isCharacters()) {
-                            try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)) {
-                                // String query = "SELECT nodeid FROM node WHERE nodelabel = ?";
-                                PreparedStatement pstmt = conn.prepareStatement(query);
+                            //Variables needed for accessing opennms postgres database
+                            try (Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/opennms", "opennms", "opennms")) {
+                                PreparedStatement pstmt = conn.prepareStatement("SELECT nodeid FROM node WHERE nodelabel = ?");
                                 pstmt.setString(1, nextEvent.asCharacters().getData());
                                 ResultSet rs = pstmt.executeQuery();
                                 while (rs.next()) {
@@ -228,30 +221,48 @@
                     case "serviceAffecting":
                         nextEvent = xmlEventReader.nextEvent();
                         if (nextEvent.isCharacters()) {
-                            description.append(elementName).append(": ").append(nextEvent.asCharacters().getData()).append(System.lineSeparator());
+                            description.append(elementName).append(": ").append(nextEvent.asCharacters().getData()).append("; ");
                         }
                         break;
 
                     case "tl1Cause":
                         nextEvent = xmlEventReader.nextEvent();
                         if (nextEvent.isCharacters()) {
-                            description.append(elementName).append(": ").append(nextEvent.asCharacters().getData());
+                            description.append(elementName).append(": ").append(nextEvent.asCharacters().getData()).append(";");
                             opennms_event.setDescription(description.toString());
                         }
                         break;  
-                       
-                    case "raisedTime":
+                
+                    case "clearedTime":  
                         nextEvent = xmlEventReader.nextEvent();
                         if(nextEvent.isCharacters()){
                             try {
                                 opennms_event.setTime(dateFormat.parse(nextEvent.asCharacters().getData()));
+                                flag = true;
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
                         }else{
-                            LOG.warn("Event will not be forwarded, `raised time` is required field, skipped Event");
+                            LOG.warn("Event will not be forwarded, `cleared time` is required field, skipped Event");
                             return null;
                         }
+                        break;
+
+                    case "raisedTime":
+                        nextEvent = xmlEventReader.nextEvent();
+                        if(flag == false){
+                            if(nextEvent.isCharacters()){
+                                try {
+                                    opennms_event.setTime(dateFormat.parse(nextEvent.asCharacters().getData()));
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }else{
+                                LOG.warn("Event will not be forwarded, `raised time` is required field, skipped Event");
+                                return null;
+                            }
+                        }
+                        
                         break;        
                 }
              }

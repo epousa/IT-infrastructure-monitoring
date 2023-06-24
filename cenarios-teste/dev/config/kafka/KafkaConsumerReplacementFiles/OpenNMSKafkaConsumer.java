@@ -195,13 +195,22 @@
                  for (ConsumerRecord<String, String> record : records) {
                      // LOG.info(record.value());
                      try {
-                         opennms_events.add(EventsMapper.toEventXml(record));
-         
+                        Event parsed_event = EventsMapper.toEventXml(record);
+                        if(parsed_event != null){
+                            opennms_events.add(parsed_event);
+                        }else{
+                            LOG.warn("Invalid Event. Missing Parameters. Wont be in parsed event list");    
+                        }
                      } catch (XMLStreamException e) {
                          LOG.info("Error while parsing xml event with key {}", record.key());
                      }
-                 }   
-                 forwardEventsToOpenNMS(opennms_events);
+                 }  
+                 if(!opennms_events.isEmpty()){
+                    forwardEventsToOpenNMS(opennms_events);
+                 }else{
+                    LOG.warn("Empty parsed events list. Not sending anything");
+                 } 
+                
              }
  
          }
