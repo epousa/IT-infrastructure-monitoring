@@ -142,7 +142,6 @@
 	zxAnPonProtectGroupName=%parm[#5]%&lt;/p> -->
 	</logmsg>
       <severity>Normal</severity>
-      <alarm-data reduction-key="%uei%:%parm[name-#1]%" alarm-type="2" clear-key="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm:%parm[name-#1]%"/>
    </event>
 
    <event>
