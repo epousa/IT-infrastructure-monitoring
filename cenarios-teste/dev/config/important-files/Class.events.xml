@@ -1,6 +1,6 @@
-<events>
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
   <event>
-    <uei>uei.openms.org/class/happiness</uei>
+    <uei>uei.opennms.org/class/happiness</uei>
     <event-label>OpenNMS defined event: The OpenNMS Class is so happy</event-label>
     <descr>
       &lt;p&gt;This event is sent when the OpenNMS Class is happy.&lt;/p&gt;
@@ -13,9 +13,25 @@
     <logmsg dest="logndisplay">
       &lt;p&gt;OpenNMS Class is Happy! &lt;/p&gt;
     </logmsg>
-    <severity>Normal</severity>
-    <alarm-data reduction-key="%uei%" alarm-type="2" clear-key="uei.opennms.org/class/unhappiness" auto-clean="false"/>
+    <severity>warning</severity>
+    <!-- <alarm-data reduction-key="%uei%" alarm-type="2" clear-key="uei.opennms.org/class/unhappiness" auto-clean="false"/> -->
   </event>
+
+  <event>
+    <uei>uei.opennms.org/translator/class/happiness</uei>
+    <event-label>OpenNMS defined event: The OpenNMS Class is so happy</event-label>
+    <descr>
+      &lt;p>Teste Trap&lt;/p>
+      &lt;p>Instance: %parm[oid]% &lt;/p>
+    </descr>
+    <logmsg dest="logndisplay">
+      &lt;p&gt;OpenNMS Class is Happy!&lt;/p&gt;
+    </logmsg>
+    <alarm-data reduction-key="%uei%" alarm-type="1" clear-key="uei.opennms.org/class/unhappiness" auto-clean="false">
+      <update-field field-name="severity" update-on-reduction="true"/>
+    </alarm-data>
+  </event>
+  
   <event>
     <uei>uei.opennms.org/class/unhappiness</uei>
     <event-label>OpenNMS defined event: The OpenNMS Class is not happy</event-label>
@@ -36,3 +52,39 @@
     <!-- <alarm-data reduction-key="%uei%" alarm-type="1" auto-clean="false"/> -->
   </event>
 </events>
+
+   <!-- <event>
+
+    <uei>uei.opennms.org/external/translator/event/enriched</uei>
+
+    <event-label>OpenNMS-translator enriched event</event-label>
+
+      <descr>&lt;p>&lt;b>Translated Event&lt;/b>&lt;/p>
+
+          Translated Event received from %parm[#5]% for %parm[#1]% (%parm[#6]%): state of %parm[#3]% is %parm[#4]% &lt;br />
+
+          Hostname: %parm[#1]%&lt;br />
+
+          IP Address: %parm[#2]%&lt;br />
+
+          Parameter: %parm[#3]%&lt;br />
+
+          Message: %parm[#4]%&lt;br />
+
+          Time event was received: %time%&lt;br /></descr>
+
+      <logmsg dest="logndisplay">Translated Event received from %parm[#5]% for %parm[#1]% (%parm[#6]%), IP: %parm[#2]%, Message: %parm[#4]%</logmsg>
+
+      <operinstruct>&lt;a href=&quot;http://myurl.org/opennms/kb.php?OS=%parm[#6]%&amp;host=%parm[#1]%&amp;parameter=%parm[#3]%&amp;severity=%severity%&amp;message=%parm[#4]%&quot; target=_blank>Click for additional information&lt;/a></operinstruct>
+
+      <autoaction>/opt/opennms/bin/event-action \%parm[#2]% \%parm[#1]%</autoaction>
+
+      <alarm-data reduction-key="%uei%:%nodeid%:%parm[#1]%:%parm[#2]%:%parm[#3]%" alarm-type="1" auto-clean="false">
+
+         <update-field field-name="severity" update-on-reduction="true"/>
+
+      </alarm-data>
+
+   </event>
+
+</events> -->

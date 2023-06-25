@@ -1,0 +1,2451 @@
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>1</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLosiAlm</event-label>
+      <descr>
+&lt;p>LOSi is Loss of Signal for ONUi. Generate notification.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	<!-- zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b> -->
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnPonProtectGroupName&lt;/b>&lt;/td>&lt;td>
+	%parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+      ZTE Event: zxAnGponSrvOltLosiAlm (LOSi Alarm Trap) Received.
+                 zxAnGponOnuMgmtName=%parm[#1]%
+                 zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
+
+      <!-- zxAnGponOnuMgmtDesc=%parm[#3]%
+      zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%
+      zxAnPonProtectGroupName=%parm[#5]%--> 
+	</logmsg>
+      <severity>Minor</severity>
+      <!-- <alarm-data reduction-key="%uei%:%parm[name-#1]%" alarm-type="1" auto-clean="false"/> -->
+   </event>
+
+   <event>
+      <uei>uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLosiAlm</event-label>
+      <descr>
+      &lt;p>LOSi is Loss of Signal for ONUi. Generate notification.&lt;/p>&lt;table>
+          &lt;tr>&lt;td>&lt;b>
+
+         <!-- zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+         %parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+         &lt;tr>&lt;td>&lt;b>
+
+         zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+         %parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+         &lt;tr>&lt;td>&lt;b> -->
+
+         zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+         %parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+         &lt;tr>&lt;td>&lt;b>
+
+         zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+         %parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+         &lt;tr>&lt;td>&lt;b>
+
+         zxAnPonProtectGroupName&lt;/b>&lt;/td>&lt;td>
+         %parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+      </descr>
+      <logmsg dest="logndisplay">&lt;p>
+         ZTE Event: zxAnGponSrvOltLosiAlm (LOSi Alarm Trap) Received.
+               origin=%parm[#origin]%
+               zxAnGponOnuMgmtName=%parm[#1]%
+               zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
+         <!-- zxAnGponOnuMgmtDesc=%parm[#3]%
+         zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%
+         zxAnPonProtectGroupName=%parm[#5]%--> 
+      </logmsg>
+      <alarm-data reduction-key="%uei%:%parm[name-#1]%" alarm-type="1" auto-clean="false">
+         <update-field field-name="severity" update-on-reduction="true"/>
+      </alarm-data>
+   </event>
+
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>2</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLosiClr</event-label>
+      <descr>
+&lt;p>LOSi is Loss of Signal for ONUi. When the OLT receives &#xd;
+            a valid optical signal from ONUi, Alarm is restored&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	<!-- zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b> -->
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnPonProtectGroupName&lt;/b>&lt;/td>&lt;td>
+	%parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+      ZTE Event: zxAnGponSrvOltLosiClr (Clear LOSi Alarm Trap) received.
+                 zxAnGponOnuMgmtName=%parm[#1]%
+                 zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
+	<!-- zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%
+	zxAnPonProtectGroupName=%parm[#5]%&lt;/p> -->
+	</logmsg>
+      <severity>Normal</severity>
+      <alarm-data reduction-key="%uei%:%parm[name-#1]%" alarm-type="2" clear-key="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm:%parm[name-#1]%"/>
+   </event>
+
+   <event>
+      <uei>uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLosiClr</event-label>
+      <descr>
+         &lt;p>LOSi is Loss of Signal for ONUi. When the OLT receives &#xd;
+                     a valid optical signal from ONUi, Alarm is restored&lt;/p>&lt;table>
+            &lt;tr>&lt;td>&lt;b>
+
+            <!-- zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+            %parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+            &lt;tr>&lt;td>&lt;b>
+
+            zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+            %parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+            &lt;tr>&lt;td>&lt;b> -->
+
+            zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+            %parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+            &lt;tr>&lt;td>&lt;b>
+
+            zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+            %parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+            &lt;tr>&lt;td>&lt;b>
+
+            zxAnPonProtectGroupName&lt;/b>&lt;/td>&lt;td>
+            %parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+      </descr>
+      <logmsg dest="logndisplay">&lt;p>
+         ZTE Event: zxAnGponSrvOltLosiClr (Clear LOSi Alarm Trap) received.
+            origin=%parm[#origin]%
+            zxAnGponOnuMgmtName=%parm[#1]%
+            zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
+            <!-- zxAnGponOnuMgmtDesc=%parm[#3]%
+            zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%
+            zxAnPonProtectGroupName=%parm[#5]%&lt;/p> -->   
+      </logmsg>
+      <alarm-data reduction-key="%uei%:%parm[name-#1]%" alarm-type="2" clear-key="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm:%parm[name-#1]%">
+         <update-field field-name="severity" update-on-reduction="true"/>
+      </alarm-data>
+   </event>
+   
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>3</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLofiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLofiAlm</event-label>
+      <descr>
+&lt;p>LOFi is Loss of Frame of ONUi. Send 3 times &#xd;
+            Deactivate_ONU-ID messages. Generate Loss_of_phy_layer_I &#xd;
+            notification.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+      ZTE Event: zxAnGponSrvOltLofiAlm (Lofi Alarm Trap) Received.
+                 zxAnGponOnuMgmtName=%parm[#1]%
+                 zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
+
+	<!-- zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p> -->
+	</logmsg>
+      <severity>Major</severity>
+      <alarm-data reduction-key="%uei%:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>4</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLofiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLofiClr</event-label>
+      <descr>
+&lt;p>LOFi is Loss of Frame of ONUi. When frame delineation &#xd;
+            for ONUi is achieved in the operating state.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	<!-- zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b> -->
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+      ZTE Event: zxAnGponSrvOltLofiClr (Clear Lofi Alarm Trap) received.
+                 zxAnGponOnuMgmtName=%parm[#1]%
+                 zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
+
+	<!-- zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p> -->
+	</logmsg>
+      <severity>Normal</severity>
+      <alarm-data reduction-key="%uei%:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%" alarm-type="2" clear-key="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLofiAlm:%nodeid%:%interface%:%parm[#1]%:%parm[#2]%"/>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>5</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltDowiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltDowiAlm</event-label>
+      <descr>
+&lt;p>DOWi is drift of Window of ONUi. &#xd;
+            Send modified EqD to the ONUi.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltDowiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltDowiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltDowiClr</event-label>
+      <descr>
+&lt;p>DOWi is Drift of Window of ONUi. When the OLT &#xd;
+        receives the ONUi transmission in the correct position.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltDowiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>7</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltSfiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltSfiAlm</event-label>
+      <descr>
+&lt;p>SFi is Signal Fail of ONUi. Send 3 times &#xd;
+            Deactivate_ONU-ID messages. Generate Loss_of_phy_layer_I &#xd;
+            notification.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltSfiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>8</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltSfiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltSfiClr</event-label>
+      <descr>
+&lt;p>SFi is Signal Fail of ONUi. When the upstream &#xd;
+             BER of ONUi becomes &lt;10^-(y+1), this state is cleared.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltSfiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>9</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltSdiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltSdiAlm</event-label>
+      <descr>
+&lt;p>SDi is Signal Degraded of ONUi.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltSdiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>10</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltSdiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltSdiClr</event-label>
+      <descr>
+&lt;p>SDi is Signal Degraded of ONUi. When the upstream &#xd;
+        BER of ONUi becomes &lt;10^-(x+1), this state is cleared.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltSdiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>13</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLcdgiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLcdgiAlm</event-label>
+      <descr>
+&lt;p>LCDGi is Loss of GEM channel delineation. &#xd;
+            Send 3 times Deactivate_ONU-ID messages Generate&#xd;
+            Loss_of_phy_layer_I notification.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltLcdgiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>14</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLcdgiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLcdgiClr</event-label>
+      <descr>
+&lt;p>LCDGi is Loss of GEM channel delineation. When &#xd;
+            GEM channel delineation for ONUi is achieved.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltLcdgiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>15</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltRdiiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltRdiiAlm</event-label>
+      <descr>
+&lt;p>RDIi is Remote Defect Indication of ONUi.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltRdiiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>16</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltRdiiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltRdiiClr</event-label>
+      <descr>
+&lt;p>RDIi is Remote Defect Indication of ONUi. When the &#xd;
+            RDI field of ONUi is de-asserted.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltRdiiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>17</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltSufiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltSufiAlm</event-label>
+      <descr>
+&lt;p>SUFi is Start-up Failure of ONUi. Send 3 times &#xd;
+            Deactivate_ONU-ID messages.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltSufiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>18</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltSufiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltSufiClr</event-label>
+      <descr>
+&lt;p>SUFi is Start-up Failure of ONUi. The ONU &#xd;
+            is ranged successfully.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltSufiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>19</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltDfiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltDfiAlm</event-label>
+      <descr>
+&lt;p>DFi is Deactivate Failure of ONUi.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltDfiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>20</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltDfiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltDfiClr</event-label>
+      <descr>
+&lt;p>DFi is Deactivate Failure of ONUi. &#xd;
+            Cancelled by the operator.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltDfiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>21</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLoaiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLoaiAlm</event-label>
+      <descr>
+&lt;p>LOAi is Loss of Acknowledge with ONUi. Send 3 times &#xd;
+            Deactivate_ONU-ID messages. Generate Loss_of_phy_layer_I &#xd;
+            notification.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltLoaiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>22</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLoaiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLoaiClr</event-label>
+      <descr>
+&lt;p>LOAi is Loss of Acknowledge with ONUi. &#xd;
+            When the OLT receives an acknowledgement from the ONU.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltLoaiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>23</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltDgiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltDgiAlm</event-label>
+      <descr>
+&lt;p>DGi is received Dying-Gasp of ONUi. Ignore received &#xd;
+            alarms from this ONU. Generate Loss_of_phy_layer_I &#xd;
+            notification.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltDgiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>24</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltDgiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltDgiClr</event-label>
+      <descr>
+&lt;p>DGi is received Dying-Gasp of ONUi. When the OLT receives&#xd;
+             a PLOAM message during ranging process.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltDgiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>25</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLoamiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLoamiAlm</event-label>
+      <descr>
+&lt;p>LOAMi is Loss of PLOAM for ONUi. Send 3 times &#xd;
+            Deactivate_ONU-ID messages. Generate Loss_of_phy_layer_I &#xd;
+            notification.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltLoamiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>26</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLoamiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLoamiClr</event-label>
+      <descr>
+&lt;p>LOAMi is Loss of PLOAM for ONUi. When the OLT receives &#xd;
+            a PLOAM message corresponding to its PLOAM flag in the &#xd;
+            Operating state.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltLoamiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>27</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltMemiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltMemiAlm</event-label>
+      <descr>
+&lt;p>MEMi is Message_Error Message from ONUi.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltMemiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>28</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltMemiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltMemiClr</event-label>
+      <descr>
+&lt;p>MEMi is Message_Error Message from ONUi. &#xd;
+            When the operator is informed.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltMemiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>29</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltMisiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltMisiAlm</event-label>
+      <descr>
+&lt;p>Misi is Link Mismatch of ONUi.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltMisiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>30</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltMisiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltMisiClr</event-label>
+      <descr>
+&lt;p>MISi is Link Mismatch of ONUi. The OLT detects &#xd;
+            that received PSTi and the transmitted PST are the same.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltMisiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>31</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltPeeiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltPeeiAlm</event-label>
+      <descr>
+&lt;p>PEEi is Physical Equipment Error of ONUi. &#xd;
+            Generate Loss_of_physical_layer_I notification.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltPeeiAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>32</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltPeeiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltPeeiClr</event-label>
+      <descr>
+&lt;p>PEEi is Physical Equipment Error of ONUi. When &#xd;
+            the OLT doesn't receive a PEE message from the ONUi in 3 s.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltPeeiClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>61</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLosAlm</event-label>
+      <descr>
+&lt;p>LOS is Loss Of Signal. Switch off laser. Generate &#xd;
+            Loss_of_phy_layer notification. Move to Initial- State.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponSrvPonName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponSrvPonLosReason&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>
+		allOnuPowerOff(1)
+		fiberBroken(2)
+		allOnuOffline(3)
+		otherReasons(4)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnPonProtectGroupName&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltLosAlm trap received
+	zxAnGponSrvPonName=%parm[#1]%
+	zxAnGponSrvPonLosReason=%parm[#2]%
+	zxAnPonProtectGroupName=%parm[#3]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+      <varbindsdecode>
+         <parmid>parm[#2]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="allOnuPowerOff"/>
+         <decode varbindvalue="2" varbinddecodedstring="fiberBroken"/>
+         <decode varbindvalue="3" varbinddecodedstring="allOnuOffline"/>
+         <decode varbindvalue="4" varbinddecodedstring="otherReasons"/>
+      </varbindsdecode>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>62</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLosClr</event-label>
+      <descr>
+&lt;p>LOS event cleared.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponSrvPonName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponSrvPonLosReason&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>
+		allOnuPowerOff(1)
+		fiberBroken(2)
+		allOnuOffline(3)
+		otherReasons(4)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnPonProtectGroupName&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltLosClr trap received
+	zxAnGponSrvPonName=%parm[#1]%
+	zxAnGponSrvPonLosReason=%parm[#2]%
+	zxAnPonProtectGroupName=%parm[#3]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+      <varbindsdecode>
+         <parmid>parm[#2]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="allOnuPowerOff"/>
+         <decode varbindvalue="2" varbinddecodedstring="fiberBroken"/>
+         <decode varbindvalue="3" varbinddecodedstring="allOnuOffline"/>
+         <decode varbindvalue="4" varbinddecodedstring="otherReasons"/>
+      </varbindsdecode>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>63</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLofAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLofAlm</event-label>
+      <descr>
+&lt;p>LOF is Loss of Frame. Switch off laser.&#xd;
+             Generate Loss_of_phy_layer notification. Move to Initial- State.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponSrvPonName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltLofAlm trap received
+	zxAnGponSrvPonName=%parm[#1]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>64</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLofClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLofClr</event-label>
+      <descr>
+&lt;p>LOF event cleared when 2 consecutive frames.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponSrvPonName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltLofClr trap received
+	zxAnGponSrvPonName=%parm[#1]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>65</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuRegister</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuRegister</event-label>
+      <descr>
+&lt;p>This notification is not supported yet.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuRegister trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>66</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuUnregister</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuUnregister</event-label>
+      <descr>
+&lt;p>This notification is not supported yet.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuUnregister trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>67</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuAuthPass</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuAuthPass</event-label>
+      <descr>
+&lt;p>ONU status is working.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtAuthPassCtrl&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuAuthPass trap received
+	zxAnGponOnuMgmtAuthPassCtrl=%parm[#1]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>68</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuAuthFailed</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuAuthFailed</event-label>
+      <descr>
+&lt;p>This notification is not supported yet.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuAuthFailed trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>69</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvLinkOnuDyingGaspAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvLinkOnuDyingGaspAlm</event-label>
+      <descr>
+&lt;p>OLT detect an ONU dying gasp event.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvLinkOnuDyingGaspAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>70</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvLinkOnuDyingGaspClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvLinkOnuDyingGaspClr</event-label>
+      <descr>
+&lt;p>OLT detect an ONU dying gasp event cleared.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvLinkOnuDyingGaspClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>73</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltFakedSN</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltFakedSN</event-label>
+      <descr>
+&lt;p>OLT detects a faked SN event.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtSn&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltFakedSN trap received
+	zxAnGponOnuMgmtSn=%parm[#1]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>74</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuConstantOpticalAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuConstantOpticalAlm</event-label>
+      <descr>
+&lt;p>It indicates ONU constant optical event.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuConstantOpticalAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>75</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuConstantOpticalClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuConstantOpticalClr</event-label>
+      <descr>
+&lt;p>It indicates ONU constant optical event cleared.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuConstantOpticalClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>76</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuRxFiberFlexAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuRxFiberFlexAlm</event-label>
+      <descr>
+&lt;p>It indicates ONU fiber is flexual.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuRxFiberFlexAlm trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>77</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuRxFiberFlexClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuRxFiberFlexClr</event-label>
+      <descr>
+&lt;p>It indicates ONU fiber flexual cleared.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuRxFiberFlexClr trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>80</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuUnauthOnuOnline</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuUnauthOnuOnline</event-label>
+      <descr>
+&lt;p>It indicates the unauthenticated ONU online.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponRmOnuRealType&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponSrvUnConfOnuSn&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponSrvUnConfOnuPwd&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponSrvUnConfOnuSwVer&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponSrvUnConfOnuOnlineTime&lt;/b>&lt;/td>&lt;td>
+	%parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuUnauthOnuOnline trap received
+	zxAnGponRmOnuRealType=%parm[#1]%
+	zxAnGponSrvUnConfOnuSn=%parm[#2]%
+	zxAnGponSrvUnConfOnuPwd=%parm[#3]%
+	zxAnGponSrvUnConfOnuSwVer=%parm[#4]%
+	zxAnGponSrvUnConfOnuOnlineTime=%parm[#5]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>81</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltTfAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltTfAlm</event-label>
+      <descr>
+&lt;p>TF is Transmitter Failure.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponSrvPonName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltTfAlm trap received
+	zxAnGponSrvPonName=%parm[#1]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>82</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltTfClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltTfClr</event-label>
+      <descr>
+&lt;p>TF event cleared.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponSrvPonName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltTfClr trap received
+	zxAnGponSrvPonName=%parm[#1]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>83</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltFakedPwd</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltFakedPwd</event-label>
+      <descr>
+&lt;p>OLT detects a faked password event.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtPwd&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltFakedPwd trap received
+	zxAnGponOnuMgmtPwd=%parm[#1]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>84</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuAutoAuthSuccess</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuAutoAuthSuccess</event-label>
+      <descr>
+&lt;p>It will occurr when the ONU is automatically added &#xd;
+            and entering working status.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponRmOnuRealType&lt;/b>&lt;/td>&lt;td>
+	%parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtAuthPassCtrl&lt;/b>&lt;/td>&lt;td>
+	%parm[#6]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuAutoAuthSuccess trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%
+	zxAnGponRmOnuRealType=%parm[#5]%
+	zxAnGponOnuMgmtAuthPassCtrl=%parm[#6]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>85</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLoei</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLoei</event-label>
+      <descr>
+&lt;p>It will occurr when the ONU disabled, &#xd;
+            then turn off and reboot ONU, the ONU not on POPUP-state(O7).&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtSn&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOltLoei trap received
+	zxAnGponOnuMgmtSn=%parm[#1]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>86</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuRidConflicted</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuRidConflicted</event-label>
+      <descr>
+&lt;p>It will occurr when unauthorized ONU reports an RID that has been&#xd;
+            bound by another registered ONU.&#xd;
+            The zxAnGponOnuMgmtRegistrationId value indicates the conflicted&#xd;
+            RID and the authorized ONU information with the same RID.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationId&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuRidConflicted trap received
+	zxAnGponOnuMgmtRegistrationId=%parm[#1]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>87</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuFirstOnline</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuFirstOnline</event-label>
+      <descr>
+&lt;p>It will occurr when the ONU is the first online.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuFirstOnline trap received
+	zxAnGponOnuMgmtName=%parm[#1]%
+	zxAnGponOnuMgmtTypeName=%parm[#2]%
+	zxAnGponOnuMgmtDesc=%parm[#3]%
+	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.1082.500.10.3.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>88</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOnuLoidConflicted</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOnuLoidConflicted</event-label>
+      <descr>
+&lt;p>It will occurr when unauthorized ONU reports an LOID that has been&#xd;
+             bound by another registered ONU.&#xd;
+             The zxAnGponOnuMgmtLoid value indicates the conflicted LOID.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	zxAnGponOnuMgmtLoid&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	zxAnGponSrvOnuLoidConflicted trap received
+	zxAnGponOnuMgmtLoid=%parm[#1]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+</events>

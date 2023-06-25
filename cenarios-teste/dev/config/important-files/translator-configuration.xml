@@ -137,12 +137,83 @@
       </mappings>
     </event-translation-spec>
 
-    <!-- Translations to make alarms uniform -->
-    <!-- ainda nao funciona -->
-    <event-translation-spec uei="uei.opennms.org/vendor/nokia/*">
-        <logmsg-regex>.*Loss Of Signal.*</logmsg-regex>
-        <replace value="signal lost"/>
+    <!-- Enhance zxAnGponSrvOltLosiAlm-->
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm" />
+          </assignment>
+          <assignment name="origin" type="parameter" >
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278465\.84" matches=".*" result="pon 1/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
     </event-translation-spec>
+
+    <!-- Enhance zxAnGponSrvOltLosiClr-->
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr" />
+          </assignment>
+          <assignment name="origin" type="parameter" >
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278465\.84" matches=".*" result="pon 1/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <!-- Enhance uei.opennms.org/class/happiness-->
+    <event-translation-spec uei="uei.opennms.org/class/happiness">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/translator/class/happiness" />
+          </assignment>
+          <assignment name="oid" type="parameter" >
+            <value type="parameter" name="~^\.1\.3\.6\.1\.2\.1\.2\.2\.1\.1\.([0-9]*)$" matches=".*" result="${0}" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <!-- <event-translation-spec uei="uei.opennms.org/testeEvent">
+      <mappings>
+        <mapping>
+          <assignment type="field" name="uei">
+            <value type="constant" result="uei.opennms.org/translated/testeEvent" />
+          </assignment>
+          <assignment type="parameter" name="postdesc">
+            <value type="constant" result= "%param[name-#1]%"/>
+          </assignment>
+          <assignment type="field" name="severity" >
+           <value type="field" name="severity" matches=".*" result="${0}" />
+          </assignment> 
+          <assignment type="field" name="oid">
+            <value type="constant" result= "%param[name-#1]%"/>
+          </assignment> 
+          <assignment type="parameter" name="oid">
+            <value type="constant" result="?" />
+            <value type="parameter" name="~^\.1\.3\.6\.1\.2\.1\.2\.2\.1\.1\.([0-9]*)$" matches=".*" result="${0}" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.openms.org/testeEvent">
+      <mappings>
+        <mapping>
+          <assignment type="field" name="uei">
+            <value type="constant" result="uei.openms.org/class/happiness" />
+          </assignment>
+          <assignment type="parameter" name="postdesc">
+            <value type="constant" result= "%param[name-#1]%"/>
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec> -->
 
   </translation>
 
