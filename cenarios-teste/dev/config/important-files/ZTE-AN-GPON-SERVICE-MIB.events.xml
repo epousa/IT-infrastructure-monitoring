@@ -17,81 +17,61 @@
       <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm</uei>
       <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLosiAlm</event-label>
       <descr>
-&lt;p>LOSi is Loss of Signal for ONUi. Generate notification.&lt;/p>&lt;table>
-	&lt;tr>&lt;td>&lt;b>
+         &lt;p>LOSi is Loss of Signal for ONUi. Generate notification.&lt;/p>&lt;table>
+            &lt;tr>&lt;td>&lt;b>
 
-	<!-- zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
-	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-	&lt;tr>&lt;td>&lt;b>
+            zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+            %parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+            &lt;tr>&lt;td>&lt;b>
 
-	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
-	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-	&lt;tr>&lt;td>&lt;b> -->
+            zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+            %parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+            &lt;tr>&lt;td>&lt;b>
 
-	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
-	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-	&lt;tr>&lt;td>&lt;b>
-
-	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
-	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-	&lt;tr>&lt;td>&lt;b>
-
-	zxAnPonProtectGroupName&lt;/b>&lt;/td>&lt;td>
-	%parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
-	</descr>
-      <logmsg dest="logndisplay">&lt;p>
-      ZTE Event: zxAnGponSrvOltLosiAlm (LOSi Alarm Trap) Received.
-                 zxAnGponOnuMgmtName=%parm[#1]%
-                 zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
-
-      <!-- zxAnGponOnuMgmtDesc=%parm[#3]%
-      zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%
-      zxAnPonProtectGroupName=%parm[#5]%--> 
-	</logmsg>
-      <severity>Minor</severity>
-      <!-- <alarm-data reduction-key="%uei%:%parm[name-#1]%" alarm-type="1" auto-clean="false"/> -->
-   </event>
-
-   <event>
-      <uei>uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm</uei>
-      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLosiAlm</event-label>
-      <descr>
-      &lt;p>LOSi is Loss of Signal for ONUi. Generate notification.&lt;/p>&lt;table>
-          &lt;tr>&lt;td>&lt;b>
-
-         <!-- zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
-         %parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-         &lt;tr>&lt;td>&lt;b>
-
-         zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
-         %parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-         &lt;tr>&lt;td>&lt;b> -->
-
-         zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
-         %parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-         &lt;tr>&lt;td>&lt;b>
-
-         zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
-         %parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-         &lt;tr>&lt;td>&lt;b>
-
-         zxAnPonProtectGroupName&lt;/b>&lt;/td>&lt;td>
-         %parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
-      </descr>
+            zxAnPonProtectGroupName&lt;/b>&lt;/td>&lt;td>
+            %parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	   </descr>
       <logmsg dest="logndisplay">&lt;p>
          ZTE Event: zxAnGponSrvOltLosiAlm (LOSi Alarm Trap) Received.
-               origin=%parm[#origin]%
-               zxAnGponOnuMgmtName=%parm[#1]%
-               zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
-         <!-- zxAnGponOnuMgmtDesc=%parm[#3]%
-         zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%
-         zxAnPonProtectGroupName=%parm[#5]%--> 
+                  zxAnGponOnuMgmtName=%parm[#1]%
+                  zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
+	   </logmsg>
+      <severity>Minor</severity>
+      <!-- Removed this alarm in preference to the translated version -->
+      <!-- <alarm-data reduction-key="%uei%:%parm[name-#1]%" alarm-type="1" auto-clean="false"/> -->
+   </event>
+   <event>
+      <uei>uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB enhanced defined trap event: zxAnGponSrvOltLosiAlm</event-label>
+      <descr>
+         &lt;p>LOSi(Enhanced) is Loss of Signal for ONUi. Generate notification.&lt;/p>&lt;table>
+            &lt;tr>&lt;td>&lt;b>
+
+            Origin&lt;/b>&lt;/td>&lt;td>
+            %parm[origin]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+            &lt;tr>&lt;td>&lt;b>
+
+            zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+            %parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+            &lt;tr>&lt;td>&lt;b>
+
+            zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+            %parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+            &lt;tr>&lt;td>&lt;b>
+
+            zxAnPonProtectGroupName&lt;/b>&lt;/td>&lt;td>
+            %parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+      </descr>
+      <logmsg dest="logndisplay">&lt;p>
+            ZTE Event: zxAnGponSrvOltLosiAlm (LOSi Alarm Trap) Received.
+                  zxAnGponOnuMgmtName=%parm[#1]%
+                  zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
       </logmsg>
+      <severity>Minor</severity>
       <alarm-data reduction-key="%uei%:%parm[name-#1]%" alarm-type="1" auto-clean="false">
          <update-field field-name="severity" update-on-reduction="true"/>
       </alarm-data>
    </event>
-
    <event>
       <mask>
          <maskelement>
@@ -110,56 +90,42 @@
       <uei>uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr</uei>
       <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLosiClr</event-label>
       <descr>
-&lt;p>LOSi is Loss of Signal for ONUi. When the OLT receives &#xd;
-            a valid optical signal from ONUi, Alarm is restored&lt;/p>&lt;table>
-	&lt;tr>&lt;td>&lt;b>
-
-	<!-- zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
-	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-	&lt;tr>&lt;td>&lt;b>
-
-	zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
-	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-	&lt;tr>&lt;td>&lt;b> -->
-
-	zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
-	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-	&lt;tr>&lt;td>&lt;b>
-
-	zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
-	%parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-	&lt;tr>&lt;td>&lt;b>
-
-	zxAnPonProtectGroupName&lt;/b>&lt;/td>&lt;td>
-	%parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
-	</descr>
-      <logmsg dest="logndisplay">&lt;p>
-      ZTE Event: zxAnGponSrvOltLosiClr (Clear LOSi Alarm Trap) received.
-                 zxAnGponOnuMgmtName=%parm[#1]%
-                 zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
-	<!-- zxAnGponOnuMgmtDesc=%parm[#3]%
-	zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%
-	zxAnPonProtectGroupName=%parm[#5]%&lt;/p> -->
-	</logmsg>
-      <severity>Normal</severity>
-   </event>
-
-   <event>
-      <uei>uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr</uei>
-      <event-label>ZTE-AN-GPON-SERVICE-MIB defined trap event: zxAnGponSrvOltLosiClr</event-label>
-      <descr>
          &lt;p>LOSi is Loss of Signal for ONUi. When the OLT receives &#xd;
                      a valid optical signal from ONUi, Alarm is restored&lt;/p>&lt;table>
             &lt;tr>&lt;td>&lt;b>
 
-            <!-- zxAnGponOnuMgmtName&lt;/b>&lt;/td>&lt;td>
-            %parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+            zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
+            %parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
             &lt;tr>&lt;td>&lt;b>
 
-            zxAnGponOnuMgmtTypeName&lt;/b>&lt;/td>&lt;td>
-            %parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
-            &lt;tr>&lt;td>&lt;b> -->
+            zxAnGponOnuMgmtRegistrationInfo&lt;/b>&lt;/td>&lt;td>
+            %parm[#4]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+            &lt;tr>&lt;td>&lt;b>
 
+            zxAnPonProtectGroupName&lt;/b>&lt;/td>&lt;td>
+            %parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	   </descr>
+      <logmsg dest="logndisplay">&lt;p>
+            ZTE Event: zxAnGponSrvOltLosiClr (Clear LOSi Alarm Trap) received.
+                  zxAnGponOnuMgmtName=%parm[#1]%
+                  zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
+	   </logmsg>
+      <severity>Normal</severity>
+      <!-- Removed this alarm in preference to the translated version -->
+      <!-- <alarm-data reduction-key="%uei%:%parm[name-#1]%" alarm-type="2" clear-key="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm:%parm[name-#1]%"/> -->
+   </event>
+   <event>
+      <uei>uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr</uei>
+      <event-label>ZTE-AN-GPON-SERVICE-MIB enhanced defined trap event: zxAnGponSrvOltLosiClr</event-label>
+      <descr>
+         &lt;p>LOSi (Enhanced) is Loss of Signal for ONUi. When the OLT receives &#xd;
+                     a valid optical signal from ONUi, Alarm is restored&lt;/p>&lt;table>
+            &lt;tr>&lt;td>&lt;b>
+
+            Origin&lt;/b>&lt;/td>&lt;td>
+            %parm[origin]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+            &lt;tr>&lt;td>&lt;b>
+            
             zxAnGponOnuMgmtDesc&lt;/b>&lt;/td>&lt;td>
             %parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
             &lt;tr>&lt;td>&lt;b>
@@ -173,18 +139,12 @@
       </descr>
       <logmsg dest="logndisplay">&lt;p>
          ZTE Event: zxAnGponSrvOltLosiClr (Clear LOSi Alarm Trap) received.
-            origin=%parm[#origin]%
             zxAnGponOnuMgmtName=%parm[#1]%
-            zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p>
-            <!-- zxAnGponOnuMgmtDesc=%parm[#3]%
-            zxAnGponOnuMgmtRegistrationInfo=%parm[#4]%
-            zxAnPonProtectGroupName=%parm[#5]%&lt;/p> -->   
+            zxAnGponOnuMgmtTypeName=%parm[#2]%&lt;/p> 
       </logmsg>
-      <alarm-data reduction-key="%uei%:%parm[name-#1]%" alarm-type="2" clear-key="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm:%parm[name-#1]%">
-         <update-field field-name="severity" update-on-reduction="true"/>
-      </alarm-data>
+      <severity>Normal</severity>
+      <alarm-data reduction-key="%uei%:%parm[name-#1]%" alarm-type="2" clear-key="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm:%parm[name-#1]%"/>
    </event>
-   
    <event>
       <mask>
          <maskelement>

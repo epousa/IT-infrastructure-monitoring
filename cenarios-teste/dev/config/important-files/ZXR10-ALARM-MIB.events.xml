@@ -4340,7 +4340,7 @@
       </varbindsdecode>
    </event>
 
-   <!-- Normal Traps + Notifications alarm-type-->
+   <!-- Critical Notifications alarm-type-->
    <event>
       <mask>
          <maskelement>
@@ -4355,19 +4355,10 @@
             <mename>specific</mename>
             <mevalue>3</mevalue>
          </maskelement>
-		 <!-- Filter for when parm[#5] = notification or information or debbuging-->
 		 <varbind>
-			<vbnumber>5</vbnumber>
-			<vbvalue>6</vbvalue>
-			<vbvalue>7</vbvalue>
-			<vbvalue>8</vbvalue>
-		 </varbind>
-		 <!-- Filter for when parm[#6] = occured or updated-->
-		 <varbind>
-			<vbnumber>6</vbnumber>
-			<vbvalue>1</vbvalue>
-			<vbvalue>2</vbvalue>
-		 </varbind>
+			<vbnumber>4</vbnumber>
+			<vbvalue>3</vbvalue>
+		 </varbind>	
       </mask>
       <uei>uei.opennms.org/traps/ZXR10-ALARM-MIB/notificationTrap</uei>
       <event-label>ZXR10-ALARM-MIB defined trap event: notificationTrap</event-label>
@@ -4496,7 +4487,8 @@
 	notificationParaVarBindList=%parm[#18]%
 	notificationAlmName=%parm[#19]%&lt;/p>
 	</logmsg>
-      <severity>Normal</severity>
+      <severity>Critical</severity>
+	  <alarm-data reduction-key="%uei%" alarm-type="3" auto-clean="false"/>
       <varbindsdecode>
          <parmid>parm[#3]</parmid>
          <decode varbindvalue="0" varbinddecodedstring="atCommunicationsalarm"/>
@@ -4525,6 +4517,178 @@
          <decode varbindvalue="2" varbinddecodedstring="noNeed"/>
       </varbindsdecode>
    </event>
+   <!-- <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.3902.3.302.8</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>3</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/ZXR10-ALARM-MIB/notificationTrap</uei>
+      <event-label>ZXR10-ALARM-MIB defined trap event: notificationTrap</event-label>
+      <descr>
+&lt;p>When a notification occurred, &#xd;
+           send the trap PDU to uniform network manager.&#xd;
+           Through the configuration command alarm trap-oid-expand, &#xd;
+           the trap OID can be expanded, adding notification status and code.&lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationFlowID&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationAlmCode&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationAlmType&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>
+		atCommunicationsalarm(0)
+		atQosalarm(1)
+		atEquipmentalarm(2)
+		atProcessingerroralarm(3)
+		atEnvironmentalalarm(4)
+		atAll(255)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationAlmLevel&lt;/b>&lt;/td>&lt;td>
+	%parm[#4]%;&lt;/td>&lt;td>&lt;p>
+		emergency(1)
+		alert(2)
+		critical(3)
+		error(4)
+		warning(5)
+		notification(6)
+		information(7)
+		debugging(8)
+		invalid(9)
+		all(255)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationAlmOccuredTime&lt;/b>&lt;/td>&lt;td>
+	%parm[#5]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationTPIDType&lt;/b>&lt;/td>&lt;td>
+	%parm[#6]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationTPID&lt;/b>&lt;/td>&lt;td>
+	%parm[#7]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationAlmParaType&lt;/b>&lt;/td>&lt;td>
+	%parm[#8]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationAlmParaValue&lt;/b>&lt;/td>&lt;td>
+	%parm[#9]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationAlmDescription&lt;/b>&lt;/td>&lt;td>
+	%parm[#10]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationAlmStdCode&lt;/b>&lt;/td>&lt;td>
+	%parm[#11]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationAlmComment&lt;/b>&lt;/td>&lt;td>
+	%parm[#12]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationAlmNetID&lt;/b>&lt;/td>&lt;td>
+	%parm[#13]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationTimestamp&lt;/b>&lt;/td>&lt;td>
+	%parm[#14]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationTPIDLen&lt;/b>&lt;/td>&lt;td>
+	%parm[#15]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationAlmOccuredMs&lt;/b>&lt;/td>&lt;td>
+	%parm[#16]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationNeedConfirm&lt;/b>&lt;/td>&lt;td>
+	%parm[#17]%;&lt;/td>&lt;td>&lt;p>
+		need(1)
+		noNeed(2)
+	&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationParaVarBindList&lt;/b>&lt;/td>&lt;td>
+	%parm[#18]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	notificationAlmName&lt;/b>&lt;/td>&lt;td>
+	%parm[#19]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	notificationTrap trap received
+	notificationFlowID=%parm[#1]%
+	notificationAlmCode=%parm[#2]%
+	notificationAlmType=%parm[#3]%
+	notificationAlmLevel=%parm[#4]%
+	notificationAlmOccuredTime=%parm[#5]%
+	notificationTPIDType=%parm[#6]%
+	notificationTPID=%parm[#7]%
+	notificationAlmParaType=%parm[#8]%
+	notificationAlmParaValue=%parm[#9]%
+	notificationAlmDescription=%parm[#10]%
+	notificationAlmStdCode=%parm[#11]%
+	notificationAlmComment=%parm[#12]%
+	notificationAlmNetID=%parm[#13]%
+	notificationTimestamp=%parm[#14]%
+	notificationTPIDLen=%parm[#15]%
+	notificationAlmOccuredMs=%parm[#16]%
+	notificationNeedConfirm=%parm[#17]%
+	notificationParaVarBindList=%parm[#18]%
+	notificationAlmName=%parm[#19]%&lt;/p>
+	</logmsg>
+	  <severity>Normal</severity>
+	  <alarm-data reduction-key="%uei%" alarm-type="3" auto-clean="false"/>
+      <varbindsdecode>
+         <parmid>parm[#3]</parmid>
+         <decode varbindvalue="0" varbinddecodedstring="atCommunicationsalarm"/>
+         <decode varbindvalue="1" varbinddecodedstring="atQosalarm"/>
+         <decode varbindvalue="2" varbinddecodedstring="atEquipmentalarm"/>
+         <decode varbindvalue="3" varbinddecodedstring="atProcessingerroralarm"/>
+         <decode varbindvalue="4" varbinddecodedstring="atEnvironmentalalarm"/>
+         <decode varbindvalue="255" varbinddecodedstring="atAll"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#4]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="emergency"/>
+         <decode varbindvalue="2" varbinddecodedstring="alert"/>
+         <decode varbindvalue="3" varbinddecodedstring="critical"/>
+         <decode varbindvalue="4" varbinddecodedstring="error"/>
+         <decode varbindvalue="5" varbinddecodedstring="warning"/>
+         <decode varbindvalue="6" varbinddecodedstring="notification"/>
+         <decode varbindvalue="7" varbinddecodedstring="information"/>
+         <decode varbindvalue="8" varbinddecodedstring="debugging"/>
+         <decode varbindvalue="9" varbinddecodedstring="invalid"/>
+         <decode varbindvalue="255" varbinddecodedstring="all"/>
+      </varbindsdecode>
+      <varbindsdecode>
+         <parmid>parm[#17]</parmid>
+         <decode varbindvalue="1" varbinddecodedstring="need"/>
+         <decode varbindvalue="2" varbinddecodedstring="noNeed"/>
+      </varbindsdecode>
+   </event> -->
    <event>
       <mask>
          <maskelement>
