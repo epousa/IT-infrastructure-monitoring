@@ -142,16 +142,139 @@
       <mappings>
         <mapping>
           <assignment name="uei" type="field">
-            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm" />
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm"/>
           </assignment>
-          <assignment name="origin" type="parameter" >
-            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278465\.84" matches=".*" result="pon 1/1 : 84 ONU" />
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278465\.84" matches=".*" result="Slot 1/1 : 84 ONU" />
+          </assignment>
+          <!-- isto não da para fazer -->
+          <!-- quando um destes dois não faz match é como se este alarme deixa-se de ter tradução e so vai o original -->
+          <!-- Talvez de para por isto de forma mais dinamica inves de criar uma tradução para cada caso-->
+          <!--<assignment name="origin" type="parameter">
+                <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278721\.84" matches=".*" result="Slot 2/1 : 84 ONU" />
+          </assignment> -->
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278480\.84" matches=".*" result="Slot 1/16 : 84 ONU" />
           </assignment>
         </mapping>
       </mappings>
     </event-translation-spec>
 
-    <!-- Enhance zxAnGponSrvOltLosiClr-->
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278721\.84" matches=".*" result="Slot 2/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278736\.84" matches=".*" result="Slot 2/16 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278977\.84" matches=".*" result="Slot 3/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278992\.84" matches=".*" result="Slot 3/16 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285279233\.84" matches=".*" result="Slot 4/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285279248\.84" matches=".*" result="Slot 4/16 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285279489\.84" matches=".*" result="Slot 5/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiAlm"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285279504\.84" matches=".*" result="Slot 5/16 : 84 ONU" /> 
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <!-- Enhance zxAnGponSrvOltLosiClr -->
     <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr">
       <mappings>
         <mapping>
@@ -159,7 +282,124 @@
             <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr" />
           </assignment>
           <assignment name="origin" type="parameter" >
-            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278465\.84" matches=".*" result="pon 1/1 : 84 ONU" />
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278465\.84" matches=".*" result="Slot 1/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278480\.84" matches=".*" result="Slot 1/16 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278721\.84" matches=".*" result="Slot 2/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278736\.84" matches=".*" result="Slot 2/16 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278977\.84" matches=".*" result="Slot 3/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278992\.84" matches=".*" result="Slot 3/16 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285279233\.84" matches=".*" result="Slot 4/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285279248\.84" matches=".*" result="Slot 4/16 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285279489\.84" matches=".*" result="Slot 5/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/traps/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/traps/enhanced/ZTE-AN-GPON-SERVICE-MIB/zxAnGponSrvOltLosiClr"/>
+          </assignment>
+          <assignment name="origin" type="parameter">
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285279504\.84" matches=".*" result="Slot 5/16 : 84 ONU" /> 
           </assignment>
         </mapping>
       </mappings>
@@ -170,10 +410,23 @@
       <mappings>
         <mapping>
           <assignment name="uei" type="field">
-            <value type="constant" result="uei.opennms.org/translator/class/happiness" />
+            <value type="constant" result="uei.opennms.org/enhanced/class/happiness" />
           </assignment>
-          <assignment name="oid" type="parameter" >
-            <value type="parameter" name="~^\.1\.3\.6\.1\.2\.1\.2\.2\.1\.1\.([0-9]*)$" matches=".*" result="${0}" />
+          <assignment name="teste" type="parameter" >
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278465\.84" matches=".*" result="Slot 1/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/class/happiness">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/enhanced/class/happiness" />
+          </assignment>
+          <assignment name="teste" type="parameter" >
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278721\.84" matches=".*" result="Slot 2/1 : 84 ONU" />
           </assignment>
         </mapping>
       </mappings>
@@ -200,20 +453,7 @@
           </assignment>
         </mapping>
       </mappings>
-    </event-translation-spec>
-
-    <event-translation-spec uei="uei.openms.org/testeEvent">
-      <mappings>
-        <mapping>
-          <assignment type="field" name="uei">
-            <value type="constant" result="uei.openms.org/class/happiness" />
-          </assignment>
-          <assignment type="parameter" name="postdesc">
-            <value type="constant" result= "%param[name-#1]%"/>
-          </assignment>
-        </mapping>
-      </mappings>
-    </event-translation-spec> -->
+    </event-translation-spec>-->
 
   </translation>
 
