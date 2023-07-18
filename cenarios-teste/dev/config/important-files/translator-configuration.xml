@@ -405,12 +405,39 @@
       </mappings>
     </event-translation-spec>
 
-    <!-- Enhance uei.opennms.org/class/happiness-->
+    <!-- Enhanced unhappiness event-->
+    <event-translation-spec uei="uei.opennms.org/class/unhappiness">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/class/translator/unhappiness" />
+          </assignment>
+          <assignment name="teste" type="parameter" >
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278465\.84" matches=".*" result="Slot 1/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <event-translation-spec uei="uei.opennms.org/class/unhappiness">
+      <mappings>
+        <mapping>
+          <assignment name="uei" type="field">
+            <value type="constant" result="uei.opennms.org/class/translator/unhappiness" />
+          </assignment>
+          <assignment name="teste" type="parameter" >
+            <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278721\.84" matches=".*" result="Slot 2/1 : 84 ONU" />
+          </assignment>
+        </mapping>
+      </mappings>
+    </event-translation-spec>
+
+    <!-- Enhanced happiness event-->
     <event-translation-spec uei="uei.opennms.org/class/happiness">
       <mappings>
         <mapping>
           <assignment name="uei" type="field">
-            <value type="constant" result="uei.opennms.org/enhanced/class/happiness" />
+            <value type="constant" result="uei.opennms.org/class/translator/happiness" />
           </assignment>
           <assignment name="teste" type="parameter" >
             <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278465\.84" matches=".*" result="Slot 1/1 : 84 ONU" />
@@ -423,7 +450,7 @@
       <mappings>
         <mapping>
           <assignment name="uei" type="field">
-            <value type="constant" result="uei.opennms.org/enhanced/class/happiness" />
+            <value type="constant" result="uei.opennms.org/class/translator/happiness" />
           </assignment>
           <assignment name="teste" type="parameter" >
             <value type="parameter" name="~^\.1\.3\.6\.1\.4\.1\.3902\.1082\.500\.10\.2\.3\.3\.1\.2\.285278721\.84" matches=".*" result="Slot 2/1 : 84 ONU" />
