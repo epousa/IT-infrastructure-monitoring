@@ -56,7 +56,7 @@
     <logmsg dest="logndisplay">
       &lt;p&gt;OpenNMS Class is NOT Happy! &lt;/p&gt;
     </logmsg>
-    <severity>Major</severity>
+    <severity>Major</severity> -->
     <!-- Remove this alarm in preference to the translated version -->
     <!-- <alarm-data reduction-key="%uei%:%nodeid%" alarm-type="1" auto-clean="false"/> -->
   </event>
@@ -82,21 +82,40 @@
     <alarm-data reduction-key="%uei%:%nodeid%:%parm[name-#1]%" alarm-type="1" auto-clean="false"/>
   </event>
 
-  <!-- unhappiness event -->
-  <!-- <event>
-    <uei>uei.opennms.org/class/unhappiness</uei>
-    <event-label>OpenNMS defined event: The OpenNMS Class is not happy</event-label>
+  <!-- autoaction events -->
+  <event>
+    <uei>uei.opennms.org/alternative/class/unhappiness</uei>
+    <event-label>OpenNMS defined autoaction event: The OpenNMS Class is not happy</event-label>
     <descr>
-      ThiseventissentwhentheOpenNMSClassisunhappy.Ican'tgetnoIcan'tgetnoIcan'tgetnoSatisfaction
+      I can't get no. I can't get no. I can't get no. Satisfaction.
     </descr>
     <logmsg dest="donotpersist">
+      OpenNMS Class is NOT Happy!
+    </logmsg>
+    <severity>Minor</severity>
+    <operinstruct>OpenNMSClass take a deep breath, 4 seconds in and 4 seconds out. Try not to cry :).</operinstruct>
+    <autoaction>myScript "%uei%" "%severity%" "%logmsg%" "%descr%" "%operinstruct%" %nodeid% %interface% %parm[name-#1]% "%parm[#1]%"</autoaction>
+    <!-- <alarm-data reduction-key="%uei%:%nodeid%" alarm-type="1" auto-clean="false"/>  -->
+  </event>
+
+  <event>
+    <uei>uei.opennms.org/alternative/defined/autoaction/class/unhappiness</uei>
+    <event-label>OpenNMS defined autoaction event: The OpenNMS Class is not happy</event-label>
+    <descr>
+      &lt;p&gt;OpenNMS Class unhappy event was Enhanced.&lt;/p&gt;
+      &lt;ul&gt;
+      &lt;li&gt;New parameter: %parm[uniqueIdentifier]% &lt;/li&gt;
+      &lt;li&gt;Original Parameter Value: %parm[originalValue]%&lt;/li&gt;
+      &lt;li&gt;Matched Parameter Value: %parm[matchedValue]%&lt;/li&gt;
+      &lt;/ul&gt;
+    </descr>
+    <logmsg dest="logndisplay">
       &lt;p&gt;OpenNMS Class is NOT Happy! &lt;/p&gt;
     </logmsg>
     <severity>Major</severity>
-    <operinstruct>OpenNMSClasstakeadeepbreath,4secondsinand4secondsout.Trynottocry:).</operinstruct>
-    <autoaction>myScript %uei% %severity% %descr% %operinstruct%</autoaction> -->
-    <!-- <alarm-data reduction-key="%uei%:%nodeid%" alarm-type="1" auto-clean="false"/>  -->
-  <!-- </event> -->
+    <operinstruct>OpenNMSClass take a deep breath, 4seconds in and 4 seconds out. Try not to cry :).</operinstruct>
+    <alarm-data reduction-key="%uei%:%nodeid%:%parm[uniqueIdentifier]%" alarm-type="1" auto-clean="false"/>
+  </event>
 
   <!-- moody trap -->
   <event>
