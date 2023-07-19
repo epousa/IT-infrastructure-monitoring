@@ -75,6 +75,6 @@ curl -u admin:admin \
     </event>" \
 -H "Content-Type: application/xml" http://192.168.1.30:8980/opennms/rest/events
 
-# Send Event with send-event.pl "-p" '$parameter_name $matched_value'
+# Send Event with send-event.pl
 cd ~/Desktop/github/dissertacao/cenarios-teste/dev/opennms/target/opennms-32.0.0-SNAPSHOT/bin
-./send-event.pl "uei.opennms.org/alternative/defined/autoaction/class/unhappiness" 
+./send-event.pl uei.opennms.org/alternative/defined/autoaction/class/unhappiness -p "uniqueIdentifier $parameter_name" -p "originalValue $parameter_value" -p "matchedValue $matched_value"
