@@ -28,9 +28,10 @@ def create_event_protobuf(uei,source,severity,host,node_id,ip_address,service_na
 if __name__ == "__main__":
 
     # Create a Kafka producer and define topic
-    producer = KafkaProducer(bootstrap_servers='192.168.11.55:9092')
+    producer = KafkaProducer(bootstrap_servers='192.168.11.146:9092')
     topic = 'opennms-kafka-events'
     key = b'localhost'
+    counter = 0
 
     match sys.argv[1]:
         case "protobuf":
@@ -56,7 +57,7 @@ if __name__ == "__main__":
 
         case "xml":
 
-            if(len(sys.argv) != 3):
+            if(len(sys.argv) != 4):
                 print("\nWrong arguments\nCorrect format: python3 "+sys.argv[0]+" xml <event_file.xml>\n")
             else:
                 # Read new xml event 
@@ -68,9 +69,12 @@ if __name__ == "__main__":
                 #print(event_data)
                 # # encode string as bytes
                 # event_data = xml_string.encode('utf-8')
+
+                while(counter < int(sys.argv[3])):
+                    # Produce the message to the Kafka topic
+                    producer.send(topic, value=event_data,key=key)
+                    counter+=1
                 
-                # Produce the message to the Kafka topic
-                producer.send(topic, value=event_data,key=key)
 
         case _:
             print("\nMissing format type in your arguments\n")
