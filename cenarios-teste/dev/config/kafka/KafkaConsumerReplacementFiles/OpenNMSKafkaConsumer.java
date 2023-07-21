@@ -62,6 +62,7 @@
  import com.google.protobuf.InvalidProtocolBufferException;
  
  import javax.xml.stream.XMLStreamException;
+ import java.sql.SQLException;
  
  public class OpenNMSKafkaConsumer {
  
@@ -202,7 +203,7 @@
                         }else{
                             LOG.warn("Invalid Event. Missing Parameters. Wont be in parsed event list");    
                         }
-                     } catch (XMLStreamException e) {
+                     } catch (XMLStreamException | SQLException e) {
                          LOG.info("Error while parsing xml event with key {}", record.key());
                      }
                  }  

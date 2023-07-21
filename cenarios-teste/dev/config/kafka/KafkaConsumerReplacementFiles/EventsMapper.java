@@ -48,6 +48,7 @@
  import java.util.function.Consumer;
  import javax.xml.stream.XMLInputFactory;
  import javax.xml.stream.XMLStreamException;
+ import java.sql.SQLException;
  import javax.xml.stream.events.StartElement;
  import javax.xml.stream.events.XMLEvent;
  import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -59,12 +60,12 @@
  //imports needed to turn a event into an alarm
  import org.opennms.netmgt.xml.event.AlarmData;
 
- //imports needed to access opennms postgres database
+ //imports needed to access opennms postgres database properly
+ import org.opennms.core.db.DataSourceFactory;
+ import org.opennms.core.utils.DBUtils;
  import java.sql.Connection;
- import java.sql.DriverManager;
  import java.sql.PreparedStatement;
  import java.sql.ResultSet;
- import java.sql.SQLException;
 
  public class EventsMapper{
 
@@ -72,7 +73,7 @@
      private static final Logger LOG = LoggerFactory.getLogger(EventsMapper.class);
 
      //Function to parse xml events
-     public static Event toEventXml(ConsumerRecord<String, String> record) throws XMLStreamException{
+     public static Event toEventXml(ConsumerRecord<String, String> record) throws XMLStreamException, SQLException{
 
          //Variables needed for xml event parser logic
          XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
@@ -90,6 +91,8 @@
          StringBuilder uei = new StringBuilder();
          String alarm_id = new String();
          boolean flag = false;
+
+         DBUtils d = new DBUtils();
 
 
          while(xmlEventReader.hasNext()) {
@@ -178,18 +181,36 @@
                     case "deviceRefId":
                         nextEvent = xmlEventReader.nextEvent();
                         if (nextEvent.isCharacters()) {
-                            //Variables needed for accessing opennms postgres database
-                            try (Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/opennms", "opennms", "opennms")) {
+                            try{
+                                //Getting connection to database
+                                Connection conn = DataSourceFactory.getInstance().getConnection();
+
+                                //To close everything at the end
+                                d.watch(conn);
+
+                                //Preparing query
                                 PreparedStatement pstmt = conn.prepareStatement("SELECT nodeid FROM node WHERE nodelabel = ?");
                                 pstmt.setString(1, nextEvent.asCharacters().getData());
+
+                                //To close everything at the end
+                                d.watch(pstmt);
+
+                                //Run query
                                 ResultSet rs = pstmt.executeQuery();
-                                while (rs.next()) {
+
+                                //To close everything at the end
+                                d.watch(rs);
+
+                                //Check if theres a match
+                                if(rs.next()){
+                                    //If so fetch the node id and set it in the event
                                     opennms_event.setNodeid(rs.getInt("nodeid"));
                                 }
-                                //To avoid org.postgresql.util.PSQLException: FATAL: sorry, too many clients already
-                                conn.close();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
+                                
+                            }finally {
+                                //Close Everything. 
+                                //This avoids errors like org.postgresql.util.PSQLException: FATAL: sorry, too many clients already
+                                d.cleanUp();
                             }
                         }
                         break;
@@ -229,8 +250,9 @@
                         nextEvent = xmlEventReader.nextEvent();
                         if (nextEvent.isCharacters()) {
                             description.append(elementName).append(": ").append(nextEvent.asCharacters().getData()).append(";");
-                            opennms_event.setDescription(description.toString());
                         }
+                        // To guarantee description gets set
+                        opennms_event.setDescription(description.toString());
                         break;  
                 
                     case "clearedTime":  
