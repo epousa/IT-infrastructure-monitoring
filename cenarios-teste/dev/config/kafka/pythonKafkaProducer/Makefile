@@ -3,10 +3,10 @@
 all: reset run_protobuf
 
 run_protobuf:
-	@. venv/bin/activate && protoc --python_out=. src/my-event.proto && python3 src/myProducer.py protobuf 2
+	@. venv/bin/activate && protoc --python_out=. src/my-event.proto && python3 src/myProducer.py protobuf 50
 
 run_xml:
-	@. venv/bin/activate && python3 src/myProducer.py xml ../kafka_events_format/alarm_22_6_ISAM_kafka.xml 100
+	@. venv/bin/activate && python3 src/myProducer.py xml ../kafka_events_format/alarm_22_6_ISAM_kafka.xml 1
 
 install:
 	@python3 -m venv --system-site-packages venv && . venv/bin/activate && pip3 install -r requirements.txt

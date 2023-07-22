@@ -78,11 +78,8 @@
          //Variables needed for xml event parser logic
          XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
          XMLEventReader xmlEventReader = xmlInputFactory.createXMLEventReader(new StringReader(record.value()));
-
-         //Variables needed to set the event time
-         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-         Date date = new Date();
-
+         
+         //Variables needed to build the event
          EventBuilder opennms_event = new EventBuilder();
          AlarmData alarmData = new AlarmData();
          StringBuilder description = new StringBuilder();
@@ -90,8 +87,8 @@
          String uei_foundation = "uei.opennms.org/vendor/nokia/";
          StringBuilder uei = new StringBuilder();
          String alarm_id = new String();
-         boolean flag = false;
 
+         //Variable needed to help with the database access
          DBUtils d = new DBUtils();
 
          while(xmlEventReader.hasNext()) {
@@ -108,6 +105,8 @@
                         //Set alarm reduction key as {alarm-id}
                         if (nextEvent.isCharacters()) {
                             alarm_id = nextEvent.asCharacters().getData();
+                            // The time when the event was processed by OpenNMS
+                            opennms_event.setTime(new Date());
                             break;
                         }else{
                             LOG.warn("Event will not be forwarded, `alarm-id` is required field, skipped Event");
@@ -233,6 +232,10 @@
                         }
                         break;
                     
+                    case "eventTime":
+                    case "raisedTime": 
+                    case "clearedTime":
+                    case "lastStatusChangeTime":
                     case "alarmNotificationOrigin":
                     case "alarmResource":
                     case "alarmText":
@@ -254,38 +257,6 @@
                         // To guarantee description gets set
                         opennms_event.setDescription(description.toString());
                         break;  
-                
-                    case "clearedTime":  
-                        nextEvent = xmlEventReader.nextEvent();
-                        if(nextEvent.isCharacters()){
-                            try {
-                                opennms_event.setTime(dateFormat.parse(nextEvent.asCharacters().getData()));
-                                flag = true;
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
-                        }else{
-                            LOG.warn("Event will not be forwarded, `cleared time` is required field, skipped Event");
-                            return null;
-                        }
-                        break;
-
-                    case "raisedTime":
-                        nextEvent = xmlEventReader.nextEvent();
-                        if(flag == false){
-                            if(nextEvent.isCharacters()){
-                                try {
-                                    opennms_event.setTime(dateFormat.parse(nextEvent.asCharacters().getData()));
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                            }else{
-                                LOG.warn("Event will not be forwarded, `raised time` is required field, skipped Event");
-                                return null;
-                            }
-                        }
-                        
-                        break;        
                 }
              }
          }
