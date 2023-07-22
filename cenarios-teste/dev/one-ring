@@ -30,6 +30,7 @@ elif [ $1 = "compile" ]; then
   #copy kafka consumer replacement files to their corresponding directories.
   cp config/kafka/KafkaConsumerReplacementFiles/EventsMapper.java opennms/features/kafka/consumer/src/main/java/org/opennms/features/kafka/consumer/events/
   cp config/kafka/KafkaConsumerReplacementFiles/OpenNMSKafkaConsumer.java opennms/features/kafka/consumer/src/main/java/org/opennms/features/kafka/consumer/
+  cp config/kafka/KafkaConsumerReplacementFiles/EventBuilder.java opennms/opennms-model/src/main/java/org/opennms/netmgt/model/events/
 
   #move to opennms directory
   cd opennms
@@ -52,8 +53,14 @@ elif [ $1 = "from-scretch" ]; then
   ulimit -n 16384
 
   #copy kafka consumer replacement files to their corresponding directories.
+  #To access db without credentials
+  cp config/kafka/KafkaConsumerReplacementFiles/pom.xml opennms/features/kafka/consumer/
+  #To be able to read XML events
   cp config/kafka/KafkaConsumerReplacementFiles/EventsMapper.java opennms/features/kafka/consumer/src/main/java/org/opennms/features/kafka/consumer/events/
   cp config/kafka/KafkaConsumerReplacementFiles/OpenNMSKafkaConsumer.java opennms/features/kafka/consumer/src/main/java/org/opennms/features/kafka/consumer/
+  #To be able to write the Operation Instructions
+  cp config/kafka/KafkaConsumerReplacementFiles/EventBuilder.java opennms/opennms-model/src/main/java/org/opennms/netmgt/model/events/
+  
   
   #change to opennms directory
   cd opennms

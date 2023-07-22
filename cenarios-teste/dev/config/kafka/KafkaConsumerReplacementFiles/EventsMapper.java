@@ -94,7 +94,6 @@
 
          DBUtils d = new DBUtils();
 
-
          while(xmlEventReader.hasNext()) {
              XMLEvent nextEvent = xmlEventReader.nextEvent();
              
@@ -103,6 +102,7 @@
                 String elementName = startElement.getName().getLocalPart();
 
                 switch(elementName){
+                    case "alarmIdentification":
                     case "alarm-id":
                         nextEvent = xmlEventReader.nextEvent(); 
                         //Set alarm reduction key as {alarm-id}
