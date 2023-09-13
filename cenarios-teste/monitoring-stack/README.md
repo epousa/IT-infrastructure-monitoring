@@ -18,9 +18,23 @@ Active docker daemon
 $ sudo systemctl start docker
 ```
 
-Make constume OpenNMS Core instance container
+Make constume OpenNMS Core instance image
 
 ```
 $ ~/Desktop/github/dissertacao/cenarios-teste/monitoring-stack/opennms-virtualization/opennms-container/core
 $ make image
+```
+
+Build containers with docker-compose file
+
+```
+$ docker compose up -d
+```
+
+Give permissions to the volumes
+
+```
+$ sudo chmod -R 777 data-grafana/
+$ sudo chmod -R 777 data-opennms*
+
 ```
