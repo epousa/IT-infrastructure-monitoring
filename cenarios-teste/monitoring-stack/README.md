@@ -1,22 +1,26 @@
 ## Table of contents
 * [General info](#general-info)
-* [Technologies](#technologies)
 * [Setup](#setup) 
 
 ## General info
-This project is simple Lorem ipsum dolor generator.
-	
-## Technologies
-Project is created with:
-* Lorem version: 12.3
-* Ipsum version: 2.33
-* Ament library version: 999
+Costume OpenNMS Core instance in docker container image working insync with every other micro-services in containers
 	
 ## Setup
-To run this project, install it locally using npm:
+compile with -U -DskipTests so that it builds the tarball needed for the docker image
 
 ```
-$ cd ../lorem
-$ npm install
-$ npm start
+$ time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -Dopennms.home=/opt/opennms -DskipTests)
+```
+
+Active docker daemon 
+
+```
+$ sudo systemctl start docker
+```
+
+Make constume OpenNMS Core instance container
+
+```
+$ ~/Desktop/github/dissertacao/cenarios-teste/monitoring-stack/opennms-virtualization/opennms-container/core
+$ make image
 ```
