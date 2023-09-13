@@ -1,0 +1,211 @@
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+  <!-- happiness event -->
+  <event>
+    <uei>uei.opennms.org/class/happiness</uei>
+    <event-label>OpenNMS defined event: The OpenNMS Class is so happy</event-label>
+    <descr>
+      &lt;p&gt;This event is sent when the OpenNMS Class is happy.&lt;/p&gt;
+      &lt;ul&gt;
+      &lt;li&gt;Dance, Everybody Dance!&lt;/li&gt;
+      &lt;li&gt;Life is Good!&lt;/li&gt;
+      &lt;li&gt;This is Fun!&lt;/li&gt;
+      &lt;/ul&gt;
+    </descr>
+    <logmsg dest="logndisplay">
+      &lt;p&gt;OpenNMS Class is Happy! &lt;/p&gt;
+    </logmsg>
+    <severity>Normal</severity>
+    <!-- Remove this alarm in preference to the translated version -->
+    <!-- <alarm-data reduction-key="%uei%:%nodeid%" alarm-type="2" clear-key="uei.opennms.org/class/unhappiness:%nodeid%" auto-clean="false"/> -->
+  </event>
+
+  <!-- enhanced happiness event -->
+  <event>
+    <uei>uei.opennms.org/class/translator/happiness</uei>
+    <event-label>OpenNMS Translator defined event: The OpenNMS Class is so happy</event-label>
+    <descr>
+      &lt;p&gt;OpenNMS Class happy event was Enhanced.&lt;/p&gt;
+      &lt;ul&gt;
+      &lt;li&gt;New parameters: %parm[name-#1]% &lt;/li&gt;
+      &lt;li&gt;Original Parameter Values: %parm[#1]%&lt;/li&gt;
+      &lt;li&gt;Matched Parameter Values: %parm[teste]%&lt;/li&gt;
+      &lt;/ul&gt;
+    </descr>
+    <logmsg dest="logndisplay">
+      &lt;p&gt;OpenNMS Enhanced Class is Happy!&lt;/p&gt;
+    </logmsg>
+    <severity>Normal</severity>
+    <alarm-data reduction-key="%uei%:%nodeid%:%parm[name-#1]%" alarm-type="2" clear-key="uei.opennms.org/class/translator/unhappiness:%nodeid%:%parm[name-#1]%" auto-clean="false"/>
+  </event>
+
+  <!-- unhappiness event -->
+  <event>
+    <uei>uei.opennms.org/class/unhappiness</uei>
+    <event-label>
+      OpenNMS defined event: The OpenNMS Class is not happy
+    </event-label>
+    <descr>
+      &lt;p&gt;This event is sent when the OpenNMS Class is unhappy.&lt;/p&gt;
+      &lt;ul&gt;
+      &lt;li&gt;I can't get no&lt;/li&gt;
+      &lt;li&gt;I can't get no&lt;/li&gt;
+      &lt;li&gt;I can't get no&lt;/li&gt;
+      &lt;li&gt;Satisfaction&lt;/li&gt;
+      &lt;/ul&gt;
+    </descr>
+    <logmsg dest="logndisplay">
+      &lt;p&gt;OpenNMS Class is NOT Happy! &lt;/p&gt;
+    </logmsg>
+    <severity>Major</severity> -->
+    <!-- Remove this alarm in preference to the translated version -->
+    <!-- <alarm-data reduction-key="%uei%:%nodeid%" alarm-type="1" auto-clean="false"/> -->
+  </event>
+
+  <!-- enhanced unhappiness event -->
+  <event>
+    <uei>uei.opennms.org/class/translator/unhappiness</uei>
+    <event-label>
+      OpenNMS Translator defined event: The OpenNMS Class is not happy
+    </event-label>
+    <descr>
+      &lt;p&gt;OpenNMS Class unhappy event was Enhanced.&lt;/p&gt;
+      &lt;ul&gt;
+      &lt;li&gt;New parameter: %parm[name-#1]% &lt;/li&gt;
+      &lt;li&gt;Original Parameter Value: %parm[#1]%&lt;/li&gt;
+      &lt;li&gt;Matched Parameter Value: %parm[teste]%&lt;/li&gt;
+      &lt;/ul&gt;
+    </descr>
+    <logmsg dest="logndisplay">
+      &lt;p&gt;OpenNMS Enhanced Class is NOT Happy! &lt;/p&gt;
+    </logmsg>
+    <severity>Major</severity>
+    <alarm-data reduction-key="%uei%:%nodeid%:%parm[name-#1]%" alarm-type="1" auto-clean="false"/>
+  </event>
+
+  <!-- autoaction events -->
+  <event>
+    <uei>uei.opennms.org/alternative/class/unhappiness</uei>
+    <event-label>OpenNMS defined autoaction event: The OpenNMS Class is not happy</event-label>
+    <descr>
+      I can't get no. I can't get no. I can't get no. Satisfaction.
+    </descr>
+    <logmsg dest="donotpersist">
+      OpenNMS Class is NOT Happy!
+    </logmsg>
+    <severity>Minor</severity>
+    <operinstruct>OpenNMSClass take a deep breath, 4 seconds in and 4 seconds out. Try not to cry :).</operinstruct>
+    <autoaction>myScript "%uei%" "%severity%" "%logmsg%" "%descr%" "%operinstruct%" %nodeid% %interface% %parm[name-#1]% "%parm[#1]%"</autoaction>
+    <!-- <alarm-data reduction-key="%uei%:%nodeid%" alarm-type="1" auto-clean="false"/>  -->
+  </event>
+
+  <event>
+    <uei>uei.opennms.org/alternative/defined/autoaction/class/unhappiness</uei>
+    <event-label>OpenNMS defined autoaction event: The OpenNMS Class is not happy</event-label>
+    <descr>
+      &lt;p&gt;OpenNMS Class unhappy event was Enhanced.&lt;/p&gt;
+      &lt;ul&gt;
+      &lt;li&gt;New parameter: %parm[uniqueIdentifier]% &lt;/li&gt;
+      &lt;li&gt;Original Parameter Value: %parm[originalValue]%&lt;/li&gt;
+      &lt;li&gt;Matched Parameter Value: %parm[matchedValue]%&lt;/li&gt;
+      &lt;/ul&gt;
+    </descr>
+    <logmsg dest="logndisplay">
+      &lt;p&gt;OpenNMS Class is NOT Happy! &lt;/p&gt;
+    </logmsg>
+    <severity>Major</severity>
+    <operinstruct>OpenNMSClass take a deep breath, 4seconds in and 4 seconds out. Try not to cry :).</operinstruct>
+    <alarm-data reduction-key="%uei%:%nodeid%:%parm[uniqueIdentifier]%" alarm-type="1" auto-clean="false"/>
+  </event>
+
+  <!-- moody trap -->
+  <event>
+    <mask>
+      <maskelement>
+        <mename>id</mename>
+        <mevalue>.1.3.6.1.4.1.99999.2</mevalue>
+      </maskelement>
+      <maskelement>
+        <mename>generic</mename>
+        <mevalue>6</mevalue>
+      </maskelement>
+      <maskelement>
+        <mename>specific</mename>
+        <mevalue>1</mevalue>
+      </maskelement>
+    </mask> 
+    <uei>uei.opennms.org/class/moody</uei>
+    <event-label>OpenNMS defined event: The OpenNMS Class is moody</event-label>
+    <descr>
+      &lt;p&gt;This event is sent when the OpenNMS Class is moody.&lt;/p&gt;
+    </descr>
+    <logmsg dest="logndisplay">
+      &lt;p&gt;OpenNMS Class is moody: %parm[#1]%&lt;/p&gt;
+    </logmsg>
+    <severity>Warning</severity>
+    <alarm-data reduction-key="%uei%:%nodeid%:%parm[#1]%" alarm-type="1" auto-clean="false"/>
+  </event>
+
+  <!-- joyful trap -->
+  <event>
+    <mask>
+      <maskelement>
+        <mename>id</mename>
+        <mevalue>.1.3.6.1.4.1.99999.2</mevalue>
+      </maskelement>
+      <maskelement>
+        <mename>generic</mename>
+        <mevalue>6</mevalue>
+      </maskelement>
+      <maskelement>
+        <mename>specific</mename>
+        <mevalue>2</mevalue>
+      </maskelement>
+    </mask> 
+    <uei>uei.opennms.org/class/joyful</uei>
+    <event-label>OpenNMS defined event: The OpenNMS Class is joyful</event-label>
+    <descr>
+      &lt;p&gt;This event is sent when the OpenNMS Class is joyful.&lt;/p&gt;
+    </descr>
+    <logmsg dest="logndisplay">
+      &lt;p&gt;OpenNMS Class is joyful: %parm[#1]%&lt;/p&gt;
+    </logmsg>
+    <severity>Normal</severity>
+    <alarm-data reduction-key="%uei%:%nodeid%:%parm[#1]%" alarm-type="2" clear-key="uei.opennms.org/class/moody:%nodeid%:%parm[#1]%" auto-clean="false"/>
+  </event>
+</events>
+
+   <!-- <event>
+
+    <uei>uei.opennms.org/external/translator/event/enriched</uei>
+
+    <event-label>OpenNMS-translator enriched event</event-label>
+
+      <descr>&lt;p>&lt;b>Translated Event&lt;/b>&lt;/p>
+
+          Translated Event received from %parm[#5]% for %parm[#1]% (%parm[#6]%): state of %parm[#3]% is %parm[#4]% &lt;br />
+
+          Hostname: %parm[#1]%&lt;br />
+
+          IP Address: %parm[#2]%&lt;br />
+
+          Parameter: %parm[#3]%&lt;br />
+
+          Message: %parm[#4]%&lt;br />
+
+          Time event was received: %time%&lt;br /></descr>
+
+      <logmsg dest="logndisplay">Translated Event received from %parm[#5]% for %parm[#1]% (%parm[#6]%), IP: %parm[#2]%, Message: %parm[#4]%</logmsg>
+
+      <operinstruct>&lt;a href=&quot;http://myurl.org/opennms/kb.php?OS=%parm[#6]%&amp;host=%parm[#1]%&amp;parameter=%parm[#3]%&amp;severity=%severity%&amp;message=%parm[#4]%&quot; target=_blank>Click for additional information&lt;/a></operinstruct>
+
+      <autoaction>/opt/opennms/bin/event-action \%parm[#2]% \%parm[#1]%</autoaction>
+
+      <alarm-data reduction-key="%uei%:%nodeid%:%parm[#1]%:%parm[#2]%:%parm[#3]%" alarm-type="1" auto-clean="false">
+
+         <update-field field-name="severity" update-on-reduction="true"/>
+
+      </alarm-data>
+
+   </event>
+
+</events> -->

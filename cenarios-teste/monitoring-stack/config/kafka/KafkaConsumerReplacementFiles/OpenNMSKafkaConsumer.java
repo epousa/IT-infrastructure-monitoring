@@ -62,6 +62,7 @@
  import com.google.protobuf.InvalidProtocolBufferException;
  
  import javax.xml.stream.XMLStreamException;
+ import java.sql.SQLException;
  
  public class OpenNMSKafkaConsumer {
  
@@ -72,7 +73,8 @@
      private final EventForwarder eventForwarder;
  
      private String eventsTopic;
- 
+     private String defaultTopics = "opennms-default-format";
+
      private final AtomicBoolean closed = new AtomicBoolean(false);
  
      public static final String KAFKA_CLIENT_PID = "org.opennms.features.kafka.consumer.client";
@@ -81,33 +83,45 @@
              .setNameFormat("kafka-consumer-events-%d")
              .build();
  
-     private final ExecutorService executorService = Executors.newSingleThreadExecutor(threadFactory);
- 
+     private final ExecutorService executorService = Executors.newFixedThreadPool(2, threadFactory);
+
      public OpenNMSKafkaConsumer(ConfigurationAdmin configAdmin, EventForwarder eventForwarder) {
          this.configAdmin = configAdmin;
          this.eventForwarder = eventForwarder;
      }
  
      public void init() throws IOException {
-         Properties consumerConfig = new Properties();
+         Properties consumerConfigDefault = new Properties();
  
          // Add default group as OpenNMS Instance ID, allow it be override from client properties.
-         consumerConfig.put(ConsumerConfig.GROUP_ID_CONFIG, SystemInfoUtils.getInstanceId());
+         consumerConfigDefault.put(ConsumerConfig.GROUP_ID_CONFIG, SystemInfoUtils.getInstanceId());
          final Dictionary<String, Object> properties = configAdmin.getConfiguration(KAFKA_CLIENT_PID).getProperties();
          if (properties != null) {
              final Enumeration<String> keys = properties.keys();
              while (keys.hasMoreElements()) {
                  final String key = keys.nextElement();
-                 consumerConfig.put(key, properties.get(key));
+                 consumerConfigDefault.put(key, properties.get(key));
              }
          }
  
          // Overwrite deserializer
-         consumerConfig.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getCanonicalName());
-         consumerConfig.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getCanonicalName());
-         // consumerConfig.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getCanonicalName());
-         KafkaConsumerRunnerXml kafkaConsumerRunner = new KafkaConsumerRunnerXml(consumerConfig);
-         executorService.execute(kafkaConsumerRunner);
+         consumerConfigDefault.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getCanonicalName());
+         consumerConfigDefault.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getCanonicalName());
+         
+         //Execute Protobuf runner 
+         KafkaConsumerRunner kafkaConsumerRunnerDefault = new KafkaConsumerRunner(consumerConfigDefault);
+         executorService.execute(kafkaConsumerRunnerDefault);
+
+         //Copy the base config
+         Properties consumerConfigXML = new Properties();
+         consumerConfigXML.putAll(consumerConfigDefault);
+
+         //Change consumer config   
+         consumerConfigXML.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getCanonicalName());
+         
+         //Execute Protobuf runner
+         KafkaConsumerRunnerXml KafkaConsumerRunnerXML = new KafkaConsumerRunnerXml(consumerConfigXML);
+         executorService.execute(KafkaConsumerRunnerXML);
      }
  
      public void shutdown() {
@@ -131,12 +145,13 @@
          @Override
          public void run() {
              KafkaConsumer<String, byte[]> consumer = Utils.runWithGivenClassLoader(() -> new KafkaConsumer<>(consumerConfig), KafkaConsumer.class.getClassLoader());
-             if (Strings.isNullOrEmpty(eventsTopic)) {
-                 LOG.error("EventsTopic is either null or empty, not invoking kafka consumer");
+             if (Strings.isNullOrEmpty(defaultTopics)) {
+                 LOG.error("defaultTopics is either null or empty, not invoking kafka consumer");
                  return;
              }
-             consumer.subscribe(Arrays.asList(eventsTopic));
-             LOG.info("subscribed to {}", eventsTopic);
+ 
+             consumer.subscribe(Arrays.asList(defaultTopics));
+             LOG.info("subscribed to {}", defaultTopics);
              while (!closed.get()) {
                  ConsumerRecords<String, byte[]> records = consumer.poll(java.time.Duration.ofMillis(Long.MAX_VALUE));
                  LOG.trace("Received {} records", records.count());
@@ -195,13 +210,24 @@
                  for (ConsumerRecord<String, String> record : records) {
                      // LOG.info(record.value());
                      try {
-                         opennms_events.add(EventsMapper.toEventXml(record));
-         
-                     } catch (XMLStreamException e) {
+                        Event parsed_event = EventsMapper.toEventXml(record);
+                        if(parsed_event != null){
+                            //To avoid NullPointerException
+                            opennms_events.add(parsed_event);
+                        }else{
+                            LOG.warn("Invalid Event. Missing Parameters. Wont be in parsed event list");    
+                        }
+                     } catch (XMLStreamException | SQLException e) {
                          LOG.info("Error while parsing xml event with key {}", record.key());
                      }
-                 }   
-                 forwardEventsToOpenNMS(opennms_events);
+                 }  
+                 if(!opennms_events.isEmpty()){
+                    //Only sends if there are parsed events in the list
+                    forwardEventsToOpenNMS(opennms_events);
+                 }else{
+                    LOG.warn("Empty parsed events list. Not sending anything");
+                 } 
+                
              }
  
          }

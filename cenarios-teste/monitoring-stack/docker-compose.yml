@@ -1,15 +1,15 @@
-version: '3'
+version: '3.0'
 
 networks:
   monitoring:
     driver: bridge
 
 volumes:
-  data-postgres: {}
   data-opennms.etc: {}
   data-opennms.mibs: {}
   data-opennms.rrd: {}
   data-opennms.reports: {}
+  data-postgres: {}
   data-grafana: {}
 
 services:
@@ -30,30 +30,8 @@ services:
     ports:
       - "5432:5432"
 
-  zookeeper:
-    image: confluentinc/cp-zookeeper:latest
-    container_name: zookeeper
-    env_file:
-      - ./config/env/zookeeper.env
-    networks:
-      - monitoring
-
-  broker:
-    image: confluentinc/cp-kafka:latest
-    container_name: broker
-    ports:
-    # To learn about configuring Kafka for access across networks see
-    # https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/
-      - "9092:9092"
-    depends_on:
-      - zookeeper
-    env_file:
-      - ./config/env/broker.env
-    networks:
-      - monitoring
-
   horizon:
-    image: opennms/horizon:latest
+    image: opennms/horizon:33.0.0-SNAPSHOT
     container_name: horizon
     env_file:
       - ./config/env/opennms.env
@@ -83,14 +61,36 @@ services:
       #- "61616:61616/tcp" #Publish port for ActiveMQ
       - "162:1162/udp" #Publish port for SNMP Traps/Informs.Unprivileged user and can’t bind on port numbers below 1024 without escalated privileges
       - "5817:5817" #Publish port to access evend
-  
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    env_file:
+      - ./config/env/zookeeper.env
+    networks:
+      - monitoring
+
+  broker:
+    image: confluentinc/cp-kafka:latest
+    container_name: broker
+    ports:
+    # To learn about configuring Kafka for access across networks see
+    # https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    env_file:
+      - ./config/env/broker.env
+    networks:
+      - monitoring
+
   grafana:
     image: opennms/helm:latest
     container_name: grafana
     env_file:
       - ./config/env/grafana.env
     volumes:
-      #Not named volumes need to be given permissions. Run "precious" script to do so.
+      #Not named volumes need to be given permissions. Run "precious" script to do so. sudo chmod -R 777 volume-grafana
       - ./mount-volumes/data-grafana:/var/lib/grafana
     healthcheck:
       test: ["CMD", "curl", "-f", "-I", "http://localhost:3000/login"]
@@ -100,5 +100,20 @@ services:
     networks:
       - monitoring
     ports:
-      - "3000:3000" 
+      - "3000:3000"
+
+  es01:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
+    env_file:
+      - ./config/env/elastic.env 
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - monitoring
+    ports:
+      - 9200:9200
+
 

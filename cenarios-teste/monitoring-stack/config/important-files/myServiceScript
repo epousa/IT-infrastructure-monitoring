@@ -1,0 +1,16 @@
+#!/bin/bash
+
+service="$1"
+daemon=""
+
+# Matching
+case $service in
+    SSH)
+        daemon="sshd.service"
+        echo "your-root-password" | sudo -S systemctl start "$daemon"
+        ;;
+esac
+
+
+
+
