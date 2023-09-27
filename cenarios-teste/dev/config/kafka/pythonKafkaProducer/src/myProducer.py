@@ -45,7 +45,7 @@ if __name__ == "__main__":
                  severity=Severity.MINOR,
                  host="host.example.com",
                  node_id=1,
-                 ip_address="192.168.1.23",
+                 ip_address="192.168.1.30",
                  service_name="",
                  if_index=456,
                  description="",

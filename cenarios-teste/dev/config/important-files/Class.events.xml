@@ -94,7 +94,7 @@
     </logmsg>
     <severity>Minor</severity>
     <operinstruct>OpenNMSClass take a deep breath, 4 seconds in and 4 seconds out. Try not to cry :).</operinstruct>
-    <autoaction>myScript "%uei%" "%severity%" "%logmsg%" "%descr%" "%operinstruct%" %nodeid% %interface% %parm[name-#1]% "%parm[#1]%"</autoaction>
+    <autoaction>myScript "%uei%" "%severity%" "%logmsg%" "%descr%" "%operinstruct%" "%nodeid%" "%interface%" "%parm[name-#1]%" "%parm[#1]%"</autoaction>
     <!-- <alarm-data reduction-key="%uei%:%nodeid%" alarm-type="1" auto-clean="false"/>  -->
   </event>
 
