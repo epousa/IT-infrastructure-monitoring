@@ -35,7 +35,7 @@ The conducted tests have confirmed that the implemented modifications ensure the
 │   │   └── docker-compose.yml
 │   │   └── images
 │   │   └── notes
-│   │   └── one-ring
+│   │   └── one-ring.sh
 │   ├── ExampleOpenNMSDatabaseAccess (test directory)
 │   └── monitoring-stack (test directory)
 ```
