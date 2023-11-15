@@ -1,4 +1,4 @@
-# Monitorização de infraestrutura de TI 
+# IT infrastructure monitoring 
 ## Table of contents
 - [About the project](#About-the-project) 
 - [Overview](#Overview)
