@@ -3,6 +3,7 @@
 - [About the project](#About-the-project) 
 - [Overview](#Overview) 
 - [Experimental Environment](#Experimental-Environment)
+- [Project Directories](#Project-Directories)
 
 ## About the project:
 The implementation of heterogeneous networks, which incorporate various technologies and equipment from multiple manufacturers, is a growing trend. This approach enables the integration of different network technologies and the provision of a wide range of services and applications. However, this diversity also brings with it complex operational and management challenges. As networks evolve to incorporate diverse components, each with its own characteristics and protocols, there is a need to complement them with effective monitoring solutions.
@@ -19,4 +20,56 @@ The conducted tests have confirmed that the implemented modifications ensure the
 ## Experimental Environment
 ![experimental](https://github.com/epousa/dissertacao/assets/92334531/608266f8-138c-429a-8abb-599bb4dbc8b4)
 
-
+## Project Directories
+```
+├── cenarios-teste
+│   ├── dev
+│   │   ├── config
+│   │   │   ├── env
+│   │   │   │   ├── broker.env
+│   │   │   │   └── elastic.env
+│   │   │   │   └── grafana.env
+│   │   │   │   └── postgres.env
+│   │   │   │   └── zookeeper.env
+│   │   │   ├── important-files
+│   │   │   │   ├── Class.events.xml
+│   │   │   │   └── eventconf.xml
+│   │   │   │   └── grafana.properties
+│   │   │   │   └── myScript
+│   │   │   │   └── myServiceScript
+│   │   │   │   └── opennms-datasource.xml
+│   │   │   │   └── opennms.pollerd.events.xml
+│   │   │   │   └── snmp-config.xml
+│   │   │   │   └── snmpd-conf.txt
+│   │   │   │   └── translator-configuration.xml
+│   │   │   │   └── ZTE-AN-GPON-SERVICE-MIB.events.xml
+│   │   │   │   └── ZXR10-ALARM-MIB.events.xml
+│   │   │   ├── kafka
+│   │   │   │   ├── KafkaConsumerReplacementFiles
+│   │   │   │   │   ├── EventBuilder.java
+│   │   │   │   │   └── EventsMapper.java
+│   │   │   │   │   └── OpenNMSKafkaConsumer.java
+│   │   │   │   │   └── pom.xml
+│   │   │   │   └── kafka_events_format
+│   │   │   │   └── pythonKafkaProducer
+│   │   │   │   │   ├── Makefile
+│   │   │   │   │   └── requirements.txt
+│   │   │   │   │   └── src
+│   │   │   │   │   └── venv
+│   │   │   │   └── test-consumer
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   └── src
+│   │   │   │   │   │   ├── Main
+│   │   │   │   │   │   │   └── Consumer.java
+│   │   │   │   │   │   └── Mapper
+│   │   │   │   │   │   │   └── EventsMapper.java
+│   │   └── docker-compose.yml
+│   │   └── images
+│   │   └── notes
+│   │   └── one-ring
+│   ├── ExampleOpenNMSDatabaseAccess
+│   │   ├── README.md
+│   │   └── src
+│   │   │   └── App.java
+│   └── monitoring-stack
+```
