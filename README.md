@@ -1,7 +1,7 @@
 # Monitorização de infraestrutura de TI 
 ## Table of contents
 - [About the project](#About-the-project) 
-- [Overview](#Overview) 
+- [Overview](#Overview) 8
 - [Experimental Environment](#Experimental-Environment)
 - [Project Directories](#Project-Directories)
 
@@ -23,53 +23,19 @@ The conducted tests have confirmed that the implemented modifications ensure the
 ## Project Directories
 ```
 ├── cenarios-teste
-│   ├── dev
+│   ├── dev (main directory)
 │   │   ├── config
 │   │   │   ├── env
-│   │   │   │   ├── broker.env
-│   │   │   │   └── elastic.env
-│   │   │   │   └── grafana.env
-│   │   │   │   └── postgres.env
-│   │   │   │   └── zookeeper.env
 │   │   │   ├── important-files
-│   │   │   │   ├── Class.events.xml
-│   │   │   │   └── eventconf.xml
-│   │   │   │   └── grafana.properties
-│   │   │   │   └── myScript
-│   │   │   │   └── myServiceScript
-│   │   │   │   └── opennms-datasource.xml
-│   │   │   │   └── opennms.pollerd.events.xml
-│   │   │   │   └── snmp-config.xml
-│   │   │   │   └── snmpd-conf.txt
-│   │   │   │   └── translator-configuration.xml
-│   │   │   │   └── ZTE-AN-GPON-SERVICE-MIB.events.xml
-│   │   │   │   └── ZXR10-ALARM-MIB.events.xml
 │   │   │   ├── kafka
 │   │   │   │   ├── KafkaConsumerReplacementFiles
-│   │   │   │   │   ├── EventBuilder.java
-│   │   │   │   │   └── EventsMapper.java
-│   │   │   │   │   └── OpenNMSKafkaConsumer.java
-│   │   │   │   │   └── pom.xml
 │   │   │   │   └── kafka_events_format
 │   │   │   │   └── pythonKafkaProducer
-│   │   │   │   │   ├── Makefile
-│   │   │   │   │   └── requirements.txt
-│   │   │   │   │   └── src
-│   │   │   │   │   └── venv
 │   │   │   │   └── test-consumer
-│   │   │   │   │   ├── README.md
-│   │   │   │   │   └── src
-│   │   │   │   │   │   ├── Main
-│   │   │   │   │   │   │   └── Consumer.java
-│   │   │   │   │   │   └── Mapper
-│   │   │   │   │   │   │   └── EventsMapper.java
 │   │   └── docker-compose.yml
 │   │   └── images
 │   │   └── notes
 │   │   └── one-ring
-│   ├── ExampleOpenNMSDatabaseAccess
-│   │   ├── README.md
-│   │   └── src
-│   │   │   └── App.java
-│   └── monitoring-stack
+│   ├── ExampleOpenNMSDatabaseAccess (test directory)
+│   └── monitoring-stack (test directory)
 ```
