@@ -40,7 +40,8 @@ The conducted tests have confirmed that the implemented modifications ensure the
 ## Experimental Environment
 ![experimental](https://github.com/epousa/dissertacao/assets/92334531/608266f8-138c-429a-8abb-599bb4dbc8b4)
 
-> **Note**
+> [!IMPORTANT]
 >
 > The experimental environment displayed only applies to the Main directory which is the final version.
-> In the monitoring-stack directory there is a finished alternative that shows you how to run a costumized OpenNMS instance in a docker container.  
+> 
+> The monitoring-stack directory uses the same micro-services and in the same way, however it's an alternative that shows you how to run a costumized OpenNMS instance in a docker container instead of running it on bare metal.  
