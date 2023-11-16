@@ -37,6 +37,11 @@
 │   │   │   │   └── src
 │   │   │   │   │   ├── my-event.proto
 │   │   │   │   │   └── myProducer.py
+│   ├── tests-results (Tests and results)
+│   │   ├── OpenNMSDashboards.zip
+│   │   ├── PerformanceTests.zip
+│   │   ├── TestesDST.zip
+│   │   └── TestesPreliminares.zip
 │   └── docker-compose.yml
 │   └── images
 │   └── notes
