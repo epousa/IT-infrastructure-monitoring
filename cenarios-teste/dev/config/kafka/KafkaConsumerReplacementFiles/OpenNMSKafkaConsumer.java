@@ -119,7 +119,7 @@
          //Change consumer config   
          consumerConfigXML.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getCanonicalName());
          
-         //Execute Protobuf runner
+         //Execute XML runner
          KafkaConsumerRunnerXml KafkaConsumerRunnerXML = new KafkaConsumerRunnerXml(consumerConfigXML);
          executorService.execute(KafkaConsumerRunnerXML);
      }
