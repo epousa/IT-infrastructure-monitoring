@@ -1,8 +1,7 @@
-# IT infrastructure monitoring 
 ## Table of contents
-- [Project Directories](#Project-Directories)
+- [Main Directory](#Main-Directory)
 
-## Project Directories
+## Main Directory
 ```
 ├── dev (main directory)
 │   ├── config
@@ -36,7 +35,8 @@
 │   │   │   │   ├── Makefile
 │   │   │   │   └── requirements.txt
 │   │   │   │   └── src
-│   │   │   │   └── venv
+│   │   │   │   │   ├── my-event.proto
+│   │   │   │   │   └── myProducer.py
 │   └── docker-compose.yml
 │   └── images
 │   └── notes
