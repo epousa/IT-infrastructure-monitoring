@@ -42,6 +42,6 @@ The conducted tests have confirmed that the implemented modifications ensure the
 
 > [!IMPORTANT]
 >
-> The experimental environment displayed only applies to the Main directory which is the final version.
+> * The experimental environment displayed only applies to the Main directory which is the final version.
 > 
-> The monitoring-stack directory uses the same micro-services and in the same way, however it's an alternative that shows you how to run a costumized OpenNMS instance in a docker container instead of running it on bare metal.  
+> * The monitoring-stack directory uses the same micro-services and in the same way, however it's an alternative that shows you how to run a costumized OpenNMS instance in a docker container instead of running it on bare metal.  
