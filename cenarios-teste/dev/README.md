@@ -66,8 +66,6 @@
 │   │   ├── TestesDST.zip
 │   │   └── TestesPreliminares.zip
 │   └── docker-compose.yml
-│   └── images
-│   └── notes
 │   └── one-ring.sh
 ```
 
