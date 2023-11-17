@@ -6,6 +6,8 @@
   * [Run micro-services](#Run-micro---services)
   * [Build a costume OpeNMS Core instance from Source](#Build-a-costume-OpeNMS-Core-instance-from-Source)
   * [Configure OpenNMS Core instance](#Configure-OpenNMS-Core-instance)
+    + [OpenNMS - Access to the database](#OpenNMS---Access-to-the-database)
+    + [OpenNMS - Receive SNMP Traps](#OpenNMS---Receive-SNMP-Traps)
   * [Run OpeNMS from Source](#Run-OpeNMS-from-Source)
 - [Main Features](#Main-Features)
   * [View](#view)
@@ -14,12 +16,9 @@
   * [Data Collection](#Data-Collection)
     + [OpenNMS - Kafka Consumer](#OpenNMS---Kafka-Consumer)
     + [OpenNMS - SNMP Data collection](#OpenNMS---SNMP-Data-collection)
-    + [OpenNMS - Receive SNMP Traps](#Receive-SNMP-Traps)
     + [OpenNMS - Alarm Correlation](#OpenNMS---Alarm-Correlation)
 - [Auxiliar Features](#Auxiliar-Features)
   * [Python Kafka Producer](#Python-Kafka-Producer)
-- [Possible Problems](#Possible-Problems)
-  * [liquidbase access to database locked by another access made](#liquidbase-access-to-database-locked-by-another-access-made)
   * [Only able to send events directly to eventd from localhost and not from other devices](#Only-able-to-send-events-directly-to-eventd-from-localhost-and-not-from-other-devices)
  
 ## Services
@@ -74,26 +73,50 @@ time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -p dir -DskipTe
 > ```
 
 ### Configure OpenNMS Core instance
-* Let OpenNMS know your PostgreSQL credentials in opennms-datasources.xml file; (Must Do)
-* 
-* Redirect the traffic from port 162 to port 1162 through firewall rules to allow OpenNMS to receive SNMP Traps.
+## OpenNMS - Access to the database
+Let OpenNMS know your PostgreSQL credentials in opennms-datasources.xml file. In a production environment the credentials must not be written directly in plain text into the file. 
+OpenNMS offers a feature called Secure Credentials Vault that encrypt them and allow you to call them in the file. 
+
+## OpenNMS - Receive SNMP Traps
+Enable Masquerade to allow port forwarding
+```
+sudo firewall-cmd --permanent --add-masquerade
+```
+
+Forward SNMP Trap UDP port 162 to 10162
+```
+sudo firewall-cmd --permanent --add-port=162/udp
+sudo firewall-cmd --permanent --add-port=10162/udp
+sudo firewall-cmd --permanent --add-forward-port=port=162:proto=udp:toport=10162
+sudo systemctl reload firewalld
+```
+> [!NOTE]
+> This is needed because Trapd is listening for SNMP Traps in port 10162. This can be confirmed by checking `dev/opennms/target/{OPENNMS VERSION}/logs/trapd.log`
+
+You can verify your firewall and port forwarding configuration by sending an SNMP trap from a remote system to your Horizon core instance:
+```
+snmptrap -v 2c -c public localhost:10162 '' 1.3.6.1.4.1.2021.991.17 .1.3.6.1.2.1.1.6.0 s "Milky Way"
+```
+> [!NOTE]
+>
+> When you're sending SNMP traps from the same system where OpenNMS is running, the traffic doesn't actually go through the network interface, but stays within the loopback interface. In this case, you need to specify the port explicitly, since the redirect rule only affects traffic that comes through the network interface
 
 ### Run OpeNMS from Source
-* First go to the OpenNMS directory.
+First go to the OpenNMS directory.
 ```
 cd opennms
 ```
-* Next, set the OpenNMS release version in a global environment variable and run the core server instance as your user instead of the opennms system user.
+Next, set the OpenNMS release version in a global environment variable and run the core server instance as your user instead of the opennms system user.
 ```
 export ONMS_RELEASE=$(./.circleci/scripts/pom2version.sh pom.xml)
 echo "RUNAS=$(id -u -n)" > "target/opennms-${ONMS_RELEASE}/etc/opennms.conf"
 ```
-* Initialize the Java environment and the database schema.
+Initialize the Java environment and the database schema.
 ```
 ./target/opennms-"${ONMS_RELEASE}"/bin/runjava -s
 ./target/opennms-"${ONMS_RELEASE}"/bin/install -dis
 ```
-* Finally start the core server instance in verbose, in foreground and enable remote debugging on port 8001/tcp.
+Finally start the core server instance in verbose, in foreground and enable remote debugging on port 8001/tcp.
 ```
 ./target/opennms-"${ONMS_RELEASE}"/bin/opennms -vtf start
 ```
