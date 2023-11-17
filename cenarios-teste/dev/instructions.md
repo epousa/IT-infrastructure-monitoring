@@ -146,7 +146,7 @@ Finally start the core server instance in verbose, in foreground and enable remo
 > ```
 > UPDATE public.databasechangeloglock SET locked = false, lockgranted = null, lockedby = null WHERE id = 1;
 > ```
-> OpeNMS inicialization can also be interrupted by sintax errors in its configuration files.
+> OpenNMS inicialization can also be interrupted by sintax errors in its configuration files.
 > As a last resource you can always try to build OpenNMS again.
 >```
 > ./assemble.pl -p dir -DskipTests
