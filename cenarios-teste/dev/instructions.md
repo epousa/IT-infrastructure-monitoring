@@ -7,6 +7,7 @@
   * [Build a costume OpeNMS Core instance from Source](#Build-a-costume-OpeNMS-Core-instance-from-Source)
   * [Configure OpenNMS Core instance](#Configure-OpenNMS-Core-instance)
     + [OpenNMS - Access to the database](#OpenNMS---Access-to-the-database)
+    + [OpenNMS - Receive Events](#OpenNMS---Receive-Events)
     + [OpenNMS - Receive SNMP Traps](#OpenNMS---Receive-SNMP-Traps)
   * [Run OpeNMS from Source](#Run-OpeNMS-from-Source)
 - [Main Features](#Main-Features)
