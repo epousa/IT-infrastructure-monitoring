@@ -199,3 +199,17 @@ Finally start the core server instance in verbose, in foreground and enable remo
 >```
 > ./assemble.pl -p dir -DskipTests
 >```
+>
+
+## Auxiliar Features
+### Python Kafka Producer
+
+A Kafka Producer is implemented in Python aiming to simulate the sending of events captured by the Nokia NMS (Network Management System) to Kafka topics. This allows testing the algorithm developed for reading these events independently of the DSTelecom infrastructure.
+
+The producer is capable of sending multiple events in both protobuf and XML formats to their respective Kafka topics. Creating protobuf events requires providing a blueprint that indicates the data to be serialized and deserialized for each event. This file retaining the definition of the intended data structure is compiled, generating Python classes that, when imported into the Kafka Producer, allow the construction of events. Producing XML events is a simpler process involving only reading an XML file containing the desired event.
+
+Interacting with Apache Kafka and building protobuf events involves using libraries that are not included with the standard Python installation. To ensure that these dependencies are included, a Python virtual environment is created using the venv module. Virtual environments are built on top of the existing Python installation and provide the option to isolate packages from the base installation, so that the application to be executed has only the libraries added to the environment.
+
+All commands involved in creating and maintaining the virtual environment, including adding dependencies to it, producing, and sending events, are incorporated into a Makefile for ease of reuse.
+
+The implementations of the Kafka Producer and Makefile are available in `pythonKafkaProducer` directory.
