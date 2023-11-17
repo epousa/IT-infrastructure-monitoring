@@ -11,11 +11,7 @@
     + [OpenNMS - Receive Events](#OpenNMS---Receive-Events)
     + [OpenNMS - Receive SNMP Traps](#OpenNMS---Receive-SNMP-Traps)
   * [Run OpeNMS from Source](#Run-OpeNMS-from-Source)
-- [Integrations with event sources](#Main-Features)
-  * [NOKIA'S NMS](#NOKIA'S-NMS)
-    + [OpenNMS - Integrated Kafka Consumer](#OpenNMS---Integrated-Kafka-Consumer)
-  * [Orphan devices and ZTE'S NMS](#Orphan-devices-and-ZTE'S-NMS)
-    + [OpenNMS - SNMP MIB Compiler](#OpenNMS---SNMP-MIB-Compiler)
+- [Integrations with each event source](#Integrations-with-each-event-source)
 - [Extras](#Extras)
   * [OpenNMS - Alarm History](#OpenNMS---Alarm-History)
   * [Grafana - OpenNMS Helm Plugin](#Grafana---OpenNMS-Helm-Plugin)
@@ -199,6 +195,12 @@ Finally start the core server instance in verbose, in foreground and enable remo
 >```
 > ./assemble.pl -p dir -DskipTests
 >```
+
+## Integrations with each event source
+
+![integrations](https://github.com/epousa/dissertacao/assets/92334531/ebad025d-8adb-43b1-8e40-16ddc12c42ce)
+
+
 
 ## Extras
 ### OpenNMS - Alarm History
