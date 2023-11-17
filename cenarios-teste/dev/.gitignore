@@ -5,3 +5,4 @@ config/kafka/pythonKafkaProducer/venv/
 config/kafka/pythonKafkaProducer/src/my_event_pb2.py
 config/kafka/pythonKafkaProducer/src/_pycache_/
 opennms/
+notes/
