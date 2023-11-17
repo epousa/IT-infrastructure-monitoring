@@ -72,12 +72,12 @@ time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -p dir -DskipTe
 > ulimit -n 16384
 > ```
 
-### Configure OpenNMS Core instance
-## OpenNMS - Access to the database
+## Configure OpenNMS Core instance
+### OpenNMS - Access to the database
 Let OpenNMS know your PostgreSQL credentials in opennms-datasources.xml file. In a production environment the credentials must not be written directly in plain text into the file. 
 OpenNMS offers a feature called Secure Credentials Vault that encrypt them and allow you to call them in the file. 
 
-## OpenNMS - Receive SNMP Traps
+### OpenNMS - Receive SNMP Traps
 Enable Masquerade to allow port forwarding
 ```
 sudo firewall-cmd --permanent --add-masquerade
