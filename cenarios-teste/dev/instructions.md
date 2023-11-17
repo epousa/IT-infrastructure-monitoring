@@ -39,20 +39,18 @@ Start the docker service and spin the micro services using the docker-compose.
 sudo systemctl start docker
 docker compose up -d
 ```
-
 > [!NOTE]
 > Take into account that OpenNMS wont run if you don't have a PostgreSQL service running already.
 > To avoid problems run the docker-compose.yml file before starting OpenNMS Core instance.
 
-
 ### Build a costume OpeNMS Core instance from Source
-* First, fetch the source from GitHub.
+First, fetch the source from GitHub.
 ```
 git clone https://github.com/OpenNMS/opennms.git opennms
 cd opennms
 ```
 
-* Do your changes to the source code.
+Do your changes to the source code.
 ```
 cd cenarios-teste/monitoring-stack/config/kafka/KafkaReplacementFiles
 cp EventsMapper.java features/kafka/consumer/src/main/java/org/opennms/features/kafka/consumer/events/
@@ -74,8 +72,12 @@ time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -p dir -DskipTe
 
 ## Configure OpenNMS Core instance
 ### OpenNMS - Access to the database
-Let OpenNMS know your PostgreSQL credentials in opennms-datasources.xml file. In a production environment the credentials must not be written directly in plain text into the file. 
-OpenNMS offers a feature called Secure Credentials Vault that encrypt them and allow you to call them in the file. 
+Let OpenNMS know your PostgreSQL credentials in `opennms-datasources.xml` file. In a production environment the credentials must not be written directly in plain text into the file. 
+OpenNMS offers a feature called Secure Credentials Vault that encrypt them and allow you to call them in the file.
+
+### OpenNMS - Receive Events
+Eventd is configured to only accept events from localhost. This can be changed in the `eventd-configarition.xml` file.
+If you want to allow any device to send events to Eventd change TCPAddress and UDPAddress to "0.0.0.0".
 
 ### OpenNMS - Receive SNMP Traps
 Enable Masquerade to allow port forwarding
