@@ -20,7 +20,6 @@
     + [OpenNMS - Alarm Correlation](#OpenNMS---Alarm-Correlation)
 - [Auxiliar Features](#Auxiliar-Features)
   * [Python Kafka Producer](#Python-Kafka-Producer)
-  * [Only able to send events directly to eventd from localhost and not from other devices](#Only-able-to-send-events-directly-to-eventd-from-localhost-and-not-from-other-devices)
  
 ## Services
 ### In System:
