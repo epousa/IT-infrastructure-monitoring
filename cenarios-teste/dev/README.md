@@ -106,7 +106,7 @@ cp OpenNMSKafkaConsumer.java features/kafka/consumer/src/main/java/org/opennms/f
 cd opennms
 ```
 * Clean, Compile and assemble from source. 
-* This command will create a "target" directory with the final build "opennms-${ONMS_RELEASE}" which will allow you to run a OpenNMS Core instance in bare metal after following the next set of commands.
+* This command will create a `target` directory with the final build `opennms-${ONMS_RELEASE}` which will allow you to run a OpenNMS Core instance in bare metal after following the next set of commands.
 ```
 time (./clean.pl && ./compile.pl -U -DskipTests && ./assemble.pl -p dir -DskipTests)
 ```
