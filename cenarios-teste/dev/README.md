@@ -199,7 +199,53 @@ Finally start the core server instance in verbose, in foreground and enable remo
 >```
 > ./assemble.pl -p dir -DskipTests
 >```
+
+## Extras
+### OpenNMS - Alarm History
+
+The following commands demonstrate how to configure and install the `opennms-alarm-history-elastic` feature, enabling OpenNMS to maintain persistent storage of alarms.
+
+First access Karaf Shell and Configure the feature.
+```
+ssh -p 8101 admin@localhost
+config:edit org.opennms.features.alarms.history.elastic
+config:property-set elasticUrl http://<service-hostname>:9200
+config:update
+```
+Then install the feature.
+```
+feature:install opennms-alarm-history-elastic
+```
+
+### Grafana - OpenNMS Helm Plugin
+
+Go to `configurations -> plugins` and search for `OpenNMS Helm`, install and enable it.
+
+Next step is to create a datasource. This can be done by going to `configurations -> datasources`. The plugin allows you to choose between three different datasources to interact with your openNMS core instance: `OpenNMS Entities`, `OpenNMS Flow` and `OpenNMS Performance`.
+
+For this project the most important datasource is `OpenNMS Entities`, because it's responsible for fetching alarms and display them.
+
+After selecting a datasource, you will need to fill the HTTP URL with OpenNMS Core instance URL, toggle basic auth and insert OpenNMS Core instance Credentials.
+
+Now just create a dashboard. Go to `Create -> Dashboards` and select one of the following preconfigured custom panels that come with the plugin, `alarm table`, `alarm histogram` or `filter panel` under visualizations and adapt them to your needs.
+
+> [!NOTE]
 >
+> Since Grafana is running as a docker container insert the IP address of your machine instead of localhost in the OpenNMS Core instance URL.
+
+### OpenNMS - Grafana dashboard box
+
+Configure and enable this feature by creating or editing `{OPENNMS_HOME}/etc/opennms.properties.d/grafana.properties` and setting the following configuration properties:
+```
+org.opennms.grafanaBox.show = true
+org.opennms.grafanaBox.apiKey = <Your Grafana Api key>
+org.opennms.grafanaBox.tag = <Your dashboards tag>
+```
+* `org.opennms.grafanaBox.show` -> Determines whether a Grafana Dashboard Box showing the available dashboards is included on the home page.
+
+* `org.opennms.grafanaBox.apiKey` -> The Grafana API key. This key is needed for REST calls to work. To create Grafana Api Key go to your `Grafana instance configurations -> API keys`.
+
+* `org.opennms.grafanaBox.tag` -> A tag that specifies which dashboards to display in the Grafana Dashboard Box. The tag must be assigned to an existing dashboard for it to be included. When no tag is specified, all dashboards are displayed. Use the same tag for all dashboards you want to see in OpenNMS Grafana dashboard box
 
 ## Auxiliar Features
 ### Python Kafka Producer
