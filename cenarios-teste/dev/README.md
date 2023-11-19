@@ -200,7 +200,10 @@ Finally start the core server instance in verbose, in foreground and enable remo
 
 ![integrations](https://github.com/epousa/dissertacao/assets/92334531/ebad025d-8adb-43b1-8e40-16ddc12c42ce)
 
-
+* Fixes to the OpenNMS Integrated Kafka Consumer feature in `cenarios-teste/dev/config/kafka/KafkaConsumerReplacementFiles/` directory;
+* Fixes to the dynamic and static event format in `ZTE-AN-GPON-SERVICE-MIB.events.xml`, `ZXR10-ALARM-MIB.events.xml`, `translator-configuration.xml` (EventTranslator solution) and `myScript` (autoaction solution);
+* Test event format `Class.events.xml` can be used to test both solutions mentioned in the last bullet point;
+* Script `myServiceScript` to test Self-resolution alarms with autoaction;  
 
 ## Extras
 ### OpenNMS - Alarm History
