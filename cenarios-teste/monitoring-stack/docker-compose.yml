@@ -7,19 +7,17 @@ networks:
 volumes:
   data-opennms.etc: {}
   data-opennms.mibs: {}
-  data-opennms.rrd: {}
-  data-opennms.reports: {}
-  data-postgres: {}
-  data-grafana: {}
+  volume-postgres: {}
+  volume-grafana: {}
 
 services:
-  database2:
+  database:
     image: postgres:latest
-    container_name: database2
+    container_name: database
     env_file:
       - ./config/env/postgres.env
     volumes:
-      - ./mount-volumes/data-postgres:/var/lib/postgresql/data
+      - ./mount-volumes/volume-postgres:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 10s
@@ -30,9 +28,9 @@ services:
     ports:
       - "5432:5432"
 
-  horizon2:
-    image: opennms/horizon:33.0.0-SNAPSHOT
-    container_name: horizon2
+  horizon:
+    image: opennms/horizon:33.0.0-SNAPSHOT #Costume OpenNMS image
+    container_name: horizon
     env_file:
       - ./config/env/opennms.env
       - ./config/env/postgres.env     
@@ -40,12 +38,7 @@ services:
       database2:
         condition: service_healthy
     volumes:
-     #Named volumes get saved in the following directory -> /var/lib/docker/volumes
-      - ./mount-volumes/data-opennms.rdd:/opt/opennms/share/rrd #Mount directories to store RRD files
-      - ./mount-volumes/data-opennms.reports:/opt/opennms/share/reports #PDF reports.
-      #Not named volumes need to be given permissions. Run "precious" script to do so.
-      - ./mount-volumes/data-opennms.etc:/opt/opennms/etc #OpenNMS Horizon configuration on your Docker host in a specific directory
-      #- ./mount-volumes/data-opennms.overlay:/opt/opennms-overlay #add my own configuration files by providing a etc-overlay directory. On startup the files overwrite the default configuration
+      - ./mount-volumes/data-opennms.etc:/opt/opennms/etc
       - ./mount-volumes/data-opennms.mibs:/opt/opennms/share/mibs
     command: ["-s"]
     healthcheck:
@@ -58,40 +51,37 @@ services:
     ports:
       - "8980:8980/tcp" #Publish port to access the web UI 
       - "8101:8101/tcp" #Publish port to access Karaf shell.
-      #- "61616:61616/tcp" #Publish port for ActiveMQ
       - "162:1162/udp" #Publish port for SNMP Traps/Informs.Unprivileged user and can’t bind on port numbers below 1024 without escalated privileges
       - "5817:5817" #Publish port to access evend
-
-  zookeeper2:
+      
+  zookeeper:
     image: confluentinc/cp-zookeeper:latest
-    container_name: zookeeper2
+    container_name: zookeeper
     env_file:
       - ./config/env/zookeeper.env
     networks:
       - monitoring
-
-  broker2:
+      
+  broker:
     image: confluentinc/cp-kafka:latest
-    container_name: broker2
+    container_name: broker
     ports:
-    # To learn about configuring Kafka for access across networks see
-    # https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/
       - "9092:9092"
     depends_on:
-      - zookeeper2
+      - zookeeper
     env_file:
       - ./config/env/broker.env
     networks:
       - monitoring
-
-  grafana2:
+      
+  grafana:
     image: opennms/helm:latest
-    container_name: grafana2
+    container_name: grafana
     env_file:
       - ./config/env/grafana.env
     volumes:
-      #Not named volumes need to be given permissions. Run "precious" script to do so. sudo chmod -R 777 volume-grafana
-      - ./mount-volumes/data-grafana:/var/lib/grafana
+      #Not named volumes need to be given permissions.
+      - ./mount-volumes/volume-grafana:/var/lib/grafana
     healthcheck:
       test: ["CMD", "curl", "-f", "-I", "http://localhost:3000/login"]
       interval: 1m
@@ -101,9 +91,9 @@ services:
       - monitoring
     ports:
       - "3000:3000"
-
-  es012:
-    container_name: elasticsearch2
+      
+  es01:
+    container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
     env_file:
       - ./config/env/elastic.env 
@@ -115,5 +105,3 @@ services:
       - monitoring
     ports:
       - 9200:9200
-
-
