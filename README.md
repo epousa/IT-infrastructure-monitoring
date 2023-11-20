@@ -35,10 +35,10 @@ The proposed solution entails using the OpenNMS platform to centralize alarms fr
 The conducted tests have confirmed that the implemented modifications ensure the expected performance and do not disrupt the unified monitoring system.
 
 ## Overview
-![overview](https://github.com/epousa/dissertacao/assets/92334531/c3c5416b-66f8-4a21-abea-db3659c93dd1)
+![overview](https://github.com/epousa/IT-infrastructure-monitoring/assets/92334531/e5e28030-9e22-4006-947c-a15320cb5001)
 
 ## Experimental Environment
-![experimental](https://github.com/epousa/dissertacao/assets/92334531/608266f8-138c-429a-8abb-599bb4dbc8b4)
+![experimental](https://github.com/epousa/IT-infrastructure-monitoring/assets/92334531/b3c0ee7c-9db1-4ad0-997f-fa879f9aed7a)
 
 > [!IMPORTANT]
 >
